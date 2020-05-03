@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.MainActivity">
+    tools:context=".view.customer.EateryActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
@@ -23,39 +23,14 @@
         app:layout_constraintGuide_end="24dp"
         />
 
-    <ImageView
-        android:id="@+id/logo_image"
-        android:src="@drawable/logo"
-        android:contentDescription="@string/logo_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eatery_recycleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <Button
-        android:id="@+id/login_button"
-        android:text="@string/login_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="@id/left_guideline"
-        app:layout_constraintEnd_toStartOf="@id/right_guideline"
-        app:layout_constraintTop_toBottomOf="@id/logo_image"
-        />
-
-    <Button
-        android:id="@+id/register_button"
-        android:text="@string/register_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toStartOf="@id/left_guideline"
-        app:layout_constraintEnd_toStartOf="@id/right_guideline"
-        app:layout_constraintTop_toBottomOf="@id/login_button"
-        />
-
-    
 </androidx.constraintlayout.widget.ConstraintLayout>
