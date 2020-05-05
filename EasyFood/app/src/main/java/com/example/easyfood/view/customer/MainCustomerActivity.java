@@ -8,7 +8,12 @@ import android.widget.Button;
 import com.example.easyfood.R;
 import com.example.easyfood.view.BaseActivity;
 
-public class CustomerActivity extends BaseActivity {
+/**
+ * Main Customer Activity
+ *
+ * Eatery customer's main activity.
+ */
+public class MainCustomerActivity extends BaseActivity {
     private Button eateryButton;
 
     @Override
@@ -21,6 +26,9 @@ public class CustomerActivity extends BaseActivity {
         setEateryButtonListener();
     }
 
+    /**
+     * Sets the OnClickListener for the Eatery/Restaurants Button.
+     */
     private void setEateryButtonListener() {
         eateryButton.setOnClickListener(new View.OnClickListener() {
             @Override

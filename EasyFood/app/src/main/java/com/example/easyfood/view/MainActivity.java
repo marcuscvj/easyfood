@@ -6,9 +6,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.easyfood.R;
-import com.example.easyfood.view.customer.CustomerActivity;
-import com.example.easyfood.viewmodel.EateryActivityViewModel;
+import com.example.easyfood.view.customer.MainCustomerActivity;
 
+/**
+ * Main Activity
+ *
+ * TEMPORARY:
+ * Contains a Login and a Register Button.
+ */
 public class MainActivity extends BaseActivity {
     private Button loginButton;
     private Button registerButton;
@@ -24,11 +29,15 @@ public class MainActivity extends BaseActivity {
         setLoginButtonListener();
     }
 
+    /**
+     * Sets the OnClickListener for the Login Button.
+     */
     private void setLoginButtonListener() {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent customerActivity = new Intent(getApplicationContext(), CustomerActivity.class);
+                // TODO Implement authentication service.
+                Intent customerActivity = new Intent(getApplicationContext(), MainCustomerActivity.class);
                 startActivity(customerActivity);
             }
         });

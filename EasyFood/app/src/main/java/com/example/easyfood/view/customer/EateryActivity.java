@@ -15,6 +15,12 @@ import com.example.easyfood.viewmodel.EateryActivityViewModel;
 
 import java.util.List;
 
+/**
+ * Eatery Activity
+ *
+ * TEMPORARY:
+ * Contains a list of all the available restaurants.
+ */
 public class EateryActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private EateryActivityViewModel viewModel;
@@ -39,6 +45,9 @@ public class EateryActivity extends BaseActivity {
         setRecyclerView();
     }
 
+    /**
+     * Sets the Recycler View (List) of all the eateries.
+     */
     private void setRecyclerView() {
         adapter = new EateryAdapter(this, viewModel.getEateries().getValue());
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
