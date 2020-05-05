@@ -14,10 +14,19 @@ import com.example.easyfood.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents an EateryAdapter
+ */
 public class EateryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Eatery> eateries;
     private Context context;
 
+    /**
+     * Creates an instance of an EateryAdapter
+     *
+     * @param context: Context - The Context.
+     * @param eateries: List<Eatery> - The list of eateries.
+     */
     public EateryAdapter(Context context, List<Eatery> eateries) {
         this.eateries = eateries;
         this.context = context;
@@ -40,9 +49,17 @@ public class EateryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return eateries.size() ;
     }
 
+    /**
+     * ViewHolder Class
+     */
     private class ViewHolder extends RecyclerView.ViewHolder{
         private TextView name;
 
+        /**
+         * Creates an instance of a ViewHolder
+         *
+         * @param itemView: View - The view
+         */
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.eatery_name);
