@@ -1,5 +1,6 @@
 package com.example.easyfood.view.customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.lifecycle.Observer;
@@ -21,7 +22,7 @@ import java.util.List;
  * TEMPORARY:
  * Contains a list of all the available restaurants.
  */
-public class EateryActivity extends BaseActivity {
+public class EateryActivity extends BaseActivity implements EateryAdapter.OnRestaurantListener {
     private RecyclerView recyclerView;
     private EateryActivityViewModel viewModel;
     private RecyclerView.Adapter adapter;
@@ -49,9 +50,17 @@ public class EateryActivity extends BaseActivity {
      * Sets the Recycler View (List) of all the eateries.
      */
     private void setRecyclerView() {
-        adapter = new EateryAdapter(this, viewModel.getEateries().getValue());
+        adapter = new EateryAdapter(this, viewModel.getEateries().getValue(), this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void OnRestaurantClick(int position) {
+        String chosenRestaurant = viewModel.getEateries().getValue().get(position).getName();
+    Intent intent = new Intent(this, MenuActivity.class);
+    intent.putExtra("Restaurant", chosenRestaurant);
+    startActivity(intent);
     }
 }
