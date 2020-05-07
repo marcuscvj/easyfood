@@ -18,6 +18,7 @@ public class EateryRepository {
     private static EateryRepository instance;
     private static Firebase fb;
     private ArrayList<Eatery> eateryList = new ArrayList<>();
+    private MutableLiveData<List<Eatery>> eateries = new MutableLiveData<>();
 
     /**
      * Returns an instance of the EateryRepository
@@ -40,23 +41,13 @@ public class EateryRepository {
     public MutableLiveData<List<Eatery>> getEateries() {
         // TODO Get eateries from database.
 
-        // Remove this later and put on more suitable place
-        // Adding to db
-        // Tests
-
-//        Eatery eatery1 = new Eatery("Erkut Pizzera & Kebabcenter", "test1");
-//        Eatery eatery2 = new Eatery("Bellas Pizzeria", "test2");
-//        Eatery eatery3 = new Eatery("Majas Pizzera", "test3");
-//
-//        fb.addEatery(eatery1);
-//        fb.addEatery(eatery2);
-//        fb.addEatery(eatery3);
-
         fb.getAllEateries(new ICallback() {
             @Override
             public void eateriesCallback(ArrayList<Eatery> list) {
-                Log.d("Test", String.valueOf(list));
+                // Log.d("Test", String.valueOf(list));
                 eateryList.addAll(list);
+                Log.d("T E S T: ", String.valueOf(eateryList));
+                eateries.setValue(eateryList);
             }
         });
 
