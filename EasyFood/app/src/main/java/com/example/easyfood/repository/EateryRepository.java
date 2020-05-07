@@ -46,12 +46,10 @@ public class EateryRepository {
             public void eateriesCallback(ArrayList<Eatery> list) {
                 // Log.d("Test", String.valueOf(list));
                 eateryList.addAll(list);
-                Log.d("T E S T: ", String.valueOf(eateryList));
-                eateries.setValue(eateryList);
+                // Log.d("T E S T: ", String.valueOf(eateryList));
             }
         });
 
-        MutableLiveData<List<Eatery>> eateries = new MutableLiveData<>();
         eateries.setValue(eateryList);
         return eateries;
     }
