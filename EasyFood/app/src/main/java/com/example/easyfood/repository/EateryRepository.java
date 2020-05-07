@@ -44,9 +44,7 @@ public class EateryRepository {
         fb.getAllEateries(new ICallback() {
             @Override
             public void eateriesCallback(ArrayList<Eatery> list) {
-                // Log.d("Test", String.valueOf(list));
                 eateryList.addAll(list);
-                // Log.d("T E S T: ", String.valueOf(eateryList));
             }
         });
 
