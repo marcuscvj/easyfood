@@ -111,8 +111,4 @@ public class Firebase implements IDatabase {
     public void updateEatery(Eatery eatery) {
 
     }
-
-    private void processData(ArrayList<Eatery> list) {
-        eateryList.addAll(list);
-    }
 }
