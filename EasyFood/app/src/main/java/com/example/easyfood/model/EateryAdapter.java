@@ -48,7 +48,7 @@ public class EateryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public int getItemCount() {
-        return eateries.size() ;
+        return eateries.size();
     }
 
     /**
