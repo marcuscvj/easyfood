@@ -37,8 +37,6 @@ public class EateryRepository {
      * @return MutableLiveData<List<Eatery>>: eateries - The eateries.
      */
     public MutableLiveData<List<Eatery>> getEateries() {
-        fb.getEatery(new Eatery("Erkuts Pizzera & Kebabcenter", "test1"));
-
         fb.getAllEateries(new IEateriesCallback() {
             @Override
             public void send(ArrayList<Eatery> list) {
