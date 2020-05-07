@@ -4,6 +4,6 @@ import com.example.easyfood.model.Eatery;
 
 import java.util.ArrayList;
 
-public interface ICallback {
-    void eateriesCallback(ArrayList<Eatery> eateryList);
+public interface IEateriesCallback {
+    void send(ArrayList<Eatery> list);
 }

@@ -1,11 +1,9 @@
 package com.example.easyfood.repository;
 
-import android.util.Log;
-
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.easyfood.db.Firebase;
-import com.example.easyfood.db.ICallback;
+import com.example.easyfood.db.IEateriesCallback;
 import com.example.easyfood.model.Eatery;
 
 import java.util.ArrayList;
@@ -39,11 +37,11 @@ public class EateryRepository {
      * @return MutableLiveData<List<Eatery>>: eateries - The eateries.
      */
     public MutableLiveData<List<Eatery>> getEateries() {
-        // TODO Get eateries from database.
+        fb.getEatery(new Eatery("Erkuts Pizzera & Kebabcenter", "test1"));
 
-        fb.getAllEateries(new ICallback() {
+        fb.getAllEateries(new IEateriesCallback() {
             @Override
-            public void eateriesCallback(ArrayList<Eatery> list) {
+            public void send(ArrayList<Eatery> list) {
                 eateryList.addAll(list);
             }
         });
