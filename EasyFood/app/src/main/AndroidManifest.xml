@@ -20,6 +20,7 @@
         <activity android:name=".view.customer.MainCustomerActivity" />
         <activity android:name=".view.customer.EateryActivity" />
         <activity android:name=".view.customer.MenuActivity" />
+        <activity android:name=".view.manager.ManagerMainActivity" />
     </application>
 
 </manifest>
