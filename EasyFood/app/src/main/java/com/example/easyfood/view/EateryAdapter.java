@@ -1,4 +1,4 @@
-package com.example.easyfood.model;
+package com.example.easyfood.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
+import com.example.easyfood.model.Eatery;
 
 import java.util.ArrayList;
 import java.util.List;

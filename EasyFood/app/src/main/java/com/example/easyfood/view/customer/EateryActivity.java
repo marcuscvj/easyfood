@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
 import com.example.easyfood.model.Eatery;
-import com.example.easyfood.model.EateryAdapter;
+import com.example.easyfood.view.EateryAdapter;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.EateryActivityViewModel;
 
