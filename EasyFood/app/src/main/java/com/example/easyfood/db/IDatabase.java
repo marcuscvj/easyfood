@@ -8,7 +8,7 @@ public interface IDatabase {
     void addEatery(Eatery eatery);
     void removeEatery(Eatery eatery);
     void updateEatery(Eatery eatery);
-    ArrayList<Eatery> getAllEateries(IEateriesCallback callback);
+    void getAllEateries(IEateriesCallback callback);
 
 //    void addMenuItem(Eatery eatery);
 //    void getMenuItem();

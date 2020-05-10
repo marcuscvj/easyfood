@@ -41,6 +41,7 @@ public class EateryRepository {
             @Override
             public void send(ArrayList<Eatery> list) {
                 eateryList.addAll(list);
+                eateries.setValue(eateryList);
             }
         });
 

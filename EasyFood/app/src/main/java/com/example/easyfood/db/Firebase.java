@@ -51,7 +51,7 @@ public class Firebase implements IDatabase {
      * @return ArrayList<Eatery>: eateryList
      */
     @Override
-    public ArrayList<Eatery> getAllEateries(final IEateriesCallback callback) {
+    public void getAllEateries(final IEateriesCallback callback) {
         db.collection("eateries")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -72,8 +72,6 @@ public class Firebase implements IDatabase {
                         }
                     }
                 });
-
-        return eateryList;
     }
 
     /**
