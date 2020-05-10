@@ -19,7 +19,7 @@ import java.util.List;
 public class EateryRepository {
     private static EateryRepository instance;
     private static Firebase fb;
-    private ArrayList<Eatery> eateryList = new ArrayList<>();
+    private ArrayList<Eatery> eateryList;
     private MutableLiveData<List<Eatery>> eateries = new MutableLiveData<>();
 
     /**
@@ -49,16 +49,6 @@ public class EateryRepository {
             public void send(ArrayList<Eatery> list) {
                 eateryList.addAll(list);
                 eateries.setValue(eateryList);
-            }
-        });
-
-        // Only for testing
-        fb.getAllProducts(new IProductsCallback() {
-            @Override
-            public void send(ArrayList<Product> list) {
-                for (Product p : list) {
-                    System.out.println(p.getTitle());
-                }
             }
         });
 

@@ -104,7 +104,7 @@ public class Firebase implements IDatabase {
 
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 String name = document.getString("name");
-                                String id = document.getString("id");
+                                String id = document.getId();
                                 eateries.add(new Eatery(name, id));
                             }
 
@@ -133,27 +133,19 @@ public class Firebase implements IDatabase {
 
     @Override
     public void getAllProducts(String eateryId, final IProductsCallback callback) {
-        db.collection("eateries/${eateryId}/products")
+        db.collection("eateries").document(eateryId).collection("products")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             ArrayList<Product> products = new ArrayList<>();
-
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                Map<String, Object> map = document.getData();
-
-                                // Getting the products from the document array field
-                                for (Map.Entry<String, Object> entry : map.entrySet()) {
-                                    if (entry.getKey().equals("products")) {
-                                        // Log.d("TAG", entry.getValue().toString());
-
-                                        products.add(new Eatery(name, id));
-
-                                        // products.add(new Product())
-                                    }
-                                }
+                                String name = document.getString("name");
+                                String desc = document.getString("description");
+                                Double price = document.getDouble("price");
+                                String id = document.getId();
+                                products.add(new Product(name, desc, price, id));
                             }
 
                             callback.send(products);

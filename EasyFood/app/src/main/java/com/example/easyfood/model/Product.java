@@ -1,19 +1,25 @@
 package com.example.easyfood.model;
 
 public class Product {
-    private String title = null;
-    private String description = null;
+    private String name;
+    private String description;
     private double price;
+    private String id;
     //private String imagePathWay = null;
 
-    public Product(String title, String description, double price) {
-        this.title = title;
+    public Product(String name, String description, double price, String id) {
+        this.name = name;
         this.description = description;
         this.price = price;
+        this.id = id;
     }
 
-    public String getTitle() {
-        return this.title;
+    public String getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public String getDescription() {
