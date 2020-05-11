@@ -1,11 +1,14 @@
 package com.example.easyfood.model;
 
+import java.util.ArrayList;
+
 /**
  * Represents an Eatery
  */
 public class Eatery {
     private String name;
     private String id;
+    private ArrayList<Product> products = new ArrayList<>();
 
     /**
      * Creates an instance of Eatery
