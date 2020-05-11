@@ -58,9 +58,9 @@ public class EateryActivity extends BaseActivity implements EateryAdapter.OnRest
 
     @Override
     public void OnRestaurantClick(int position) {
-        String chosenRestaurant = viewModel.getEateries().getValue().get(position).getName();
-        Intent intent = new Intent(this, MenuActivity.class);
-        intent.putExtra("Restaurant", chosenRestaurant);
+        String chosenRestaurant = viewModel.getEateries().getValue().get(position).getId();
+        Intent intent = new Intent(this, ProductActivity.class);
+        intent.putExtra("RestaurantID", chosenRestaurant);
         startActivity(intent);
     }
 }
