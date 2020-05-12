@@ -1,9 +1,10 @@
 package com.example.easyfood.model;
 
+
 public class Product {
     private String name;
     private String description;
-    private double price;
+    private Double price;
     private String id;
     //private String imagePathWay = null;
 
