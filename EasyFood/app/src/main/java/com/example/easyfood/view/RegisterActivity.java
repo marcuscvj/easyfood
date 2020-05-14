@@ -1,12 +1,19 @@
 package com.example.easyfood.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.example.easyfood.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterActivity extends BaseActivity {
@@ -49,6 +56,23 @@ public class RegisterActivity extends BaseActivity {
 
                 if(password.length() < 6) {
                     passwordTextView.setError("Password must be at least 6 characters");
+                    return;
+                }
+
+                registerWithEmailAndPassword(email, password);
+            }
+        });
+    }
+
+    private void registerWithEmailAndPassword(String email, String password) {
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), "Account created", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                } else {
+                    Toast.makeText(getApplicationContext(), "Failed to create an account!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
