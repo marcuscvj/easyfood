@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,8 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class RegisterActivity extends BaseActivity {
     FirebaseAuth firebaseAuth;
 
-    TextView emailTextView;
-    TextView passwordTextView;
+    EditText emailTextView;
+    EditText passwordTextView;
     Button registerButton;
 
     @Override
@@ -30,8 +31,8 @@ public class RegisterActivity extends BaseActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
-        emailTextView = findViewById(R.id.email_textView);
-        passwordTextView = findViewById(R.id.password_textView);
+        emailTextView = findViewById(R.id.email_editText);
+        passwordTextView = findViewById(R.id.password_editText);
         registerButton = findViewById(R.id.register_button);
 
         setRegisterButtonListener();
