@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.easyfood.R;
-import com.example.easyfood.view.customer.MainCustomerActivity;
+import com.example.easyfood.view.customer.EateryActivity;
 
 /**
  * Main Activity
@@ -37,8 +37,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 // TODO Implement authentication service.
-                Intent customerActivity = new Intent(getApplicationContext(), MainCustomerActivity.class);
-                startActivity(customerActivity);
+                Intent Activity = new Intent(getApplicationContext(), EateryActivity.class);
+                startActivity(Activity);
             }
         });
     }
