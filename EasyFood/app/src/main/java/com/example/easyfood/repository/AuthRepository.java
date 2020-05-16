@@ -13,7 +13,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class AuthRepository {
-    private String TAG = "AuthRepository";
     private static AuthRepository instance;
     private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
@@ -24,8 +23,16 @@ public class AuthRepository {
         return instance;
     }
 
+    /**
+     * Signs in the User with Email and Password
+     *
+     * @param email String - Email of the user
+     * @param password String - Password of the user
+     * @return userLiveData MutableLiveData<User> - The user
+     */
     public MutableLiveData<User> signInWithEmailAndPassword(String email, String password) {
         final MutableLiveData<User> userLiveData = new MutableLiveData<>();
+
         firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task task) {
@@ -38,14 +45,20 @@ public class AuthRepository {
                         userLiveData.setValue(user);
                     }
                 } else {
-                    Log.d(TAG, task.getException().getMessage());
+                    userLiveData.setValue(new User("0", "0"));
                 }
             }
         });
+
         return userLiveData;
     }
 
-
+    /**
+     * Registers a new user
+     *
+     * @param email String - Email of the user
+     * @param password String - Password of the user
+     */
     public void registerWithEmailAndPassword(String email, String password) {
         firebaseAuth.createUserWithEmailAndPassword(email, password);
         // TODO Check that user not exists etc.

@@ -45,16 +45,19 @@ public class RegisterActivity extends BaseActivity {
 
                 if(TextUtils.isEmpty(email)) {
                     emailEditText.setError("Email is Required");
+                    emailEditText.requestFocus();
                     return;
                 }
 
                 if(TextUtils.isEmpty(password)) {
                     passwordEditText.setError("Password is Required");
+                    passwordEditText.requestFocus();
                     return;
                 }
 
                 if(password.length() < 6) {
                     passwordEditText.setError("Password must be at least 6 characters long");
+                    passwordEditText.requestFocus();
                     return;
                 }
 

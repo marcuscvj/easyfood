@@ -5,9 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,8 +13,6 @@ import com.example.easyfood.R;
 import com.example.easyfood.model.User;
 import com.example.easyfood.view.customer.EateryActivity;
 import com.example.easyfood.viewmodel.LoginActivityViewModel;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends BaseActivity {
     private LoginActivityViewModel viewModel;
@@ -47,18 +43,22 @@ public class LoginActivity extends BaseActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userEmail = emailEditText.getText().toString();
-                String userPwd = passwordEditText.getText().toString();
+                String email = emailEditText.getText().toString().trim();
+                String password = passwordEditText.getText().toString().trim();
 
-                if (userEmail.isEmpty()) {
+                if (email.isEmpty()) {
                     emailEditText.setError("Provide your Email address first!");
                     emailEditText.requestFocus();
-                } else if (userPwd.isEmpty()) {
+                    return;
+                }
+
+                if (password.isEmpty()) {
                     passwordEditText.setError("Enter Password!");
                     passwordEditText.requestFocus();
-                } else {
-                    signInWithEmailAndPassword(userEmail, userPwd);
+                    return;
                 }
+
+                signInWithEmailAndPassword(email, password);
             }
         });
     }
@@ -74,8 +74,13 @@ public class LoginActivity extends BaseActivity {
         viewModel.getUserLiveData().observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                Intent intent = new Intent(getApplicationContext(), EateryActivity.class);
-                startActivity(intent);
+                if (user.getId().equals("0")) {
+                    emailEditText.setError("Wrong Credentials");
+                    passwordEditText.setError("Wrong Credentials");
+                    return;
+                }
+
+                goToActivity(new Intent(getApplicationContext(), EateryActivity.class));
             }
         });
     }

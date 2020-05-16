@@ -43,4 +43,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /**
+     * Goes to Activity
+     *
+     * @param intent Intent - The intent
+     */
+    protected void goToActivity(Intent intent) {
+        startActivity(intent);
+    }
 }
