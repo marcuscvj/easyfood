@@ -1,6 +1,5 @@
 package com.example.easyfood.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,9 +9,7 @@ import android.widget.EditText;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
-import com.example.easyfood.view.customer.EateryActivity;
 import com.example.easyfood.viewmodel.RegisterActivityViewModel;
-import com.example.easyfood.model.User;
 
 public class RegisterActivity extends BaseActivity {
     RegisterActivityViewModel viewModel;
@@ -74,29 +71,5 @@ public class RegisterActivity extends BaseActivity {
      */
     private void registerWithEmailAndPassword(String email, String password) {
         viewModel.registerWithEmailAndPassword(email, password);
-        viewModel.getUserLiveData().observe(this, new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                Intent intent = new Intent(getApplicationContext(), EateryActivity.class);  //TODO Change to LoginActivity
-                startActivity(intent);
-            }
-        });
     }
-
-    //TODO Move to AuthRepository
-    /**
-    private void registerWithEmailAndPassword(String email, String password) {
-        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "Account created", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                } else {
-                    Toast.makeText(getApplicationContext(), "Failed to create an account!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-     **/
 }
