@@ -12,21 +12,19 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
-import com.example.easyfood.model.Eatery;
 import com.example.easyfood.model.User;
 import com.example.easyfood.view.customer.EateryActivity;
 import com.example.easyfood.viewmodel.LoginActivityViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements FirebaseAuth.AuthStateListener {
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private LoginActivityViewModel viewModel;
 
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button loginButton;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,22 +39,39 @@ public class LoginActivity extends BaseActivity {
         passwordEditText = findViewById(R.id.loginPwd);
         loginButton = findViewById(R.id.btnLogin);
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+        setLoginButtonListener();
+    }
 
-                Toast.makeText(LoginActivity.this, user.getEmail(), Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(this);
+    }
 
-                if (user != null) {
-                    Intent I = new Intent(getApplicationContext(), EateryActivity.class);
-                    startActivity(I);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Login to continue", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
+    @Override
+    protected void onStop() {
+        super.onStop();
+        firebaseAuth.removeAuthStateListener(this);
+    }
 
+    @Override
+    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        if (user != null) {
+            Toast.makeText(LoginActivity.this, user.getEmail(), Toast.LENGTH_SHORT).show(); // DEBUGGING
+
+            Intent I = new Intent(getApplicationContext(), EateryActivity.class);
+            startActivity(I);
+        } else {
+            Toast.makeText(getApplicationContext(), "Login to continue", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Sets the On Click Listener for Login Button.
+     */
+    private void setLoginButtonListener() {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,24 +84,20 @@ public class LoginActivity extends BaseActivity {
                 } else if (userPwd.isEmpty()) {
                     passwordEditText.setError("Enter Password!");
                     passwordEditText.requestFocus();
-                } else if (userEmail.isEmpty() && userPwd.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Fields Empty!", Toast.LENGTH_SHORT).show();
-                } else if (!(userEmail.isEmpty() && userPwd.isEmpty())) {
-                        v(userEmail, userPwd);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                    signInWithEmailAndPassword(userEmail, userPwd);
                 }
             }
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
-    }
-
-    private void v(String userEmail, String userPwd) {
+    /**
+     * Signs in the user with Email and Password
+     *
+     * @param userEmail String - User email address
+     * @param userPwd String - User password
+     */
+    private void signInWithEmailAndPassword(String userEmail, String userPwd) {
         viewModel.signInWithEmailAndPassword(userEmail, userPwd);
         viewModel.getUserLiveData().observe(this, new Observer<User>() {
             @Override
