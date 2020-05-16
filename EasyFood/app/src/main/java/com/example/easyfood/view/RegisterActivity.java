@@ -71,5 +71,7 @@ public class RegisterActivity extends BaseActivity {
      */
     private void registerWithEmailAndPassword(String email, String password) {
         viewModel.registerWithEmailAndPassword(email, password);
+        // TODO Notify user about how it went
+        // TODO Send user to LoginActivity ??
     }
 }

@@ -48,6 +48,8 @@ public class AuthRepository {
 
     public void registerWithEmailAndPassword(String email, String password) {
         firebaseAuth.createUserWithEmailAndPassword(email, password);
+        // TODO Check that user not exists etc.
+        // TODO Send back notice that user is created.
     }
 
 }

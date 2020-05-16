@@ -1,5 +1,6 @@
 package com.example.easyfood.model;
 
+// TODO What attributes does the user need ?
 public class User {
     private String id;
     private String email;
