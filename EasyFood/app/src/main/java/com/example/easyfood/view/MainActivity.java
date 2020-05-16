@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 // TODO Implement authentication service.
-                Intent Activity = new Intent(getApplicationContext(), EateryActivity.class);
+                Intent Activity = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(Activity);
             }
         });
