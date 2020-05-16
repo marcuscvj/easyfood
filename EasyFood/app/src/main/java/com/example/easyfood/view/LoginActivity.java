@@ -19,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends BaseActivity implements FirebaseAuth.AuthStateListener {
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private LoginActivityViewModel viewModel;
 
     private EditText emailEditText;
@@ -34,7 +33,6 @@ public class LoginActivity extends BaseActivity implements FirebaseAuth.AuthStat
         viewModel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
         viewModel.init();
 
-        firebaseAuth = FirebaseAuth.getInstance();
         emailEditText = findViewById(R.id.loginEmail);
         passwordEditText = findViewById(R.id.loginPwd);
         loginButton = findViewById(R.id.btnLogin);
