@@ -45,4 +45,9 @@ public class AuthRepository {
         return userLiveData;
     }
 
+
+    private void registerWithEmailAndPassword(String email, String password) {
+        firebaseAuth.createUserWithEmailAndPassword(email, password);
+    }
+
 }
