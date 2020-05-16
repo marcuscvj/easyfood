@@ -46,7 +46,7 @@ public class AuthRepository {
     }
 
 
-    private void registerWithEmailAndPassword(String email, String password) {
+    public void registerWithEmailAndPassword(String email, String password) {
         firebaseAuth.createUserWithEmailAndPassword(email, password);
     }
 
