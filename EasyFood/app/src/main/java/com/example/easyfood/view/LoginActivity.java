@@ -33,6 +33,7 @@ public class LoginActivity extends BaseActivity {
         setContentView(R.layout.activity_login);
 
         viewModel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
+        viewModel.init();
 
         firebaseAuth = FirebaseAuth.getInstance();
         loginEmailId = findViewById(R.id.loginEmail);
