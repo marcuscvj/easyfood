@@ -27,6 +27,7 @@ public class MainActivity extends BaseActivity {
         registerButton = findViewById(R.id.register_button);
 
         setLoginButtonListener();
+        setRegisterButtonListener();
     }
 
     /**
@@ -38,6 +39,19 @@ public class MainActivity extends BaseActivity {
             public void onClick(View view) {
                 // TODO Implement authentication service.
                 Intent Activity = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(Activity);
+            }
+        });
+    }
+
+    /**
+     * Sets the OnClickListener for the Register Button.
+     */
+    private void setRegisterButtonListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent Activity = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(Activity);
             }
         });
