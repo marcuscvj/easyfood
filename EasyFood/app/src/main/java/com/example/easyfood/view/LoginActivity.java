@@ -8,8 +8,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
+import com.example.easyfood.viewmodel.LoginActivityViewModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -17,8 +19,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends BaseActivity {
-    public EditText loginEmailId, loginPwd;
-    Button btnLogin;
+    private LoginActivityViewModel viewModel;
+
+    private EditText loginEmailId;
+    private EditText loginPwd;
+    private Button btnLogin;
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
 
@@ -26,6 +31,8 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        viewModel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
 
         firebaseAuth = FirebaseAuth.getInstance();
         loginEmailId = findViewById(R.id.loginEmail);
