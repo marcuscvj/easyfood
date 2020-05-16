@@ -18,7 +18,7 @@ import com.example.easyfood.viewmodel.LoginActivityViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends BaseActivity implements FirebaseAuth.AuthStateListener {
+public class LoginActivity extends BaseActivity {
     private LoginActivityViewModel viewModel;
 
     private EditText emailEditText;
@@ -38,32 +38,6 @@ public class LoginActivity extends BaseActivity implements FirebaseAuth.AuthStat
         loginButton = findViewById(R.id.btnLogin);
 
         setLoginButtonListener();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(this);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        firebaseAuth.removeAuthStateListener(this);
-    }
-
-    @Override
-    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
-        if (user != null) {
-            Toast.makeText(LoginActivity.this, user.getEmail(), Toast.LENGTH_SHORT).show(); // DEBUGGING
-
-            Intent I = new Intent(getApplicationContext(), EateryActivity.class);
-            startActivity(I);
-        } else {
-            Toast.makeText(getApplicationContext(), "Login to continue", Toast.LENGTH_SHORT).show();
-        }
     }
 
     /**
