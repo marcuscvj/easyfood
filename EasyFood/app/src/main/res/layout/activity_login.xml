@@ -15,7 +15,7 @@
         <ImageView
             android:id="@+id/logo_image"
             android:src="@drawable/logo"
-            android:contentDescription="@string/login_logo_image"
+            android:contentDescription="Hej"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_marginTop="50dp"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:inputType="textEmailAddress"
-            android:hint="@string/email_address"
+            android:hint="Email"
             android:autofillHints="Your email address" />
 
         <EditText
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:inputType="textPassword"
-            android:hint="@string/your_password"
+            android:hint="Password"
             android:autofillHints="Your password..." />
 
         <Button
@@ -47,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="@string/button_login"
+            android:text="Login"
             android:textSize="25sp" />
     </LinearLayout>
 
