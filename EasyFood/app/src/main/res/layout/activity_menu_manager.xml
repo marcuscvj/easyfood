@@ -43,6 +43,39 @@
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintTop_toBottomOf="@id/menu_header"
+        app:layout_constraintBottom_toTopOf="@+id/new_product_button"
+        />
+
+    <Button
+        android:id="@+id/new_product_button"
+        android:text="New product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintBottom_toTopOf="@+id/edit_product_button"
+        />
+
+    <Button
+        android:id="@+id/edit_product_button"
+        android:text="Edit product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintBottom_toTopOf="@+id/remove_product_button"
+        />
+
+    <Button
+        android:id="@+id/remove_product_button"
+        android:text="Remove product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
