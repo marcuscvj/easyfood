@@ -29,9 +29,9 @@ public class LoginActivity extends BaseActivity {
         viewModel = new ViewModelProvider(this).get(LoginActivityViewModel.class);
         viewModel.init();
 
-        emailEditText = findViewById(R.id.loginEmail);
-        passwordEditText = findViewById(R.id.loginPwd);
-        loginButton = findViewById(R.id.btnLogin);
+        emailEditText = findViewById(R.id.email_editText);
+        passwordEditText = findViewById(R.id.password_editText);
+        loginButton = findViewById(R.id.login_button);
 
         setLoginButtonListener();
     }

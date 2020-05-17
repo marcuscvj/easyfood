@@ -6,50 +6,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="view.LoginActivity">
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp"
+        />
+
+    <EditText
+        android:id="@+id/email_editText"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:autofillHints="Your email address"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintBottom_toTopOf="@id/password_editText"
+        />
 
-        <ImageView
-            android:id="@+id/logo_image"
-            android:src="@drawable/logo"
-            android:contentDescription="Hej"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="50dp"
-            app:layout_constraintStart_toStartOf="@id/left_guideline"
-            app:layout_constraintEnd_toStartOf="@id/right_guideline"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="Suspicious0dp" />
+    <EditText
+        android:id="@+id/password_editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:autofillHints="Your password..."
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintBottom_toTopOf="@id/login_button"
+        />
 
-        <EditText
-            android:id="@+id/loginEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:inputType="textEmailAddress"
-            android:hint="Email"
-            android:autofillHints="Your email address" />
-
-        <EditText
-            android:id="@+id/loginPwd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:inputType="textPassword"
-            android:hint="Password"
-            android:autofillHints="Your password..." />
-
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Login"
-            android:textSize="25sp" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/login_button"
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 
 
