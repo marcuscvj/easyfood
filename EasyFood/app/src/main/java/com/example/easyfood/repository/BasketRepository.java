@@ -31,8 +31,6 @@ public class BasketRepository {
      * @return MutableLiveData<List<Eatery>>: eateries - The eateries.
      */
     public MutableLiveData<List<Product>> getProducts() {
-        Product hej = new Product("hej", "hej", 77.0, "hej");
-        productsList.add(hej);
         products.setValue(productsList);
         return products;
     }
