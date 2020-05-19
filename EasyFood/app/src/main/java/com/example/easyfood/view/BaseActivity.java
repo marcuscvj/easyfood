@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.easyfood.R;
+import com.example.easyfood.view.customer.BasketActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**
@@ -33,16 +34,22 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * TEMPORARY SIGN OUT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+     * TEMPORARY SIGN OUT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! (ONLY the first statement)
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.ic_home) {
             firebaseAuth.signOut();
             startActivity(new Intent(this, MainActivity.class));
+        } else if (item.getItemId() == R.id.ic_cart) {
+            startActivity(new Intent(this, BasketActivity.class));
         }
-        return super.onOptionsItemSelected(item);
+
+            return super.onOptionsItemSelected(item);
     }
+
+
+
 
     /**
      * Goes to Activity

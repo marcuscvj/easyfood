@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 
 import com.example.easyfood.R;
+import com.example.easyfood.view.customer.BasketActivity;
 import com.example.easyfood.view.customer.EateryActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -75,4 +76,5 @@ public class MainActivity extends BaseActivity implements FirebaseAuth.AuthState
             }
         });
     }
+
 }
