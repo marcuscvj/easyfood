@@ -29,7 +29,7 @@ public class NewProductActivity extends BaseActivity {
         getChosenRestaurant();
 
         viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
-        viewModel.init();
+        viewModel.init(restaurantID);
 
         nameEditText = findViewById(R.id.name_editText);
         descriptionEditText = findViewById(R.id.description_editText);

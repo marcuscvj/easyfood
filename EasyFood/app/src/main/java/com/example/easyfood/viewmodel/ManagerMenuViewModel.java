@@ -1,17 +1,36 @@
 package com.example.easyfood.viewmodel;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.easyfood.model.Product;
 import com.example.easyfood.repository.ManagerMenuRepository;
+
+import java.util.List;
 
 public class ManagerMenuViewModel extends ViewModel {
     private ManagerMenuRepository managerMenuRepository;
+    private MutableLiveData<List<Product>> products;
 
     /**
      * Initializes the ViewModel
      */
-    public void init(){
+    public void init(String restaurantID){
+        if(products != null) {
+            return;
+        }
         managerMenuRepository = ManagerMenuRepository.getInstance();
+        products = managerMenuRepository.getAllProducts(restaurantID);
+    }
+
+    /**
+     * Returns the products.
+     *
+     * @return LiveData: products - The products.
+     */
+    public LiveData<List<Product>> getAllProducts() {
+        return products;
     }
 
     /**
@@ -24,6 +43,10 @@ public class ManagerMenuViewModel extends ViewModel {
      */
     public void createProduct(String eateryId, String name, String description, Double price) {
         managerMenuRepository.createProductAndAddToDatabase(eateryId, name, description, price);
+    }
+
+    public void removeProduct(String eateryId, String productId) {
+        managerMenuRepository.removeProduct(eateryId, productId);
     }
 
 }
