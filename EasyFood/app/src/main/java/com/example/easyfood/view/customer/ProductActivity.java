@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,8 +17,10 @@ import com.example.easyfood.model.Product;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.ProductAdapter;
 import com.example.easyfood.view.RegisterActivity;
+import com.example.easyfood.viewmodel.BasketActivityViewModel;
 import com.example.easyfood.viewmodel.ProductActivityViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductActivity extends BaseActivity implements ProductAdapter.OnAddProductListener{
@@ -70,5 +73,6 @@ public class ProductActivity extends BaseActivity implements ProductAdapter.OnAd
         Product chosenProduct = viewModel.getProducts().getValue().get(position);
         viewModel.addProduct(chosenProduct);
     }
+
 
 }

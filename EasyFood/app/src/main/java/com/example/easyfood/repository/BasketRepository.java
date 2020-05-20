@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.easyfood.model.Product;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
