@@ -19,7 +19,7 @@ import com.example.easyfood.viewmodel.ProductActivityViewModel;
 
 import java.util.List;
 
-public class ManagerMenuActivity extends BaseActivity {
+public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdapter.OnRemoveProductListener {
     private String restaurantID;
 
     private Button newProductButton;
@@ -59,7 +59,7 @@ public class ManagerMenuActivity extends BaseActivity {
      * Sets the Recycler View (List) of all the products.
      */
     private void setRecyclerView() {                 // TODO Make own adapter
-        adapter = new ProductAdapter(this, viewModel.getProducts().getValue());
+        adapter = new ManagerMenuAdapter(this, viewModel.getProducts().getValue(), this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
@@ -84,4 +84,9 @@ public class ManagerMenuActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onRemoveProductClick(int position) {
+        // Product chosenProduct = viewModel.getProducts().getValue().get(position);
+        // viewModel.removeProduct(chosenProduct);
+    }
 }
