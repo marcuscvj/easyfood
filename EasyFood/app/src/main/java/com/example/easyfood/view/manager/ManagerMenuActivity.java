@@ -66,7 +66,7 @@ public class ManagerMenuActivity extends BaseActivity {
     }
 
     private void getChosenRestaurant() {             // TODO Get the right id
-        restaurantID = "XvcEDPdTRl5i8IQuoIEh";
+        restaurantID = "33LokCQ0UG8jEnXnllQV";
     }
 
     /**
@@ -76,7 +76,9 @@ public class ManagerMenuActivity extends BaseActivity {
         newProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToActivity(new Intent(getApplicationContext(), NewProductActivity.class));
+                Intent intent = new Intent(getApplicationContext(), NewProductActivity.class);
+                intent.putExtra("RestaurantID", restaurantID);
+                goToActivity(intent);
             }
         });
     }

@@ -30,4 +30,8 @@ public class Product {
     public double getPrice() {
         return this.price;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
