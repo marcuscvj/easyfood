@@ -12,8 +12,10 @@ import java.util.List;
 public class ProductActivityViewModel extends ViewModel {
 
     private MutableLiveData<List<Product>> products;
+    private MutableLiveData<List<Product>> baskets;
+    private BasketRepository basket;
     private ProductRepository productsRepository;
-    private BasketRepository basketRepository;
+
 
     /**
      * Initializes the ViewModel
@@ -23,7 +25,8 @@ public class ProductActivityViewModel extends ViewModel {
             return;
         }
         productsRepository= ProductRepository.getInstance();
-        basketRepository = BasketRepository.getInstance();
+        basket = BasketRepository.getInstance();
+        baskets = basket.getProducts();
         products = productsRepository.getProducts(restaurantID);
 
     }
@@ -38,6 +41,6 @@ public class ProductActivityViewModel extends ViewModel {
     }
 
     public void addProduct(Product product) {
-        basketRepository.productsList.add(product);
+        baskets.getValue().add(product);
     }
 }

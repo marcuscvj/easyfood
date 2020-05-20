@@ -35,5 +35,9 @@ public class BasketActivityViewModel extends ViewModel {
         return products;
     }
 
+    public void removeProduct(Product product) {
+        products.getValue().remove(product);
+        products.setValue(products.getValue());
+    }
 
 }

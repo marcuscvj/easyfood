@@ -2,6 +2,7 @@ package com.example.easyfood.view.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,7 +21,7 @@ import com.example.easyfood.viewmodel.ProductActivityViewModel;
 
 import java.util.List;
 
-public class BasketActivity extends BaseActivity {
+public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemoveRestaurantListener {
 
     private String restaurantID;
     private RecyclerView recyclerView;
@@ -51,10 +52,16 @@ public class BasketActivity extends BaseActivity {
      * Sets the Recycler View (List) of all the products.
      */
     private void setRecyclerView() {
-        adapter = new BasketAdapter(this, viewModel.getProducts().getValue());
+        adapter = new BasketAdapter(this, viewModel.getProducts().getValue(), this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public void onRemoveRestaurantClick(int position) {
+        Product chosenProduct = viewModel.getProducts().getValue().get(position);
+        viewModel.removeProduct(chosenProduct);
+
+    }
 }
