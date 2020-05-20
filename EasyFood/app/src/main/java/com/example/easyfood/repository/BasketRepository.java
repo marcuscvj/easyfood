@@ -10,8 +10,8 @@ import java.util.List;
 
 public class BasketRepository {
     private static BasketRepository instance;
-    public ArrayList<Product> productsList = new ArrayList<Product>();
-    private MutableLiveData<List<Product>> products= new MutableLiveData<>();
+    private ArrayList<Product> productsList = new ArrayList<Product>();
+    private  MutableLiveData<List<Product>> products= new MutableLiveData<>();
 
     /**
      * Returns an instance of the EateryRepository
