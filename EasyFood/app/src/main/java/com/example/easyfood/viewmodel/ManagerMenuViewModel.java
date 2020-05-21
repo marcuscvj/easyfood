@@ -45,8 +45,28 @@ public class ManagerMenuViewModel extends ViewModel {
         managerMenuRepository.createProductAndAddToDatabase(eateryId, name, description, price);
     }
 
+    /**
+     * Removes a product
+     *
+     * @param eateryId : String - The id of the eatery
+     * @param productId : String - The id of the product
+     */
     public void removeProduct(String eateryId, String productId) {
         managerMenuRepository.removeProduct(eateryId, productId);
+    }
+
+    /**
+     *
+     * Updates a product
+     *
+     * @param eateryId : String - The id of the eatery
+     * @param productId : String - The id of the product
+     * @param name : String - The name of the product
+     * @param description : String - The description of the product
+     * @param price : Double - The price of the product
+     */
+    public void updateProduct(String eateryId, String productId, String name, String description, Double price) {
+        managerMenuRepository.updateProduct(eateryId, productId, name, description, price);
     }
 
 }

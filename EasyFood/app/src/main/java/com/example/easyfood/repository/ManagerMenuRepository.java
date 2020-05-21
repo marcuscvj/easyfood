@@ -65,6 +65,11 @@ public class ManagerMenuRepository {
         updateLiveData(eateryId);
     }
 
+    public void updateProduct(String eateryId, String productId, String name, String description, Double price) {
+        Product product = new Product(name, description, price, productId);
+        firebase.updateProduct(eateryId, productId, product);
+    }
+
     /**
      * Updates the LiveData<List>
      *
