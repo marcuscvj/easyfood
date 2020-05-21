@@ -12,7 +12,7 @@ public interface IDatabase {
     void getAllEateries(IEateriesCallback callback);
 
     void addProduct(String eateryId, Product product);
-    void removeProduct(Product product);
+    void removeProduct(String eateryId, String productId);
     void updateProduct(Product product);
     void getAllProducts(String eateryId, IProductsCallback callback); // should probably add Eatery object here
 }

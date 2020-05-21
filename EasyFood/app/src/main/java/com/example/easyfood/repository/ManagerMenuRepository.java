@@ -1,13 +1,21 @@
 package com.example.easyfood.repository;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.easyfood.db.Firebase;
+import com.example.easyfood.db.IProductsCallback;
 import com.example.easyfood.model.Product;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManagerMenuRepository {
     private static ManagerMenuRepository instance;
     private static Firebase firebase;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
+    private ArrayList<Product> productList;
+    private MutableLiveData<List<Product>> products = new MutableLiveData<>();
 
     /**
      * Returns an instance of the ManagerMenuRepository
@@ -21,6 +29,12 @@ public class ManagerMenuRepository {
         }
 
         return instance;
+    }
+
+    public MutableLiveData<List<Product>> getAllProducts(String ID) {
+        // Empty the list so we don't get duplicates
+        updateLiveData(ID);
+        return products;
     }
 
     /**
@@ -38,6 +52,37 @@ public class ManagerMenuRepository {
 
         firebase.addProduct(eateryId, product);
 
+    }
+
+    /**
+     * Removes the product from the database
+     *
+     * @param eateryId : String - The id of the eatery
+     * @param productId : String - The id of the product
+     */
+    public void removeProduct(String eateryId, String productId) {
+        firebase.removeProduct(eateryId, productId);
+        updateLiveData(eateryId);
+    }
+
+    /**
+     * Updates the LiveData<List>
+     *
+     * @param eateryId : String - The id of the eatery
+     */
+    private void updateLiveData(String eateryId) {
+        productList = new ArrayList<>();
+
+        firebase.getAllProducts(eateryId, new IProductsCallback() {
+            @Override
+            public void send(ArrayList<Product> list) {
+                productList.addAll(list);
+                products.setValue(list);
+            }
+
+        });
+
+        products.setValue(productList);
     }
 
     /**

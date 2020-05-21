@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -14,8 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.view.BaseActivity;
-import com.example.easyfood.view.ProductAdapter;
-import com.example.easyfood.viewmodel.ProductActivityViewModel;
+import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
 import java.util.List;
 
@@ -25,8 +23,8 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
     private Button newProductButton;
 
     private RecyclerView recyclerView;
-    private ProductActivityViewModel viewModel;
-    private RecyclerView.Adapter adapter;
+    private ManagerMenuViewModel viewModel;
+    private ManagerMenuAdapter adapter;
 
 
 
@@ -41,12 +39,12 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
 
         recyclerView = findViewById(R.id.menu_recycleView);
 
-        viewModel = new ViewModelProvider(this).get(ProductActivityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
         viewModel.init(restaurantID);
-        viewModel.getProducts().observe(this, new Observer<List<Product>>() {
+        viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
-                adapter.notifyDataSetChanged();
+                adapter.setProducts(products);
             }
         });
 
@@ -59,7 +57,7 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
      * Sets the Recycler View (List) of all the products.
      */
     private void setRecyclerView() {                 // TODO Make own adapter
-        adapter = new ManagerMenuAdapter(this, viewModel.getProducts().getValue(), this);
+        adapter = new ManagerMenuAdapter(this, viewModel.getAllProducts().getValue(), this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
@@ -86,7 +84,7 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
 
     @Override
     public void onRemoveProductClick(int position) {
-        // Product chosenProduct = viewModel.getProducts().getValue().get(position);
-        // viewModel.removeProduct(chosenProduct);
+        Product chosenProduct = viewModel.getAllProducts().getValue().get(position);
+        viewModel.removeProduct(restaurantID, chosenProduct.getId());
     }
 }

@@ -135,8 +135,20 @@ public class Firebase implements IDatabase {
     }
 
     @Override
-    public void removeProduct(Product product) {
-
+    public void removeProduct(String eateryId, String productId) {
+        db.collection("eateries").document(eateryId).collection("products").document(productId).delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error with deletion of document", e);
+                    }
+                });
     }
 
     @Override

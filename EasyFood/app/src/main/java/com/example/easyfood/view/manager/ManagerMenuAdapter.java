@@ -51,6 +51,16 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return products.size();
     }
 
+    /**
+     * Sets the product list
+     *
+     * @param products : List<Product> - The list of products
+     */
+    public void setProducts(List<Product> products) {
+        this.products = products;
+        notifyDataSetChanged();
+    }
+
     private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name;
         private TextView desc;
