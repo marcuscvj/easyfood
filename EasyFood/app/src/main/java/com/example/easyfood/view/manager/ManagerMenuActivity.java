@@ -24,7 +24,7 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
 
     private RecyclerView recyclerView;
     private ManagerMenuViewModel viewModel;
-    private RecyclerView.Adapter adapter;
+    private ManagerMenuAdapter adapter;
 
 
 
@@ -44,7 +44,7 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
         viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
-                adapter.notifyDataSetChanged();
+                adapter.setProducts(products);
             }
         });
 

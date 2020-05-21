@@ -62,6 +62,7 @@ public class ManagerMenuRepository {
      */
     public void removeProduct(String eateryId, String productId) {
         firebase.removeProduct(eateryId, productId);
+        updateLiveData(eateryId);
     }
 
     /**
