@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -27,10 +28,6 @@ public class EditProductActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_new);
 
-        getRestaurantId();
-
-        viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
-
         nameEditText = findViewById(R.id.name_editText);
         descriptionEditText = findViewById(R.id.description_editText);
         priceEditText = findViewById(R.id.price_editText);
@@ -38,6 +35,9 @@ public class EditProductActivity extends BaseActivity {
         addButton.setText("Update");
 
         getExtras();
+
+        viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
+        viewModel.init(restaurantId);
 
         setAddButtonListener();
 
@@ -85,22 +85,17 @@ public class EditProductActivity extends BaseActivity {
      * @param price : Double - The price of the product
      */
     private void addProduct(String name, String description, Double price) {
-        viewModel.updateProduct(restaurantId, name, description, price);
+        viewModel.updateProduct(restaurantId, productId, name, description, price);
         goToActivity(new Intent(getApplicationContext(), ManagerMenuActivity.class));
     }
 
-    private void getRestaurantId() {
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        restaurantId = extras.getString("RestaurantId");
-    }
-
     /**
-     * Gets the current Eatery.
+     * Gets the extras
      */
     private void getExtras() {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+        restaurantId = extras.getString("restaurantId");
         productId = extras.getString("id");
         nameEditText.setText(extras.getString("name"));
         descriptionEditText.setText(extras.getString("desc"));
