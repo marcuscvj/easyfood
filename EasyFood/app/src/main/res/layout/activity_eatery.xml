@@ -36,6 +36,15 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <SearchView
+        android:id="@+id/eatery_searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@id/eatery_header"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/eatery_recycleView"
         android:layout_width="wrap_content"
@@ -44,7 +53,7 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
-        app:layout_constraintTop_toBottomOf="@id/eatery_header"
+        app:layout_constraintTop_toBottomOf="@id/eatery_searchView"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
