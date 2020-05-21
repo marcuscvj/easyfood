@@ -152,8 +152,21 @@ public class Firebase implements IDatabase {
     }
 
     @Override
-    public void updateProduct(Product product) {
-
+    public void updateProduct(String eateryId, String productId, Product product) {
+        db.collection("eateries").document(eateryId).collection("products").document(product.getId())
+                .set(product)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
     }
 
     @Override

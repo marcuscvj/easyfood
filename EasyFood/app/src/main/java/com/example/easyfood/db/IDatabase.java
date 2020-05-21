@@ -13,6 +13,6 @@ public interface IDatabase {
 
     void addProduct(String eateryId, Product product);
     void removeProduct(String eateryId, String productId);
-    void updateProduct(Product product);
+    void updateProduct(String eateryId, String productId, Product product);
     void getAllProducts(String eateryId, IProductsCallback callback); // should probably add Eatery object here
 }

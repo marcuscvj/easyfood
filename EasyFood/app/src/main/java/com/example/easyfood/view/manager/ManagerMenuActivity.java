@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,7 +18,7 @@ import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
 import java.util.List;
 
-public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdapter.OnRemoveProductListener {
+public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdapter.OnClickProductListener {
     private String restaurantID;
 
     private Button newProductButton;
@@ -86,5 +87,19 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
     public void onRemoveProductClick(int position) {
         Product chosenProduct = viewModel.getAllProducts().getValue().get(position);
         viewModel.removeProduct(restaurantID, chosenProduct.getId());
+    }
+
+    @Override
+    public void onEditProductClick(int position) {
+        Product chosenProduct = viewModel.getAllProducts().getValue().get(position);
+        Intent intent = new Intent(getApplicationContext(), EditProductActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("restaurantId", restaurantID);
+        extras.putString("id", chosenProduct.getId());
+        extras.putString("name", chosenProduct.getName());
+        extras.putString("desc", chosenProduct.getDescription());
+        extras.putDouble("price", chosenProduct.getPrice());
+        intent.putExtras(extras);
+        goToActivity(intent);
     }
 }

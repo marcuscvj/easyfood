@@ -19,12 +19,12 @@ import java.util.List;
 public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Product> products;
     private Context context;
-    private OnRemoveProductListener onRemoveProductListener;
+    private OnClickProductListener onClickProductListener;
 
-    public ManagerMenuAdapter(Context context, List<Product> products, OnRemoveProductListener onRemoveProductListener) {
+    public ManagerMenuAdapter(Context context, List<Product> products, OnClickProductListener onClickProductListener) {
         this.products = products;
         this.context = context;
-        this.onRemoveProductListener = onRemoveProductListener;
+        this.onClickProductListener = onClickProductListener;
 
     }
 
@@ -32,7 +32,7 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_managermenulist, parent, false);
-        return new ManagerMenuAdapter.ViewHolder(view, onRemoveProductListener);
+        return new ManagerMenuAdapter.ViewHolder(view, onClickProductListener);
     }
 
     @Override
@@ -61,30 +61,38 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         notifyDataSetChanged();
     }
 
-    private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
         private TextView desc;
         private TextView price;
-        private OnRemoveProductListener onRemoveProductListener;
+        private Button removeButton;
+        private Button editButton;
 
-        public ViewHolder(@NonNull View itemView, OnRemoveProductListener onRemoveProductListener) {
+        public ViewHolder(@NonNull View itemView, final OnClickProductListener onClickProductListener) {
             super(itemView);
             name = itemView.findViewById(R.id.product_name);
             desc = itemView.findViewById(R.id.product_description);
             price = itemView.findViewById(R.id.product_price);
-            this.onRemoveProductListener = onRemoveProductListener;
-            Button button = itemView.findViewById(R.id.remove_product_button);
-            button.setOnClickListener(this);
-        }
+            removeButton = itemView.findViewById(R.id.remove_product_button);
+            editButton = itemView.findViewById(R.id.edit_product_button);
 
-        @Override
-        public void onClick(View view) {
-            onRemoveProductListener.onRemoveProductClick(getAdapterPosition());
+            removeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickProductListener.onRemoveProductClick(getAdapterPosition());
+                }
+            });
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onClickProductListener.onEditProductClick(getAdapterPosition());
+                }
+            });
         }
     }
 
-    public interface OnRemoveProductListener {
+    public interface OnClickProductListener {
         void onRemoveProductClick(int position);
-
+        void onEditProductClick(int position);
     }
 }

@@ -65,6 +65,15 @@
             android:text="Delete"
             />
 
+        <Button
+            android:id="@+id/edit_product_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/remove_product_button"
+            android:layout_below="@+id/product_price"
+            android:text="Edit"
+            />
+
 
     </RelativeLayout>
 
