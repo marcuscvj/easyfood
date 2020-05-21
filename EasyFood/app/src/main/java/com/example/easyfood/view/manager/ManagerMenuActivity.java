@@ -92,7 +92,6 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
     @Override
     public void onEditProductClick(int position) {
         Product chosenProduct = viewModel.getAllProducts().getValue().get(position);
-        // viewModel.editProduct(restaurantID, chosenProduct.getId());
         Intent intent = new Intent(getApplicationContext(), EditProductActivity.class);
         Bundle extras = new Bundle();
         extras.putString("restaurantId", restaurantID);
