@@ -2,11 +2,8 @@ package com.example.easyfood.view.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,19 +13,17 @@ import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.ProductAdapter;
-import com.example.easyfood.view.RegisterActivity;
-import com.example.easyfood.viewmodel.BasketActivityViewModel;
 import com.example.easyfood.viewmodel.ProductActivityViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductActivity extends BaseActivity implements ProductAdapter.OnAddProductListener{
 
     private String restaurantID;
+    private SearchView searchView;
     private RecyclerView recyclerView;
     private ProductActivityViewModel viewModel;
-    private RecyclerView.Adapter adapter;
+    private ProductAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +32,20 @@ public class ProductActivity extends BaseActivity implements ProductAdapter.OnAd
         getChosenRestaurant();
 
         recyclerView = findViewById(R.id.menu_recycleView);
+        searchView = findViewById(R.id.menu_searchView);
 
         viewModel = new ViewModelProvider(this).get(ProductActivityViewModel.class);
         viewModel.init(restaurantID);
         viewModel.getProducts().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
-                adapter.notifyDataSetChanged();
+                adapter.setProducts(products);
+                adapter.setProductsFull(products);
             }
         });
 
         setRecyclerView();
-
+        setSearchView();
 
     }
 
@@ -60,6 +57,24 @@ public class ProductActivity extends BaseActivity implements ProductAdapter.OnAd
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
+    }
+
+    /**
+     * Sets the Search View.
+     */
+    private void setSearchView() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
     }
 
     private void getChosenRestaurant() {

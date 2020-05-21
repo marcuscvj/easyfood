@@ -36,6 +36,15 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/menu_searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@id/menu_header"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/menu_recycleView"
         android:layout_width="wrap_content"
@@ -44,7 +53,7 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
-        app:layout_constraintTop_toBottomOf="@id/menu_header"
+        app:layout_constraintTop_toBottomOf="@id/menu_searchView"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 

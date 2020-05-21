@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,13 +16,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents a ProductAdapter
  */
-public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
     private List<Product> products;
+    private List<Product> productsFull;
     private Context context;
     private OnAddProductListener onAddProductListener;
 
@@ -33,6 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      */
     public ProductAdapter(Context context, List<Product> products, OnAddProductListener onAddProductListener) {
         this.products = products;
+        this.productsFull = new ArrayList<>();
         this.context = context;
         this.onAddProductListener = onAddProductListener;
 
@@ -65,6 +70,59 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public int getItemCount() {
         return products.size();
     }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+        notifyDataSetChanged();
+    }
+
+    public void setProductsFull(List<Product> products) {
+        this.productsFull.addAll(products);
+    }
+
+    @Override
+    public Filter getFilter() {
+        return eateryFilter;
+    }
+
+    /**
+     * Custom Eatery Filter
+     */
+    private Filter eateryFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<Product> productsTemp = new ArrayList<>();
+            FilterResults results = new FilterResults();
+
+            if (charSequence.toString().isEmpty()) {
+                results.values = productsFull;
+                results.count = productsFull.size();
+            } else {
+                String searchString = charSequence.toString().toLowerCase().trim();
+
+                for (Product product : productsFull) {
+                    if (product.getName().toLowerCase().contains(searchString)) {
+                        productsTemp.add(product);
+                    }
+                }
+
+                results.values = productsTemp;
+                results.count = productsTemp.size();
+            }
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            if (filterResults.count > 0) {
+                setProducts((List<Product>) filterResults.values);
+            } else {
+                List<Product> empty = new ArrayList<>();
+                setProducts(empty);
+            }
+        }
+    };
 
     private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView name;
