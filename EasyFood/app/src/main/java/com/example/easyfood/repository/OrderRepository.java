@@ -5,15 +5,24 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.easyfood.model.Eatery;
 import com.example.easyfood.model.Order;
+import com.example.easyfood.model.OrderPaymentMethodEnums;
 import com.example.easyfood.model.OrderStatusEnums;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Represents a OrderRepository Singleton
@@ -46,8 +55,39 @@ public class OrderRepository {
      * @return orders : MutableLiveData<List<Order>> - The list of orders
      */
     public MutableLiveData<List<Order>> getAllOrders(String eateryId) {
-        // TODO Database query
+        loadOrdersFromDatabase(eateryId);
         return orders;
+    }
+
+    private void loadOrdersFromDatabase(final String eateryId) {
+        database.collection("orders").whereEqualTo("restaurantId", eateryId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<Order> orders = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                Order order = new Order(eateryId);
+                                order.setOrderNumber((int )document.get("orderNumber"));
+                                order.setMessage(document.getString("message"));
+                                order.setPaymentMethod((OrderPaymentMethodEnums) document.get("paymentMethod"));
+                                order.setPaid((boolean) document.get("isPaid"));
+                                order.setOrderStatus((OrderStatusEnums) document.get("orderStatus"));
+                                order.setSum(document.getDouble("sum"));
+                                order.setCustomerId(document.getString("customerId"));
+
+                                orders.add(order);
+                            }
+
+                            // TODO Return orders
+
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
     }
 
     /**
