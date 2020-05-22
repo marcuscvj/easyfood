@@ -2,6 +2,7 @@ package com.example.easyfood.repository;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public class BasketRepository {
     private static BasketRepository instance;
+    private Order order;
     private ArrayList<Product> productsList = new ArrayList<Product>();
     private  MutableLiveData<List<Product>> products= new MutableLiveData<>();
 
@@ -33,4 +35,8 @@ public class BasketRepository {
         products.setValue(productsList);
         return products;
     }
+
+
+    //Addproduct
+
 }

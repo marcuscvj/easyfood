@@ -1,8 +1,6 @@
 package com.example.easyfood.view.customer;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import androidx.lifecycle.Observer;
@@ -11,15 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
-import com.example.easyfood.model.Eatery;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.model.totalPriceCalculator;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.BasketAdapter;
-import com.example.easyfood.view.ProductAdapter;
 import com.example.easyfood.viewmodel.BasketActivityViewModel;
-import com.example.easyfood.viewmodel.EateryActivityViewModel;
-import com.example.easyfood.viewmodel.ProductActivityViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

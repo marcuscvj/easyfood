@@ -13,16 +13,16 @@ import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.ProductAdapter;
-import com.example.easyfood.viewmodel.ProductActivityViewModel;
+import com.example.easyfood.viewmodel.CustomerMenuViewModel;
 
 import java.util.List;
 
-public class ProductActivity extends BaseActivity implements ProductAdapter.OnAddProductListener{
+public class CustomerMenuActivity extends BaseActivity implements ProductAdapter.OnAddProductListener{
 
     private String restaurantID;
     private SearchView searchView;
     private RecyclerView recyclerView;
-    private ProductActivityViewModel viewModel;
+    private CustomerMenuViewModel viewModel;
     private ProductAdapter adapter;
 
     @Override
@@ -34,9 +34,9 @@ public class ProductActivity extends BaseActivity implements ProductAdapter.OnAd
         recyclerView = findViewById(R.id.menu_recycleView);
         searchView = findViewById(R.id.menu_searchView);
 
-        viewModel = new ViewModelProvider(this).get(ProductActivityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(CustomerMenuViewModel.class);
         viewModel.init(restaurantID);
-        viewModel.getProducts().observe(this, new Observer<List<Product>>() {
+        viewModel.getProductsInMenu().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
                 adapter.setProducts(products);
@@ -53,7 +53,7 @@ public class ProductActivity extends BaseActivity implements ProductAdapter.OnAd
      * Sets the Recycler View (List) of all the products.
      */
     private void setRecyclerView() {
-        adapter = new ProductAdapter(this, viewModel.getProducts().getValue(), this);
+        adapter = new ProductAdapter(this, viewModel.getProductsInMenu().getValue(), this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
@@ -85,8 +85,9 @@ public class ProductActivity extends BaseActivity implements ProductAdapter.OnAd
 
     @Override
     public void OnAddProductClick(int position) {
-        Product chosenProduct = viewModel.getProducts().getValue().get(position);
+        Product chosenProduct = viewModel.getProductsInMenu().getValue().get(position);
         viewModel.addProduct(chosenProduct);
+
     }
 
 
