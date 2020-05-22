@@ -37,6 +37,8 @@ public class BasketRepository {
     }
 
 
-    //Addproduct
+    public void addProduct(Product product) {
+        products.getValue().add(product);
+    }
 
 }

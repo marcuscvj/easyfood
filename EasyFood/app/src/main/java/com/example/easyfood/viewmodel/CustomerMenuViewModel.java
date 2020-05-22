@@ -42,7 +42,7 @@ public class CustomerMenuViewModel extends ViewModel {
     }
 
     public void addProduct(Product product) {
-        productsInBasket.getValue().add(product);
+        basketRepository.addProduct(product);
     }
 
 
