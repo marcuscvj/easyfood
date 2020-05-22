@@ -14,7 +14,7 @@ import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
 public class NewProductActivity extends BaseActivity {
     private ManagerMenuViewModel viewModel;
-    private String restaurantID;
+    private String restaurantId;
 
     private EditText nameEditText;
     private EditText descriptionEditText;
@@ -29,7 +29,7 @@ public class NewProductActivity extends BaseActivity {
         getChosenRestaurant();
 
         viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
-        viewModel.init(restaurantID);
+        viewModel.init(restaurantId);
 
         nameEditText = findViewById(R.id.name_editText);
         descriptionEditText = findViewById(R.id.description_editText);
@@ -49,7 +49,7 @@ public class NewProductActivity extends BaseActivity {
             public void onClick(View view) {
                 String name = nameEditText.getText().toString().trim();
                 String description = descriptionEditText.getText().toString().trim();
-                Double price = Double.valueOf(priceEditText.getInputType()); // TODO FIX BUG, Price is always set to 8194:-
+                String price = priceEditText.getText().toString().trim();
 
                 if (name.isEmpty()) {
                     nameEditText.setError("Provide a name first!");
@@ -63,13 +63,13 @@ public class NewProductActivity extends BaseActivity {
                     return;
                 }
 
-                if (price.isNaN()) {
+                if (price.isEmpty()) {
                     descriptionEditText.setError("Enter Price!");
                     descriptionEditText.requestFocus();
                     return;
                 }
 
-                addProduct(name, description, price);
+                addProduct(name, description, Double.parseDouble(price));
             }
         });
     }
@@ -82,7 +82,7 @@ public class NewProductActivity extends BaseActivity {
      * @param price : Double - The price of the product
      */
     private void addProduct(String name, String description, Double price) {
-        viewModel.createProduct(restaurantID, name, description, price);
+        viewModel.createProduct(restaurantId, name, description, price);
         goToActivity(new Intent(getApplicationContext(), ManagerMenuActivity.class));
     }
 
@@ -91,7 +91,7 @@ public class NewProductActivity extends BaseActivity {
      */
     private void getChosenRestaurant() {
         Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        restaurantID = bundle.get("RestaurantID").toString();
+        Bundle extras = intent.getExtras();
+        restaurantId = extras.getString("RestaurantID");
     }
 }
