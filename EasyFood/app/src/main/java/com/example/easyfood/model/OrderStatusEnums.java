@@ -2,7 +2,10 @@ package com.example.easyfood.model;
 
 public enum OrderStatusEnums {
 
-    PENDING,
-    CONFIRMED
+    CREATED,
+    SENT,
+    CONFIRMED,
+    READY,
+    DELIVERED
     //Enums should be added here. These two are mostly for testing.
 }
