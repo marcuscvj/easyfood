@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -21,7 +20,7 @@ public class EditProductActivity extends BaseActivity {
     private EditText nameEditText;
     private EditText descriptionEditText;
     private EditText priceEditText;
-    private Button addButton;
+    private Button editButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,28 +30,28 @@ public class EditProductActivity extends BaseActivity {
         nameEditText = findViewById(R.id.name_editText);
         descriptionEditText = findViewById(R.id.description_editText);
         priceEditText = findViewById(R.id.price_editText);
-        addButton = findViewById(R.id.add_button);
-        addButton.setText("Update");
+        editButton = findViewById(R.id.add_button);
+        editButton.setText("Update");
 
         getExtras();
 
         viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
         viewModel.init(restaurantId);
 
-        setAddButtonListener();
+        setEditButtonListener();
 
     }
 
     /**
      * Sets the On Click Listener for Add Button.
      */
-    private void setAddButtonListener() {
-        addButton.setOnClickListener(new View.OnClickListener() {
+    private void setEditButtonListener() {
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String name = nameEditText.getText().toString().trim();
                 String description = descriptionEditText.getText().toString().trim();
-                Double price = Double.valueOf(priceEditText.getInputType()); // TODO FIX BUG, Price is always set to 8194:-
+                String price = priceEditText.getText().toString().trim();
 
                 if (name.isEmpty()) {
                     nameEditText.setError("Provide a name first!");
@@ -66,25 +65,25 @@ public class EditProductActivity extends BaseActivity {
                     return;
                 }
 
-                if (price.isNaN()) {
+                if (price.isEmpty()) {
                     descriptionEditText.setError("Enter Price!");
                     descriptionEditText.requestFocus();
                     return;
                 }
 
-                addProduct(name, description, price);
+                editProduct(name, description, Double.parseDouble(price));
             }
         });
     }
 
     /**
-     * Adds a new product to the menu
+     * Edits the chosen menu product
      *
      * @param name : String - The name of the product
      * @param description : String - The description of the product
      * @param price : Double - The price of the product
      */
-    private void addProduct(String name, String description, Double price) {
+    private void editProduct(String name, String description, Double price) {
         viewModel.updateProduct(restaurantId, productId, name, description, price);
         goToActivity(new Intent(getApplicationContext(), ManagerMenuActivity.class));
     }
@@ -99,7 +98,6 @@ public class EditProductActivity extends BaseActivity {
         productId = extras.getString("id");
         nameEditText.setText(extras.getString("name"));
         descriptionEditText.setText(extras.getString("desc"));
-
-
+        priceEditText.setText(String.valueOf(extras.getDouble("price")));
     }
 }
