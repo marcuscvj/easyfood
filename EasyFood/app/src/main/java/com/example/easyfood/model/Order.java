@@ -63,5 +63,41 @@ public class Order {
         return customerId;
     }
 
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public ArrayList<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public void setPaymentMethod(OrderPaymentMethodEnums paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
+    }
+
+    public void setOrderStatus(OrderStatusEnums orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setSum(double sum) {
+        this.sum = sum;
+    }
+
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
+    }
+
     //More getters and setters will be added here.
 }
