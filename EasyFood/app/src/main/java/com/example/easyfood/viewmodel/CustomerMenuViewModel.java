@@ -1,5 +1,8 @@
 package com.example.easyfood.viewmodel;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -16,6 +19,7 @@ public class CustomerMenuViewModel extends ViewModel {
     private MutableLiveData<List<Product>> productsInBasket;
     private BasketRepository basketRepository;
     private ProductRepository productsRepository;
+    private String restaurantID;
 
 
     /**
@@ -25,6 +29,7 @@ public class CustomerMenuViewModel extends ViewModel {
         if(productsInMenu != null) {
             return;
         }
+        this.restaurantID = restaurantID;
         productsRepository= ProductRepository.getInstance();
         basketRepository = BasketRepository.getInstance();
         productsInBasket = basketRepository.getProducts();
@@ -41,8 +46,22 @@ public class CustomerMenuViewModel extends ViewModel {
         return productsInMenu;
     }
 
-    public void addProduct(Product product) {
+    public void addProduct(int position, Context context) {
+
+        Product product = getProductsInMenu().getValue().get(position);
+        basketRepository.setOrder(restaurantID);
+
+        if (restaurantID == basketRepository.getRestaurantIdFromOrder()) {
         basketRepository.addProduct(product);
+        } else {
+            CharSequence text = "You can only order from one restaurant at a time!";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+
+
+
     }
 
 

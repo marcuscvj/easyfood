@@ -1,6 +1,8 @@
 package com.example.easyfood.view.customer;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.lifecycle.Observer;
@@ -13,7 +15,7 @@ import com.example.easyfood.model.Product;
 import com.example.easyfood.model.totalPriceCalculator;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.BasketAdapter;
-import com.example.easyfood.viewmodel.BasketActivityViewModel;
+import com.example.easyfood.viewmodel.BasketViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +23,21 @@ import java.util.List;
 public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemoveRestaurantListener {
 
     private RecyclerView recyclerView;
-    private BasketActivityViewModel viewModel;
+    private BasketViewModel viewModel;
     private RecyclerView.Adapter adapter;
     private totalPriceCalculator calculator = new totalPriceCalculator();
+    private Button sendOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket);
+        sendOrder = findViewById(R.id.placeorder);
+
 
         recyclerView = findViewById(R.id.basket_recycleView);
 
-        viewModel = new ViewModelProvider(this).get(BasketActivityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(BasketViewModel.class);
         viewModel.init();
         viewModel.getProducts().observe(this, new Observer<List<Product>>() {
             @Override
@@ -41,6 +46,7 @@ public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemo
             }
         });
         setRecyclerView();
+        setLoginButtonListener();
 
 
     }
@@ -76,5 +82,14 @@ public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemo
 
         totalSum.setText(String.format(String.valueOf(calculator.getTotalPriceOfProducts(listWithProducts))) + " kr");
 
+    }
+
+    private void setLoginButtonListener() {
+        sendOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            viewModel.sendOrder();
+            }
+        });
     }
 }
