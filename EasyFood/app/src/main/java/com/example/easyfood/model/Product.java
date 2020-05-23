@@ -17,6 +17,8 @@ public class Product implements Serializable { // TODO Remove Serializable, Was 
         this.id = id;
     }
 
+    public Product() {}
+
     public String getId() {
         return this.id;
     }
