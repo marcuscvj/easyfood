@@ -5,23 +5,23 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.easyfood.model.Product;
-import com.example.easyfood.repository.ManagerMenuRepository;
+import com.example.easyfood.repository.ProductRepository;
 
 import java.util.List;
 
 public class ManagerMenuViewModel extends ViewModel {
-    private ManagerMenuRepository managerMenuRepository;
+    private ProductRepository productRepository;
     private MutableLiveData<List<Product>> products;
 
     /**
      * Initializes the ViewModel
      */
-    public void init(String restaurantID){
+    public void init(String restaurantId){
         if(products != null) {
             return;
         }
-        managerMenuRepository = ManagerMenuRepository.getInstance();
-        products = managerMenuRepository.getAllProducts(restaurantID);
+        productRepository = productRepository.getInstance();
+        products = productRepository.getProducts(restaurantId);
     }
 
     /**
@@ -42,7 +42,7 @@ public class ManagerMenuViewModel extends ViewModel {
      * @param price : Double - The price of the product
      */
     public void createProduct(String eateryId, String name, String description, Double price) {
-        managerMenuRepository.createProductAndAddToDatabase(eateryId, name, description, price);
+        productRepository.createProductAndAddToDatabase(eateryId, name, description, price);
     }
 
     /**
@@ -52,7 +52,7 @@ public class ManagerMenuViewModel extends ViewModel {
      * @param productId : String - The id of the product
      */
     public void removeProduct(String eateryId, String productId) {
-        managerMenuRepository.removeProduct(eateryId, productId);
+        productRepository.removeProduct(eateryId, productId);
     }
 
     /**
@@ -66,7 +66,7 @@ public class ManagerMenuViewModel extends ViewModel {
      * @param price : Double - The price of the product
      */
     public void updateProduct(String eateryId, String productId, String name, String description, Double price) {
-        managerMenuRepository.updateProduct(eateryId, productId, name, description, price);
+        productRepository.updateProduct(eateryId, productId, name, description, price);
     }
 
 }
