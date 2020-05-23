@@ -83,7 +83,7 @@ public class OrderRepository {
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 Order order = new Order(eateryId);
                                 order.setId(document.getString("id"));
-                                order.setOrderNumber((int) document.get("orderNumber"));
+                                order.setOrderNumber(document.getLong("orderNumber"));
                                 order.setMessage(document.getString("message"));
                                 order.setPaymentMethod((OrderPaymentMethodEnums) document.get("paymentMethod"));
 
