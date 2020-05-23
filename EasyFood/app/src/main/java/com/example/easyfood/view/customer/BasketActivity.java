@@ -46,7 +46,7 @@ public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemo
             }
         });
         setRecyclerView();
-        setLoginButtonListener();
+        setSendOrderButtonListener();
 
 
     }
@@ -80,15 +80,16 @@ public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemo
 
         ArrayList<Product> listWithProducts = (ArrayList<Product>) viewModel.getProducts().getValue();
 
-        totalSum.setText(String.format(String.valueOf(calculator.getTotalPriceOfProducts(listWithProducts))) + " kr");
+        totalSum.setText(String.format(String.valueOf(calculator.getTotalPriceOfProducts(listWithProducts))));
 
     }
 
-    private void setLoginButtonListener() {
+    private void setSendOrderButtonListener() {
         sendOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            viewModel.sendOrder();
+                TextView totalSum = findViewById(R.id.total_sum);
+            viewModel.sendOrder(totalSum.getText().toString().trim());
             }
         });
     }
