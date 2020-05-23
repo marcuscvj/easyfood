@@ -5,10 +5,11 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.easyfood.model.Eatery;
 import com.example.easyfood.model.Order;
 import com.example.easyfood.model.OrderPaymentMethodEnums;
 import com.example.easyfood.model.OrderStatusEnums;
+import com.example.easyfood.model.Product;
+import com.example.easyfood.model.ProductDocument;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,7 +19,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,10 +30,12 @@ import java.util.Objects;
 public class OrderRepository {
     private String TAG = "OrderRepository";
     private static OrderRepository instance;
-    private FirebaseFirestore database = FirebaseFirestore.getInstance();;
+    private FirebaseFirestore database = FirebaseFirestore.getInstance(); // TODO Move down queries to Firebase class
 
     // For the restaurant/manager to be able to observe all incoming orders.
     private MutableLiveData<List<Order>> orders = new MutableLiveData<>();
+
+    private ArrayList<Order> orderList;
 
     /**
      * Returns an instance of the OrderRepository
@@ -55,11 +57,21 @@ public class OrderRepository {
      * @return orders : MutableLiveData<List<Order>> - The list of orders
      */
     public MutableLiveData<List<Order>> getAllOrders(String eateryId) {
-        loadOrdersFromDatabase(eateryId);
+        orderList = new ArrayList<>();
+
+        getOrdersFromDatabase(eateryId, new IOrdersCallback() {
+            @Override
+            public void send(ArrayList<Order> list) {
+                orderList.addAll(list);
+                orders.setValue(orderList);
+            }
+        });
+
+        orders.setValue(orderList);
         return orders;
     }
 
-    private void loadOrdersFromDatabase(final String eateryId) {
+    private void getOrdersFromDatabase(final String eateryId, final IOrdersCallback callback) {
         database.collection("orders").whereEqualTo("restaurantId", eateryId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -70,18 +82,46 @@ public class OrderRepository {
 
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 Order order = new Order(eateryId);
-                                order.setOrderNumber((int )document.get("orderNumber"));
+                                order.setId(document.getString("id"));
+                                order.setOrderNumber((int) document.get("orderNumber"));
                                 order.setMessage(document.getString("message"));
                                 order.setPaymentMethod((OrderPaymentMethodEnums) document.get("paymentMethod"));
-                                order.setPaid((boolean) document.get("isPaid"));
-                                order.setOrderStatus((OrderStatusEnums) document.get("orderStatus"));
-                                order.setSum(document.getDouble("sum"));
+
+                                Boolean paid = document.getBoolean("paid");
+                                if (paid.equals(true)) {
+                                    order.setPaid(true);
+                                } else {
+                                    order.setPaid(false);
+                                }
+
+                                String status = document.getString("orderStatus");
+                                switch (status) {
+                                    case "CREATED":
+                                        order.setOrderStatus(OrderStatusEnums.CREATED);
+                                        break;
+                                    case "SENT":
+                                        order.setOrderStatus(OrderStatusEnums.SENT);
+                                        break;
+                                    case "CONFIRMED":
+                                        order.setOrderStatus(OrderStatusEnums.CONFIRMED);
+                                        break;
+                                    case "READY":
+                                        order.setOrderStatus(OrderStatusEnums.READY);
+                                        break;
+                                    case "DELIVERED":
+                                        order.setOrderStatus(OrderStatusEnums.DELIVERED);
+                                        break;
+                                }
+
+                                order.setSum((Double) document.get("sum"));
                                 order.setCustomerId(document.getString("customerId"));
+                                ArrayList<Product> products = document.toObject(ProductDocument.class).products;
+                                order.setProducts(products);
 
                                 orders.add(order);
                             }
 
-                            // TODO Return orders
+                            callback.send(orders);
 
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
