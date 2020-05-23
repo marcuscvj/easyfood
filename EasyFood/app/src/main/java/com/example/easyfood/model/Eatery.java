@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Eatery {
     private String name;
     private String id;
+    private String managerId;
     private ArrayList<Product> products = new ArrayList<>();
 
     /**
@@ -23,6 +24,8 @@ public class Eatery {
         this.id = id;
     }
 
+    public Eatery () {}
+
     /**
      * Returns the name of the Eatery
      *
@@ -37,7 +40,7 @@ public class Eatery {
      *
      * @param name: String - The name of the Eatery
      */
-    private void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -48,5 +51,17 @@ public class Eatery {
      */
     public String getId() {
         return this.id;
+    }
+
+    public void setId (String id) {
+        this.id = id;
+    }
+
+    public String getManagerId() {
+        return managerId;
+    }
+
+    public void setManagerId(String managerId) {
+        this.managerId = managerId;
     }
 }
