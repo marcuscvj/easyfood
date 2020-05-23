@@ -20,6 +20,8 @@ public class OrdersActivity extends BaseActivity implements OrdersAdapter.OnOrde
     private OrdersViewModel viewModel;
     private OrdersAdapter adapter;
 
+    private String restaurantId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +29,10 @@ public class OrdersActivity extends BaseActivity implements OrdersAdapter.OnOrde
 
         recyclerView = findViewById(R.id.orders_recycleView);
 
+        getRestaurantId();
 
         viewModel = new ViewModelProvider(this).get(OrdersViewModel.class);
-        viewModel.init("testId"); // TODO Get Real Id
+        viewModel.init(restaurantId);
         viewModel.getOrders().observe(this, new Observer<List<Order>>() {
             @Override
             public void onChanged(List<Order> orders) {
@@ -54,5 +57,10 @@ public class OrdersActivity extends BaseActivity implements OrdersAdapter.OnOrde
         Intent intent = new Intent(this, OrderActivity.class);
         intent.putExtra("order", order);
         startActivity(intent);
+    }
+
+    private void getRestaurantId() {
+        Intent intent = getIntent();
+        restaurantId = intent.getStringExtra("restaurantId");
     }
 }
