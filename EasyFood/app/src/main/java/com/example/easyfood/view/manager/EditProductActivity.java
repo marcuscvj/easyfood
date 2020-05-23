@@ -85,7 +85,9 @@ public class EditProductActivity extends BaseActivity {
      */
     private void editProduct(String name, String description, Double price) {
         viewModel.updateProduct(eateryId, productId, name, description, price);
-        goToActivity(new Intent(getApplicationContext(), ManagerMenuActivity.class));
+        Intent intent = new Intent(getApplicationContext(), ManagerMenuActivity.class);
+        intent.putExtra("eateryId", eateryId);
+        goToActivity(intent);
     }
 
     /**

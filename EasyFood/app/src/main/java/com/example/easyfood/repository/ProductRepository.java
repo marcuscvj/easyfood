@@ -44,7 +44,7 @@ public class ProductRepository {
      * @param price : Double - The price of the product
      */
     public void createProductAndAddToDatabase(String eateryId, String name, String description, Double price) {
-        String id = getGeneratedProductIdFromDatabase();
+        String id = getGeneratedProductIdFromDatabase(eateryId);
 
         Product product = new Product(name, description, price, id);
 
@@ -93,7 +93,7 @@ public class ProductRepository {
      *
      * @return String: id - New id from the database
      */
-    private String getGeneratedProductIdFromDatabase() {
-        return database.collection("eateries").document().collection("products").document().getId();
+    private String getGeneratedProductIdFromDatabase(String eateryId) {
+        return database.collection("eateries").document(eateryId).collection("products").document().getId();
     }
 }

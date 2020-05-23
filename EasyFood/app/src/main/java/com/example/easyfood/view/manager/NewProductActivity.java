@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -83,7 +84,9 @@ public class NewProductActivity extends BaseActivity {
      */
     private void addProduct(String name, String description, Double price) {
         viewModel.createProduct(eateryId, name, description, price);
-        goToActivity(new Intent(getApplicationContext(), ManagerMenuActivity.class));
+        Intent intent = new Intent(getApplicationContext(), ManagerMenuActivity.class);
+        intent.putExtra("eateryId", eateryId);
+        goToActivity(intent);
     }
 
     /**
@@ -91,7 +94,6 @@ public class NewProductActivity extends BaseActivity {
      */
     private void getEateryId() {
         Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        eateryId = extras.getString("eateryId");
+        eateryId = intent.getStringExtra("eateryId");
     }
 }
