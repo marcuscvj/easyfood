@@ -8,6 +8,9 @@ import com.example.easyfood.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a BasketRepository
+ */
 public class BasketRepository {
     private static BasketRepository instance;
     private Order order;

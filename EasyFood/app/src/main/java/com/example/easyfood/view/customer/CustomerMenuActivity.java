@@ -79,6 +79,9 @@ public class CustomerMenuActivity extends BaseActivity implements ProductAdapter
         });
     }
 
+    /**
+     * Gets the eatery id from the intent
+     */
     private void getEateryId() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();

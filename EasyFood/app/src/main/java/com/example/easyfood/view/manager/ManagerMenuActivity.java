@@ -27,8 +27,6 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
     private ManagerMenuViewModel viewModel;
     private ManagerMenuAdapter adapter;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +39,6 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
         recyclerView = findViewById(R.id.menu_recycleView);
 
         viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
-        Toast.makeText(this, eateryId, Toast.LENGTH_SHORT).show();
         viewModel.init(eateryId);
         viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
             @Override
@@ -58,7 +55,7 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
     /**
      * Sets the Recycler View (List) of all the products.
      */
-    private void setRecyclerView() {                 // TODO Make own adapter
+    private void setRecyclerView() {
         adapter = new ManagerMenuAdapter(this, viewModel.getAllProducts().getValue(), this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);

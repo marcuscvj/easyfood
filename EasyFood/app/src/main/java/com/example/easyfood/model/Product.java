@@ -9,7 +9,6 @@ public class Product implements Serializable { // TODO Remove Serializable, Was 
     private String description;
     private Double price;
     private String id;
-    //private String imagePathWay = null;
 
     public Product(String name, String description, double price, String id) {
         this.name = name;

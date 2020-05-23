@@ -69,6 +69,7 @@ public class OrderRepository {
         return orders;
     }
 
+    // TODO SNYGGA TILL DENNA RÖRA
     private void getOrdersFromDatabase(final String eateryId, final IOrdersCallback callback) {
         database.collection("orders").whereEqualTo("eateryId", eateryId)
                 .get()
