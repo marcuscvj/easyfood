@@ -12,6 +12,7 @@ public class Eatery {
     private int postalCode;
     private String city;
     private String managerId;
+    private String openingHours;
 
     /**
      * Creates an instance of Eatery
@@ -120,5 +121,13 @@ public class Eatery {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getOpeningHours() {
+        return openingHours;
+    }
+
+    public void setOpeningHours(String openingHours) {
+        this.openingHours = openingHours;
     }
 }

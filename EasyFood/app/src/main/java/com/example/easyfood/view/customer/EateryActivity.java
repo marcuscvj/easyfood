@@ -2,6 +2,7 @@ package com.example.easyfood.view.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
@@ -90,6 +91,7 @@ public class EateryActivity extends BaseActivity implements EateryAdapter.OnEate
         extras.putInt("streetNumber", eatery.getStreetNumber());
         extras.putInt("postalCode", eatery.getPostalCode());
         extras.putString("city", eatery.getCity());
+        extras.getString("openingHours", eatery.getOpeningHours());
 
         Intent intent = new Intent(this, CustomerMenuActivity.class);
         intent.putExtras(extras);
