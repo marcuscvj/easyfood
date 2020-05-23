@@ -1,12 +1,13 @@
 package com.example.easyfood.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 /**
  * Holds the information about an order that has been placed.
  */
-public class Order {
+public class Order implements Serializable { // TODO Remove Serializable, Was only here for testing
 
     private String id;
     private int orderNumber;

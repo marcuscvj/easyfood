@@ -1,7 +1,9 @@
 package com.example.easyfood.model;
 
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable { // TODO Remove Serializable, Was only here for testing
     private String name;
     private String description;
     private Double price;
