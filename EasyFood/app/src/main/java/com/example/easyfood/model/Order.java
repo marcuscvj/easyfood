@@ -10,7 +10,6 @@ import java.util.ArrayList;
  * Holds the information about an order that has been placed.
  */
 public class Order implements Serializable { // TODO Remove Serializable, Was only here for testing
-
     private String id;
     private long orderNumber;
     private ArrayList<Product> products;
@@ -25,6 +24,8 @@ public class Order implements Serializable { // TODO Remove Serializable, Was on
     public Order (String eateryId) {
         this.eateryId = eateryId;
     }
+
+    public Order () {}
 
     public String getEateryId() {
         return eateryId;

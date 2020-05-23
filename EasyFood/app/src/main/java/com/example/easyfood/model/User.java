@@ -12,6 +12,7 @@ public class User {
 
     /**
      * Creates an instance of a user
+     *
      * @param id : String - The id of the user
      * @param email : String - The email address of the user
      */
@@ -20,6 +21,11 @@ public class User {
         setEmail(email);
         this.role = Role.CUSTOMER;
     }
+
+    /**
+     * Creates an instance of a user
+     */
+    public User() {}
 
     /**
      * Sets the id of the user

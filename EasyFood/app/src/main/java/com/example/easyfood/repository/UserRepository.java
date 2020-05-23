@@ -97,15 +97,7 @@ public class UserRepository {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot document = task.getResult();
-                        String email = document.getString("email");
-
-                        User user = new User(userId, email);
-
-                        String role = document.getString("role");
-                        if (role.equals("MANAGER")) {
-                            user.setRole(User.Role.MANAGER);
-                        }
-
+                        User user = document.toObject(User.class);
                         callback.send(user);
                     }
                 });

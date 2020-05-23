@@ -2,6 +2,7 @@ package com.example.easyfood.view.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
@@ -80,9 +81,20 @@ public class EateryActivity extends BaseActivity implements EateryAdapter.OnEate
 
     @Override
     public void OnEateryClick(int position) {
-        String chosenEatery = viewModel.getEateries().getValue().get(position).getId();
+        Eatery eatery = viewModel.getEateries().getValue().get(position);
+
+        Bundle extras = new Bundle();
+        extras.putString("eateryId", eatery.getId());
+        extras.putString("name", eatery.getName());
+        extras.putInt("phoneNumber", eatery.getPhoneNumber());
+        extras.putString("street", eatery.getStreet());
+        extras.putInt("streetNumber", eatery.getStreetNumber());
+        extras.putInt("postalCode", eatery.getPostalCode());
+        extras.putString("city", eatery.getCity());
+        extras.getString("openingHours", eatery.getOpeningHours());
+
         Intent intent = new Intent(this, CustomerMenuActivity.class);
-        intent.putExtra("eateryId", chosenEatery);
+        intent.putExtras(extras);
         startActivity(intent);
     }
 }

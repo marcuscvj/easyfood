@@ -3,6 +3,7 @@ package com.example.easyfood.view.customer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
@@ -21,6 +22,8 @@ import java.util.List;
 public class CustomerMenuActivity extends BaseActivity implements ProductAdapter.OnAddProductListener{
 
     private String eateryId;
+
+    private TextView menuHeader;
     private SearchView searchView;
     private RecyclerView recyclerView;
     private CustomerMenuViewModel viewModel;
@@ -31,10 +34,11 @@ public class CustomerMenuActivity extends BaseActivity implements ProductAdapter
         setContentView(R.layout.activity_menu);
         super.onCreate(savedInstanceState);
 
-        getEateryId();
-
+        menuHeader = findViewById(R.id.menu_header);
         recyclerView = findViewById(R.id.menu_recycleView);
         searchView = findViewById(R.id.menu_searchView);
+
+        getEateryInfo();
 
         viewModel = new ViewModelProvider(this).get(CustomerMenuViewModel.class);
         viewModel.init(eateryId);
@@ -82,10 +86,18 @@ public class CustomerMenuActivity extends BaseActivity implements ProductAdapter
     /**
      * Gets the eatery id from the intent
      */
-    private void getEateryId() {
+    private void getEateryInfo() {
         Intent intent = getIntent();
-        Bundle bundle = intent.getExtras();
-        eateryId = bundle.get("eateryId").toString();
+        Bundle extras = intent.getExtras();
+        eateryId = extras.getString("eateryId");
+
+        String contactInformation = extras.getString("name") + "\n";
+        contactInformation += "Address: " + extras.getString("street") + " " + extras.getString("streetNumber") + "\n";
+        contactInformation += "Phone: " + extras.getString("phoneNumber") + "\n";
+        contactInformation += "openingHours: " + extras.getString("openingHours");
+
+
+        menuHeader.setText(contactInformation);
     }
 
     @Override
