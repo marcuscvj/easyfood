@@ -8,10 +8,13 @@ import com.example.easyfood.model.Product;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a BasketRepository
+ */
 public class BasketRepository {
     private static BasketRepository instance;
     private Order order;
-    private ArrayList<Product> productsList = new ArrayList<Product>();
+    private ArrayList<Product> productsList = new ArrayList<>();
     private  MutableLiveData<List<Product>> products= new MutableLiveData<>();
 
     /**
@@ -41,14 +44,14 @@ public class BasketRepository {
         products.getValue().add(product);
     }
 
-    public void setOrder(String restaurantID) {
+    public void setOrder(String eateryId) {
         if (order == null) {
-            order = new Order(restaurantID);
+            order = new Order(eateryId);
         }
     }
 
-    public String getRestaurantIdFromOrder() {
-        return order.getRestaurantId();
+    public String getEateryIdFromOrder() {
+        return order.getEateryId();
     }
 
     public void resetOrder() {

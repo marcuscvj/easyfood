@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.easyfood.model.Order;
-import com.example.easyfood.model.OrderPaymentMethodEnums;
-import com.example.easyfood.model.OrderStatusEnums;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.model.ProductDocument;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -71,8 +69,9 @@ public class OrderRepository {
         return orders;
     }
 
+    // TODO SNYGGA TILL DENNA RÖRA
     private void getOrdersFromDatabase(final String eateryId, final IOrdersCallback callback) {
-        database.collection("orders").whereEqualTo("restaurantId", eateryId)
+        database.collection("orders").whereEqualTo("eateryId", eateryId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -88,10 +87,10 @@ public class OrderRepository {
                                 String payment = document.getString("paymentMethod");
                                 switch (payment) {
                                     case "CASH":
-                                        order.setPaymentMethod(OrderPaymentMethodEnums.CASH);
+                                        order.setPaymentMethod(Order.PaymentMethod.CASH);
                                         break;
                                     case "CARD":
-                                        order.setPaymentMethod(OrderPaymentMethodEnums.CARD);
+                                        order.setPaymentMethod(Order.PaymentMethod.CARD);
                                 }
 
                                 Boolean paid = document.getBoolean("paid");
@@ -104,19 +103,19 @@ public class OrderRepository {
                                 String status = document.getString("orderStatus");
                                 switch (status) {
                                     case "CREATED":
-                                        order.setOrderStatus(OrderStatusEnums.CREATED);
+                                        order.setOrderStatus(Order.Status.CREATED);
                                         break;
                                     case "SENT":
-                                        order.setOrderStatus(OrderStatusEnums.SENT);
+                                        order.setOrderStatus(Order.Status.SENT);
                                         break;
                                     case "CONFIRMED":
-                                        order.setOrderStatus(OrderStatusEnums.CONFIRMED);
+                                        order.setOrderStatus(Order.Status.CONFIRMED);
                                         break;
                                     case "READY":
-                                        order.setOrderStatus(OrderStatusEnums.READY);
+                                        order.setOrderStatus(Order.Status.READY);
                                         break;
                                     case "DELIVERED":
-                                        order.setOrderStatus(OrderStatusEnums.DELIVERED);
+                                        order.setOrderStatus(Order.Status.DELIVERED);
                                         break;
                                 }
 
@@ -151,7 +150,7 @@ public class OrderRepository {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        setOrderStatus(orderId, OrderStatusEnums.SENT);
+                        setOrderStatus(orderId, Order.Status.SENT);
                         Log.d(TAG, "DocumentSnapshot successfully written!");
                     }
                 })
@@ -169,7 +168,7 @@ public class OrderRepository {
      * @param orderId : String - The id of the order
      * @param newStatus : OrderStatusEnum - The order status
      */
-    private void setOrderStatus(String orderId, OrderStatusEnums newStatus) {
+    private void setOrderStatus(String orderId, Order.Status newStatus) {
         Map<String, Object> status = new HashMap<>();
         status.put("orderStatus", newStatus);
 
@@ -195,6 +194,13 @@ public class OrderRepository {
      */
     private String getGeneratedOrderIdFromDatabase() {
         return database.collection("orders").document().getId();
+    }
+
+    /**
+     * Interface
+     */
+    private interface IOrdersCallback {
+        void send(ArrayList<Order> list);
     }
 
 }

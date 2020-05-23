@@ -16,12 +16,12 @@ public class ManagerMenuViewModel extends ViewModel {
     /**
      * Initializes the ViewModel
      */
-    public void init(String restaurantId){
+    public void init(String eateryId){
         if(products != null) {
             return;
         }
         productRepository = productRepository.getInstance();
-        products = productRepository.getProducts(restaurantId);
+        products = productRepository.getProducts(eateryId);
     }
 
     /**

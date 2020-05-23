@@ -14,7 +14,7 @@ import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
 public class NewProductActivity extends BaseActivity {
     private ManagerMenuViewModel viewModel;
-    private String restaurantId;
+    private String eateryId;
 
     private EditText nameEditText;
     private EditText descriptionEditText;
@@ -26,10 +26,10 @@ public class NewProductActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_new);
 
-        getChosenRestaurant();
+        getEateryId();
 
         viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
-        viewModel.init(restaurantId);
+        viewModel.init(eateryId);
 
         nameEditText = findViewById(R.id.name_editText);
         descriptionEditText = findViewById(R.id.description_editText);
@@ -82,16 +82,16 @@ public class NewProductActivity extends BaseActivity {
      * @param price : Double - The price of the product
      */
     private void addProduct(String name, String description, Double price) {
-        viewModel.createProduct(restaurantId, name, description, price);
+        viewModel.createProduct(eateryId, name, description, price);
         goToActivity(new Intent(getApplicationContext(), ManagerMenuActivity.class));
     }
 
     /**
      * Gets the current Eatery.
      */
-    private void getChosenRestaurant() {
+    private void getEateryId() {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        restaurantId = extras.getString("RestaurantID");
+        eateryId = extras.getString("eateryId");
     }
 }

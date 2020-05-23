@@ -21,7 +21,7 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private Context context;
     private OnClickProductListener onClickProductListener;
 
-    public ManagerMenuAdapter(Context context, List<Product> products, OnClickProductListener onClickProductListener) {
+    ManagerMenuAdapter(Context context, List<Product> products, OnClickProductListener onClickProductListener) {
         this.products = products;
         this.context = context;
         this.onClickProductListener = onClickProductListener;
@@ -65,11 +65,12 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private TextView name;
         private TextView desc;
         private TextView price;
-        private Button removeButton;
-        private Button editButton;
 
-        public ViewHolder(@NonNull View itemView, final OnClickProductListener onClickProductListener) {
+        ViewHolder(@NonNull View itemView, final OnClickProductListener onClickProductListener) {
             super(itemView);
+            Button removeButton;
+            Button editButton;
+
             name = itemView.findViewById(R.id.product_name);
             desc = itemView.findViewById(R.id.product_description);
             price = itemView.findViewById(R.id.product_price);
@@ -91,6 +92,9 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
+    /**
+     * Interface
+     */
     public interface OnClickProductListener {
         void onRemoveProductClick(int position);
         void onEditProductClick(int position);

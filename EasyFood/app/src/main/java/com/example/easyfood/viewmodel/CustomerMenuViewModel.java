@@ -19,21 +19,21 @@ public class CustomerMenuViewModel extends ViewModel {
     private MutableLiveData<List<Product>> productsInBasket;
     private BasketRepository basketRepository;
     private ProductRepository productsRepository;
-    private String restaurantID;
+    private String eateryId;
 
 
     /**
      * Initializes the ViewModel
      */
-    public void init(String restaurantID){
+    public void init(String eateryId){
         if(productsInMenu != null) {
             return;
         }
-        this.restaurantID = restaurantID;
+        this.eateryId = eateryId;
         productsRepository= ProductRepository.getInstance();
         basketRepository = BasketRepository.getInstance();
         productsInBasket = basketRepository.getProducts();
-        productsInMenu = productsRepository.getProducts(restaurantID);
+        productsInMenu = productsRepository.getProducts(eateryId);
 
     }
 
@@ -49,9 +49,9 @@ public class CustomerMenuViewModel extends ViewModel {
     public void addProduct(int position, Context context) {
 
         Product product = getProductsInMenu().getValue().get(position);
-        basketRepository.setOrder(restaurantID);
+        basketRepository.setOrder(eateryId);
 
-        if (restaurantID == basketRepository.getRestaurantIdFromOrder()) {
+        if (eateryId == basketRepository.getEateryIdFromOrder()) {
         basketRepository.addProduct(product);
         } else {
             CharSequence text = "You can only order from one restaurant at a time!";

@@ -1,14 +1,10 @@
 package com.example.easyfood.viewmodel;
 
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.easyfood.model.Order;
-import com.example.easyfood.model.OrderPaymentMethodEnums;
-import com.example.easyfood.model.OrderStatusEnums;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.repository.BasketRepository;
 import com.example.easyfood.repository.OrderRepository;
@@ -66,11 +62,11 @@ public class BasketViewModel extends ViewModel {
         ArrayList<Product> products = (ArrayList<Product>) basketRepository.getProducts().getValue();
         order.setProducts(products);
 
-        order.setPaymentMethod(OrderPaymentMethodEnums.CASH);
+        order.setPaymentMethod(Order.PaymentMethod.CASH);
 
         order.setPaid(false);
 
-        order.setOrderStatus(OrderStatusEnums.CREATED);
+        order.setOrderStatus(Order.Status.CREATED);
 
         order.setSum(Double.parseDouble(sum));
 
