@@ -92,7 +92,10 @@ public class CustomerMenuActivity extends BaseActivity implements ProductAdapter
         eateryId = extras.getString("eateryId");
 
         String contactInformation = extras.getString("name") + "\n";
-        contactInformation += "Address: " + extras.getString("street") + " " + extras.getString("streetNumber");
+        contactInformation += "Address: " + extras.getString("street") + " " + extras.getString("streetNumber") + "\n";
+        contactInformation += "Phone: " + extras.getString("phoneNumber") + "\n";
+        contactInformation += "openingHours: " + extras.getString("openingHours");
+
 
         menuHeader.setText(contactInformation);
     }
