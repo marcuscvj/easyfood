@@ -48,13 +48,17 @@ public class BasketRepository {
     }
 
     public String getRestaurantIdFromOrder() {
-        return order.getRestaurantID();
+        return order.getRestaurantId();
     }
 
     public void resetOrder() {
         if (products.getValue().size() == 0) {
             this.order = null;
         }
+    }
+
+    public Order getOrder() {
+        return order;
     }
 
 }

@@ -85,7 +85,14 @@ public class OrderRepository {
                                 order.setId(document.getString("id"));
                                 order.setOrderNumber(document.getLong("orderNumber"));
                                 order.setMessage(document.getString("message"));
-                                order.setPaymentMethod((OrderPaymentMethodEnums) document.get("paymentMethod"));
+                                String payment = document.getString("paymentMethod");
+                                switch (payment) {
+                                    case "CASH":
+                                        order.setPaymentMethod(OrderPaymentMethodEnums.CASH);
+                                        break;
+                                    case "CARD":
+                                        order.setPaymentMethod(OrderPaymentMethodEnums.CARD);
+                                }
 
                                 Boolean paid = document.getBoolean("paid");
                                 if (paid.equals(true)) {

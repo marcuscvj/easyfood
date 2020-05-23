@@ -153,7 +153,7 @@ public class UserRepository {
     private void createUser(String userId, String userEmail, final IUserCallback callback) {
         User user = new User(userId, userEmail);
 
-        user.setRole(User.Role.MANAGER);
+        user.setRole(User.Role.CUSTOMER);
 
         addUserToDatabase(user, new IUserCallback() {
             @Override
