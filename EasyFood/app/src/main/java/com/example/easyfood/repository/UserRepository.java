@@ -39,6 +39,19 @@ public class UserRepository {
         return instance;
     }
 
+    public MutableLiveData<User> getCurrentUser(String userId) {
+        currentUser = new MutableLiveData<>();
+
+        getUserFromDatabase(userId, new IUserCallback() {
+            @Override
+            public void send(User user) {
+                currentUser.setValue(user);
+            }
+        });
+
+        return currentUser;
+    }
+
     /**
      * Signs in the User with Email and Password
      *
