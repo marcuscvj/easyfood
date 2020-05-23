@@ -1,18 +1,23 @@
 package com.example.easyfood.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
-import com.example.easyfood.viewmodel.RegisterActivityViewModel;
+import com.example.easyfood.model.User;
+import com.example.easyfood.view.customer.EateryActivity;
+import com.example.easyfood.viewmodel.RegisterViewModel;
 
 public class RegisterActivity extends BaseActivity {
-    RegisterActivityViewModel viewModel;
+    RegisterViewModel viewModel;
 
     EditText emailEditText;
     EditText passwordEditText;
@@ -23,7 +28,7 @@ public class RegisterActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        viewModel = new ViewModelProvider(this).get(RegisterActivityViewModel.class);
+        viewModel = new ViewModelProvider(this).get(RegisterViewModel.class);
         viewModel.init();
 
         emailEditText = findViewById(R.id.email_editText);
@@ -74,7 +79,18 @@ public class RegisterActivity extends BaseActivity {
      */
     private void registerWithEmailAndPassword(String email, String password) {
         viewModel.registerWithEmailAndPassword(email, password);
-        // TODO Notify user about how it went
-        // TODO Send user to LoginActivity ??
+        viewModel.getUserLiveData().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (user.getId().equals("0")) {
+                    emailEditText.setError("Wrong Credentials");
+                    passwordEditText.setError("Wrong Credentials");
+                    return;
+                }
+
+                goToActivity(new Intent(getApplicationContext(), EateryActivity.class));
+                Toast.makeText(getApplicationContext(), user.getEmail(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
