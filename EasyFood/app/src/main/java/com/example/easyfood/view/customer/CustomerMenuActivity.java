@@ -1,5 +1,6 @@
 package com.example.easyfood.view.customer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -85,9 +86,8 @@ public class CustomerMenuActivity extends BaseActivity implements ProductAdapter
 
     @Override
     public void OnAddProductClick(int position) {
-        Product chosenProduct = viewModel.getProductsInMenu().getValue().get(position);
-        viewModel.addProduct(chosenProduct);
-
+        Context context = getApplicationContext();
+        viewModel.addProduct(position, context);
     }
 
 

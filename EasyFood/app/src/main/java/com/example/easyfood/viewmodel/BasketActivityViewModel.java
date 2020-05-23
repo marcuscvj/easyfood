@@ -38,6 +38,9 @@ public class BasketActivityViewModel extends ViewModel {
     public void removeProduct(Product product) {
         products.getValue().remove(product);
         products.setValue(products.getValue());
+        //Resets order if the basket is empty.
+        basketRepository.resetOrder();
+
     }
 
 

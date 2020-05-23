@@ -41,4 +41,20 @@ public class BasketRepository {
         products.getValue().add(product);
     }
 
+    public void setOrder(String restaurantID) {
+        if (order == null) {
+            order = new Order(restaurantID);
+        }
+    }
+
+    public String getRestaurantIdFromOrder() {
+        return order.getRestaurantID();
+    }
+
+    public void resetOrder() {
+        if (products.getValue().size() == 0) {
+            this.order = null;
+        }
+    }
+
 }

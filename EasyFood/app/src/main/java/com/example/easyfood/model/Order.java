@@ -23,8 +23,12 @@ public class Order {
         this.restaurantID = restaurantID;
     }
 
-    protected String getRestaurantID() {
+    public String getRestaurantID() {
         return restaurantID;
+    }
+
+    public void setRestaurantID(String restaurantID) {
+        this.restaurantID = restaurantID;
     }
 
     //More getters and setters will be added here.
