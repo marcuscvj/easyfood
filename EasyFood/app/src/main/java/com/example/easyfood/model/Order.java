@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Order implements Serializable { // TODO Remove Serializable, Was only here for testing
 
     private String id;
-    private int orderNumber;
+    private long orderNumber;
     private ArrayList<Product> products;
     private String message;
     private OrderPaymentMethodEnums paymentMethod;
@@ -36,7 +36,7 @@ public class Order implements Serializable { // TODO Remove Serializable, Was on
         return this.id;
     }
 
-    public int getOrderNumber() {
+    public long getOrderNumber() {
         return orderNumber;
     }
 
@@ -64,7 +64,7 @@ public class Order implements Serializable { // TODO Remove Serializable, Was on
         return customerId;
     }
 
-    public void setOrderNumber(int orderNumber) {
+    public void setOrderNumber(long orderNumber) {
         this.orderNumber = orderNumber;
     }
 
