@@ -19,7 +19,7 @@ import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 import java.util.List;
 
 public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdapter.OnClickProductListener {
-    private String restaurantID;
+    private String restaurantId;
 
     private Button newProductButton;
 
@@ -34,14 +34,15 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_manager);
 
-        getChosenRestaurant();
+        getRestaurantId();
 
         newProductButton = findViewById(R.id.new_product_button);
 
         recyclerView = findViewById(R.id.menu_recycleView);
 
         viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
-        viewModel.init(restaurantID);
+        Toast.makeText(this, restaurantId, Toast.LENGTH_SHORT).show();
+        viewModel.init(restaurantId);
         viewModel.getAllProducts().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
@@ -64,8 +65,9 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
         recyclerView.setAdapter(adapter);
     }
 
-    private void getChosenRestaurant() {             // TODO Get the right id
-        restaurantID = "33LokCQ0UG8jEnXnllQV";
+    private void getRestaurantId() {
+        Intent intent = getIntent();
+        restaurantId = intent.getStringExtra("restaurantId");
     }
 
     /**
@@ -76,7 +78,7 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NewProductActivity.class);
-                intent.putExtra("RestaurantID", restaurantID);
+                intent.putExtra("restaurantId", restaurantId);
                 goToActivity(intent);
             }
         });
@@ -86,7 +88,7 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
     @Override
     public void onRemoveProductClick(int position) {
         Product chosenProduct = viewModel.getAllProducts().getValue().get(position);
-        viewModel.removeProduct(restaurantID, chosenProduct.getId());
+        viewModel.removeProduct(restaurantId, chosenProduct.getId());
     }
 
     @Override
@@ -94,7 +96,7 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
         Product chosenProduct = viewModel.getAllProducts().getValue().get(position);
         Intent intent = new Intent(getApplicationContext(), EditProductActivity.class);
         Bundle extras = new Bundle();
-        extras.putString("restaurantId", restaurantID);
+        extras.putString("restaurantId", restaurantId);
         extras.putString("id", chosenProduct.getId());
         extras.putString("name", chosenProduct.getName());
         extras.putString("desc", chosenProduct.getDescription());

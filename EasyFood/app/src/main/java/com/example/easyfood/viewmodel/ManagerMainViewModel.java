@@ -11,12 +11,12 @@ public class ManagerMainViewModel extends ViewModel {
     private EateryRepository eateryRepository;
     private MutableLiveData<Eatery> eatery;
 
-    public void init() {
+    public void init(String managerId) {
         eateryRepository = EateryRepository.getInstance();
+        eatery = eateryRepository.getSpecificEatery(managerId);
     }
 
-    public LiveData<Eatery> getUser(String managerId) {
-        eatery = eateryRepository.getSpecificEatery(managerId);
+    public LiveData<Eatery> getUser() {
         return eatery;
     }
 }
