@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class ManagerMainActivity extends BaseActivity {
     private ManagerMainViewModel viewModel;
 
-    private String restaurantId;
+    private String eateryId;
 
     private Button menuButton;
     private Button ordersButton;
@@ -38,7 +37,7 @@ public class ManagerMainActivity extends BaseActivity {
         viewModel.getUser().observe(this, new Observer<Eatery>() {
             @Override
             public void onChanged(Eatery eatery) {
-                restaurantId = eatery.getId();
+                eateryId = eatery.getId();
             }
         });
 
@@ -57,7 +56,7 @@ public class ManagerMainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ManagerMenuActivity.class);
-                intent.putExtra("restaurantId", restaurantId);
+                intent.putExtra("eateryId", eateryId);
                 goToActivity(intent);
             }
         });
@@ -68,7 +67,7 @@ public class ManagerMainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), OrdersActivity.class);
-                intent.putExtra("restaurantId", restaurantId);
+                intent.putExtra("eateryId", eateryId);
                 goToActivity(intent);
             }
         });

@@ -20,7 +20,7 @@ import java.util.List;
 
 public class CustomerMenuActivity extends BaseActivity implements ProductAdapter.OnAddProductListener{
 
-    private String restaurantID;
+    private String eateryId;
     private SearchView searchView;
     private RecyclerView recyclerView;
     private CustomerMenuViewModel viewModel;
@@ -30,13 +30,14 @@ public class CustomerMenuActivity extends BaseActivity implements ProductAdapter
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_menu);
         super.onCreate(savedInstanceState);
-        getChosenRestaurant();
+
+        getEateryId();
 
         recyclerView = findViewById(R.id.menu_recycleView);
         searchView = findViewById(R.id.menu_searchView);
 
         viewModel = new ViewModelProvider(this).get(CustomerMenuViewModel.class);
-        viewModel.init(restaurantID);
+        viewModel.init(eateryId);
         viewModel.getProductsInMenu().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
@@ -78,10 +79,10 @@ public class CustomerMenuActivity extends BaseActivity implements ProductAdapter
         });
     }
 
-    private void getChosenRestaurant() {
+    private void getEateryId() {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        restaurantID = bundle.get("RestaurantID").toString();
+        eateryId = bundle.get("eateryId").toString();
     }
 
     @Override

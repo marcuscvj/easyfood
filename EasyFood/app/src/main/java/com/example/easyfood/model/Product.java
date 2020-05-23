@@ -1,5 +1,6 @@
 package com.example.easyfood.model;
 
+// TODO SNYGGA TILL MED JAVADOCS
 
 import java.io.Serializable;
 

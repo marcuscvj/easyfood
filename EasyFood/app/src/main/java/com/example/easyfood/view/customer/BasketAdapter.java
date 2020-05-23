@@ -1,4 +1,4 @@
-package com.example.easyfood.view;
+package com.example.easyfood.view.customer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,12 +19,12 @@ import java.util.List;
 public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Product> products;
     private Context context;
-    private OnRemoveRestaurantListener onRemoveRestaurantListener;
+    private OnRemoveEateryListener onRemoveEateryListener;
 
-    public BasketAdapter(Context context, List<Product> products, OnRemoveRestaurantListener onRemoveRestaurantListener) {
+    public BasketAdapter(Context context, List<Product> products, OnRemoveEateryListener onRemoveEateryListener) {
         this.products = products;
         this.context = context;
-        this.onRemoveRestaurantListener = onRemoveRestaurantListener;
+        this.onRemoveEateryListener = onRemoveEateryListener;
 
     }
 
@@ -32,7 +32,7 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_basketlist, parent, false);
-        return new BasketAdapter.ViewHolder(view, onRemoveRestaurantListener);
+        return new BasketAdapter.ViewHolder(view, onRemoveEateryListener);
     }
 
     @Override
@@ -55,26 +55,26 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         private TextView name;
         private TextView desc;
         private TextView price;
-        private OnRemoveRestaurantListener onRemoveRestaurantListener;
+        private OnRemoveEateryListener onRemoveEateryListener;
 
-        public ViewHolder(@NonNull View itemView, OnRemoveRestaurantListener onRemoveRestaurantListener) {
+        public ViewHolder(@NonNull View itemView, OnRemoveEateryListener onRemoveEateryListener) {
             super(itemView);
             name = itemView.findViewById(R.id.product_name);
             desc = itemView.findViewById(R.id.product_description);
             price = itemView.findViewById(R.id.product_price);
-            this.onRemoveRestaurantListener = onRemoveRestaurantListener;
+            this.onRemoveEateryListener = onRemoveEateryListener;
             Button button = itemView.findViewById(R.id.remove_product_button);
             button.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-        onRemoveRestaurantListener.onRemoveRestaurantClick(getAdapterPosition());
+        onRemoveEateryListener.onRemoveEateryClick(getAdapterPosition());
         }
     }
 
-    public interface OnRemoveRestaurantListener {
-        void onRemoveRestaurantClick(int position);
+    public interface OnRemoveEateryListener {
+        void onRemoveEateryClick(int position);
 
     }
 

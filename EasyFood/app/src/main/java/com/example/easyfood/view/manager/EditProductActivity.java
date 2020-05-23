@@ -14,7 +14,7 @@ import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
 public class EditProductActivity extends BaseActivity {
     private ManagerMenuViewModel viewModel;
-    private String restaurantId;
+    private String eateryId;
     private String productId;
 
     private EditText nameEditText;
@@ -36,7 +36,7 @@ public class EditProductActivity extends BaseActivity {
         getExtras();
 
         viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
-        viewModel.init(restaurantId);
+        viewModel.init(eateryId);
 
         setEditButtonListener();
 
@@ -84,7 +84,7 @@ public class EditProductActivity extends BaseActivity {
      * @param price : Double - The price of the product
      */
     private void editProduct(String name, String description, Double price) {
-        viewModel.updateProduct(restaurantId, productId, name, description, price);
+        viewModel.updateProduct(eateryId, productId, name, description, price);
         goToActivity(new Intent(getApplicationContext(), ManagerMenuActivity.class));
     }
 
@@ -94,7 +94,7 @@ public class EditProductActivity extends BaseActivity {
     private void getExtras() {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        restaurantId = extras.getString("restaurantId");
+        eateryId = extras.getString("eateryId");
         productId = extras.getString("id");
         nameEditText.setText(extras.getString("name"));
         descriptionEditText.setText(extras.getString("desc"));

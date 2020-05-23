@@ -14,13 +14,12 @@ import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.model.totalPriceCalculator;
 import com.example.easyfood.view.BaseActivity;
-import com.example.easyfood.view.BasketAdapter;
 import com.example.easyfood.viewmodel.BasketViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemoveRestaurantListener {
+public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemoveEateryListener {
 
     private RecyclerView recyclerView;
     private BasketViewModel viewModel;
@@ -69,7 +68,7 @@ public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemo
     }
 
     @Override
-    public void onRemoveRestaurantClick(int position) {
+    public void onRemoveEateryClick(int position) {
         Product chosenProduct = viewModel.getProducts().getValue().get(position);
         viewModel.removeProduct(chosenProduct);
        updateTotalSum();

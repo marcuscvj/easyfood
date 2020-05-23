@@ -3,6 +3,8 @@ package com.example.easyfood.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+// TODO SNYGGA TILL DENNA RÖRA
+
 
 /**
  * Holds the information about an order that has been placed.
@@ -13,19 +15,19 @@ public class Order implements Serializable { // TODO Remove Serializable, Was on
     private long orderNumber;
     private ArrayList<Product> products;
     private String message;
-    private OrderPaymentMethodEnums paymentMethod;
+    private PaymentMethod paymentMethod;
     private boolean isPaid;
-    private OrderStatusEnums orderStatus;
+    private Status orderStatus;
     private double sum;
     private String customerId;
-    private String restaurantId;
+    private String eateryId;
 
-    public Order (String restaurantId) {
-        this.restaurantId = restaurantId;
+    public Order (String eateryId) {
+        this.eateryId = eateryId;
     }
 
-    public String getRestaurantId() {
-        return restaurantId;
+    public String getEateryId() {
+        return eateryId;
     }
 
     public void setId(String id) {
@@ -44,7 +46,7 @@ public class Order implements Serializable { // TODO Remove Serializable, Was on
         return message;
     }
 
-    public OrderPaymentMethodEnums getPaymentMethod() {
+    public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
@@ -52,7 +54,7 @@ public class Order implements Serializable { // TODO Remove Serializable, Was on
         return isPaid;
     }
 
-    public OrderStatusEnums getOrderStatus() {
+    public Status getOrderStatus() {
         return orderStatus;
     }
 
@@ -80,7 +82,7 @@ public class Order implements Serializable { // TODO Remove Serializable, Was on
         this.message = message;
     }
 
-    public void setPaymentMethod(OrderPaymentMethodEnums paymentMethod) {
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
 
@@ -88,7 +90,7 @@ public class Order implements Serializable { // TODO Remove Serializable, Was on
         isPaid = paid;
     }
 
-    public void setOrderStatus(OrderStatusEnums orderStatus) {
+    public void setOrderStatus(Status orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -101,4 +103,26 @@ public class Order implements Serializable { // TODO Remove Serializable, Was on
     }
 
     //More getters and setters will be added here.
+
+
+    /**
+     * Payment Method Enum
+     */
+    public enum PaymentMethod {
+        CASH,
+        CARD
+        //Maybe they should be written in another way?
+    }
+
+    /**
+     * Order Status Enum
+     */
+    public enum Status {
+        CREATED,
+        SENT,
+        CONFIRMED,
+        READY,
+        DELIVERED
+        //Enums should be added here. These two are mostly for testing.
+    }
 }

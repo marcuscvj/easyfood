@@ -1,4 +1,4 @@
-package com.example.easyfood.view;
+package com.example.easyfood.view.customer;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -24,7 +24,7 @@ public class EateryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private List<Eatery> eateries;
     private List<Eatery> eateriesFull;
     private Context context;
-    private OnRestaurantListener onRestaurantListener;
+    private OnEateryListener onEateryListener;
 
     /**
      * Creates an instance of an EateryAdapter
@@ -32,19 +32,19 @@ public class EateryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
      * @param context: Context - The Context.
      * @param eateries: List<Eatery> - The list of eateries.
      */
-    public EateryAdapter(Context context, List<Eatery> eateries, OnRestaurantListener onRestaurantListener) {
+    public EateryAdapter(Context context, List<Eatery> eateries, OnEateryListener onEateryListener) {
         this.eateries = eateries;
         // this.eateriesTemp = new ArrayList<>();
         this.eateriesFull = new ArrayList<>();
         this.context = context;
-        this.onRestaurantListener = onRestaurantListener;
+        this.onEateryListener = onEateryListener;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_eaterylist, viewGroup, false);
-        return new ViewHolder(view, onRestaurantListener);
+        return new ViewHolder(view, onEateryListener);
     }
 
     @Override
@@ -125,27 +125,27 @@ public class EateryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
      */
     private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name;
-        OnRestaurantListener onRestaurantListener;
+        OnEateryListener onEateryListener;
 
         /**
          * Creates an instance of a ViewHolder
          *
          * @param itemView: View - The view
          */
-        public ViewHolder(@NonNull View itemView, OnRestaurantListener onRestaurantListener) {
+        public ViewHolder(@NonNull View itemView, OnEateryListener onEateryListener) {
             super(itemView);
             name = itemView.findViewById(R.id.eatery_name);
-            this.onRestaurantListener = onRestaurantListener;
+            this.onEateryListener = onEateryListener;
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            onRestaurantListener.OnRestaurantClick(getAdapterPosition());
+            onEateryListener.OnEateryClick(getAdapterPosition());
         }
     }
 
-    public interface OnRestaurantListener {
-        void OnRestaurantClick(int position);
+    public interface OnEateryListener {
+        void OnEateryClick(int position);
     }
 }

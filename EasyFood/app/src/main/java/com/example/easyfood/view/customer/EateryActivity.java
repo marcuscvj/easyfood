@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
 import com.example.easyfood.model.Eatery;
-import com.example.easyfood.view.EateryAdapter;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.EateryActivityViewModel;
 
@@ -21,9 +20,9 @@ import java.util.List;
  * Eatery Activity
  *
  * TEMPORARY:
- * Contains a list of all the available restaurants.
+ * Contains a list of all the available eateries.
  */
-public class EateryActivity extends BaseActivity implements EateryAdapter.OnRestaurantListener {
+public class EateryActivity extends BaseActivity implements EateryAdapter.OnEateryListener {
     private SearchView searchView;
     private RecyclerView recyclerView;
     private EateryActivityViewModel viewModel;
@@ -80,10 +79,10 @@ public class EateryActivity extends BaseActivity implements EateryAdapter.OnRest
     }
 
     @Override
-    public void OnRestaurantClick(int position) {
-        String chosenRestaurant = viewModel.getEateries().getValue().get(position).getId();
+    public void OnEateryClick(int position) {
+        String chosenEatery = viewModel.getEateries().getValue().get(position).getId();
         Intent intent = new Intent(this, CustomerMenuActivity.class);
-        intent.putExtra("RestaurantID", chosenRestaurant);
+        intent.putExtra("eateryId", chosenEatery);
         startActivity(intent);
     }
 }

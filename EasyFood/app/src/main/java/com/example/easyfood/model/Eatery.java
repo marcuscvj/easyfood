@@ -1,7 +1,5 @@
 package com.example.easyfood.model;
 
-import java.util.ArrayList;
-
 /**
  * Represents an Eatery
  */
@@ -9,7 +7,6 @@ public class Eatery {
     private String name;
     private String id;
     private String managerId;
-    private ArrayList<Product> products = new ArrayList<>();
 
     /**
      * Creates an instance of Eatery
@@ -18,12 +15,12 @@ public class Eatery {
      */
     public Eatery (String name, String id) {
         setName(name);
-
-        // generate id here
-        // Parameter id above is only now for testing purposes
         this.id = id;
     }
 
+    /**
+     * Creates an instance of Eatery
+     */
     public Eatery () {}
 
     /**
@@ -53,14 +50,29 @@ public class Eatery {
         return this.id;
     }
 
+    /**
+     * Returns the id of the Eatery
+     *
+     * @param id: String - The id of the Eatery
+     */
     public void setId (String id) {
         this.id = id;
     }
 
+    /**
+     * Returns the manager id of the Eatery
+     *
+     * @return managerId : String - The manager id
+     */
     public String getManagerId() {
         return managerId;
     }
 
+    /**
+     * Sets the manager id
+     *
+     * @param managerId : String - The manager id
+     */
     public void setManagerId(String managerId) {
         this.managerId = managerId;
     }
