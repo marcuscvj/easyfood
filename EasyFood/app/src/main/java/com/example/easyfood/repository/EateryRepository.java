@@ -99,9 +99,7 @@ public class EateryRepository {
                             Eatery eatery = new Eatery();
 
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                eatery.setId(document.getString("id"));
-                                eatery.setManagerId(document.getString("managerId"));
-                                eatery.setName(document.getString("name"));
+                                eatery = document.toObject(Eatery.class);
                             }
 
                             callback.send(eatery);

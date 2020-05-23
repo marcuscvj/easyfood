@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.easyfood.model.Order;
-import com.example.easyfood.model.Product;
-import com.example.easyfood.model.ProductDocument;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -69,7 +67,12 @@ public class OrderRepository {
         return orders;
     }
 
-    // TODO SNYGGA TILL DENNA RÖRA
+    /**
+     * Gets the orders from the database
+     *
+     * @param eateryId : String - The id of the eatery
+     * @param callback : IOrdersCallback - Callback
+     */
     private void getOrdersFromDatabase(final String eateryId, final IOrdersCallback callback) {
         database.collection("orders").whereEqualTo("eateryId", eateryId)
                 .get()
@@ -80,50 +83,7 @@ public class OrderRepository {
                             ArrayList<Order> orders = new ArrayList<>();
 
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                Order order = new Order(eateryId);
-                                order.setId(document.getString("id"));
-                                order.setOrderNumber(document.getLong("orderNumber"));
-                                order.setMessage(document.getString("message"));
-                                String payment = document.getString("paymentMethod");
-                                switch (payment) {
-                                    case "CASH":
-                                        order.setPaymentMethod(Order.PaymentMethod.CASH);
-                                        break;
-                                    case "CARD":
-                                        order.setPaymentMethod(Order.PaymentMethod.CARD);
-                                }
-
-                                Boolean paid = document.getBoolean("paid");
-                                if (paid.equals(true)) {
-                                    order.setPaid(true);
-                                } else {
-                                    order.setPaid(false);
-                                }
-
-                                String status = document.getString("orderStatus");
-                                switch (status) {
-                                    case "CREATED":
-                                        order.setOrderStatus(Order.Status.CREATED);
-                                        break;
-                                    case "SENT":
-                                        order.setOrderStatus(Order.Status.SENT);
-                                        break;
-                                    case "CONFIRMED":
-                                        order.setOrderStatus(Order.Status.CONFIRMED);
-                                        break;
-                                    case "READY":
-                                        order.setOrderStatus(Order.Status.READY);
-                                        break;
-                                    case "DELIVERED":
-                                        order.setOrderStatus(Order.Status.DELIVERED);
-                                        break;
-                                }
-
-                                order.setSum((Double) document.get("sum"));
-                                order.setCustomerId(document.getString("customerId"));
-                                ArrayList<Product> products = document.toObject(ProductDocument.class).products;
-                                order.setProducts(products);
-
+                                Order order = document.toObject(Order.class);
                                 orders.add(order);
                             }
 

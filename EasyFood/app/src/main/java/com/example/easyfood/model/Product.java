@@ -4,12 +4,23 @@ package com.example.easyfood.model;
 
 import java.io.Serializable;
 
+/**
+ * Represents a Product
+ */
 public class Product implements Serializable { // TODO Remove Serializable, Was only here for testing
     private String name;
     private String description;
     private Double price;
     private String id;
 
+    /**
+     * Creates an instance of a product
+     *
+     * @param name : String - The name of the product
+     * @param description : String - The description of the product
+     * @param price : Double - The price of the product
+     * @param id : String - The id of the product
+     */
     public Product(String name, String description, double price, String id) {
         this.name = name;
         this.description = description;
@@ -17,6 +28,9 @@ public class Product implements Serializable { // TODO Remove Serializable, Was 
         this.id = id;
     }
 
+    /**
+     * Creates an instance of a product
+     */
     public Product() {}
 
     public String getId() {

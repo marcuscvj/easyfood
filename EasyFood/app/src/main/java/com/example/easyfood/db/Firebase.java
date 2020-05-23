@@ -100,9 +100,8 @@ public class Firebase implements IDatabase {
                             ArrayList<Eatery> eateries = new ArrayList<>();
 
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                String name = document.getString("name");
-                                String id = document.getId();
-                                eateries.add(new Eatery(name, id));
+                                Eatery eatery = document.toObject(Eatery.class);
+                                eateries.add(eatery);
                             }
 
                             callback.send(eateries);
@@ -176,11 +175,8 @@ public class Firebase implements IDatabase {
                         if (task.isSuccessful()) {
                             ArrayList<Product> products = new ArrayList<>();
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                String name = document.getString("name");
-                                String desc = document.getString("description");
-                                Double price = document.getDouble("price");
-                                String id = document.getId();
-                                products.add(new Product(name, desc, price, id));
+                                Product product = document.toObject(Product.class);
+                                products.add(product);
                             }
 
                             callback.send(products);
