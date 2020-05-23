@@ -10,7 +10,7 @@ import com.example.easyfood.repository.BasketRepository;
 
 import java.util.List;
 
-public class BasketActivityViewModel extends ViewModel {
+public class BasketViewModel extends ViewModel {
 
     private MutableLiveData<List<Product>> products;
     private BasketRepository basketRepository;
@@ -40,6 +40,11 @@ public class BasketActivityViewModel extends ViewModel {
         products.setValue(products.getValue());
         //Resets order if the basket is empty.
         basketRepository.resetOrder();
+
+    }
+
+    public void sendOrder() {
+        //Code for sending order
 
     }
 
