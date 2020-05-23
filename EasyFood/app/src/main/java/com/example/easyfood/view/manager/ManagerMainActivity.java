@@ -10,6 +10,7 @@ import com.example.easyfood.view.BaseActivity;
 
 public class ManagerMainActivity extends BaseActivity {
     Button menuButton;
+    Button ordersButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +18,10 @@ public class ManagerMainActivity extends BaseActivity {
         setContentView(R.layout.activity_main_manager);
 
         menuButton = findViewById(R.id.menu_button);
+        ordersButton = findViewById(R.id.orders_button);
 
         setLoginButtonListener();
+        setOrdersButtonListener();
     }
 
     /**
@@ -29,6 +32,15 @@ public class ManagerMainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 goToActivity(new Intent(getApplicationContext(), ManagerMenuActivity.class));
+            }
+        });
+    }
+
+    private void setOrdersButtonListener() {
+        ordersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToActivity(new Intent(getApplicationContext(), OrdersActivity.class));
             }
         });
     }
