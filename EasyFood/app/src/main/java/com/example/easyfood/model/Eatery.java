@@ -6,6 +6,11 @@ package com.example.easyfood.model;
 public class Eatery {
     private String name;
     private String id;
+    private int phoneNumber;
+    private String street;
+    private int streetNumber;
+    private int postalCode;
+    private String city;
     private String managerId;
 
     /**
@@ -75,5 +80,45 @@ public class Eatery {
      */
     public void setManagerId(String managerId) {
         this.managerId = managerId;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public int getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(int streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    public int getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(int postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }
