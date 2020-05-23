@@ -1,9 +1,11 @@
 package com.example.easyfood.view.customer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -89,6 +91,12 @@ public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemo
             public void onClick(View view) {
                 TextView totalSum = findViewById(R.id.total_sum);
             viewModel.sendOrder(totalSum.getText().toString().trim());
+                goToActivity(getIntent());
+
+                CharSequence text = "Order sent!";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(getApplicationContext(), text, duration);
+                toast.show();
             }
         });
     }

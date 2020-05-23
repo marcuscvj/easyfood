@@ -16,7 +16,6 @@ import java.util.List;
 public class CustomerMenuViewModel extends ViewModel {
 
     private MutableLiveData<List<Product>> productsInMenu;
-    private MutableLiveData<List<Product>> productsInBasket;
     private BasketRepository basketRepository;
     private ProductRepository productsRepository;
     private String eateryId;
@@ -32,7 +31,6 @@ public class CustomerMenuViewModel extends ViewModel {
         this.eateryId = eateryId;
         productsRepository= ProductRepository.getInstance();
         basketRepository = BasketRepository.getInstance();
-        productsInBasket = basketRepository.getProducts();
         productsInMenu = productsRepository.getProducts(eateryId);
 
     }
