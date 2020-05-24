@@ -20,6 +20,7 @@ public class NewProductActivity extends BaseActivity {
     private EditText nameEditText;
     private EditText descriptionEditText;
     private EditText priceEditText;
+    private EditText categoryEditText;
     private Button addButton;
 
     @Override
@@ -35,6 +36,7 @@ public class NewProductActivity extends BaseActivity {
         nameEditText = findViewById(R.id.name_editText);
         descriptionEditText = findViewById(R.id.description_editText);
         priceEditText = findViewById(R.id.price_editText);
+        categoryEditText = findViewById(R.id.category_editText);
         addButton = findViewById(R.id.add_button);
 
         setAddButtonListener();
@@ -50,6 +52,7 @@ public class NewProductActivity extends BaseActivity {
             public void onClick(View view) {
                 String name = nameEditText.getText().toString().trim();
                 String description = descriptionEditText.getText().toString().trim();
+                String category = categoryEditText.getText().toString().toUpperCase().trim();
                 String price = priceEditText.getText().toString().trim();
 
                 if (name.isEmpty()) {
@@ -64,13 +67,19 @@ public class NewProductActivity extends BaseActivity {
                     return;
                 }
 
+                if (category.isEmpty()) {
+                    categoryEditText.setError("Enter Description!");
+                    categoryEditText.requestFocus();
+                    return;
+                }
+
                 if (price.isEmpty()) {
                     descriptionEditText.setError("Enter Price!");
                     descriptionEditText.requestFocus();
                     return;
                 }
 
-                addProduct(name, description, Double.parseDouble(price));
+                addProduct(name, description, Double.parseDouble(price), category);
             }
         });
     }
@@ -82,8 +91,8 @@ public class NewProductActivity extends BaseActivity {
      * @param description : String - The description of the product
      * @param price : Double - The price of the product
      */
-    private void addProduct(String name, String description, Double price) {
-        viewModel.createProduct(eateryId, name, description, price, "CATEGORY");
+    private void addProduct(String name, String description, Double price, String category) {
+        viewModel.createProduct(eateryId, name, description, price, category);
         Intent intent = new Intent(getApplicationContext(), ManagerMenuActivity.class);
         intent.putExtra("eateryId", eateryId);
         goToActivity(intent);

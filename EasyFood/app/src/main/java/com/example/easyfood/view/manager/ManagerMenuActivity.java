@@ -97,6 +97,7 @@ public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdap
         extras.putString("id", chosenProduct.getId());
         extras.putString("name", chosenProduct.getName());
         extras.putString("desc", chosenProduct.getDescription());
+        extras.putString("category", chosenProduct.getCategory());
         extras.putDouble("price", chosenProduct.getPrice());
         intent.putExtras(extras);
         goToActivity(intent);
