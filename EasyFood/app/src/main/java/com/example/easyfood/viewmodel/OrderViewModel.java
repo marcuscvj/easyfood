@@ -28,4 +28,8 @@ public class OrderViewModel extends ViewModel {
         return order;
     }
 
+    public void updateOrderStatus(String orderId, Order.Status status) {
+        orderRepository.setOrderStatus(orderId, status);
+    }
+
 }

@@ -82,6 +82,7 @@ public class OrderActivity extends BaseActivity {
 
         if (order.getOrderStatus() != null) {
             statusTextView.setText(orderStatus + order.getOrderStatus().getStatus());
+            status = order.getOrderStatus();
         }
 
         if (order.isPaid()) {
@@ -112,7 +113,6 @@ public class OrderActivity extends BaseActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
 
@@ -122,6 +122,7 @@ public class OrderActivity extends BaseActivity {
         changeStatusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewModel.updateOrderStatus(orderId, status);
             }
         });
     }

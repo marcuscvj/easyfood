@@ -179,7 +179,7 @@ public class OrderRepository {
      * @param orderId : String - The id of the order
      * @param newStatus : OrderStatusEnum - The order status
      */
-    private void setOrderStatus(String orderId, Order.Status newStatus) {
+    public void setOrderStatus(String orderId, final Order.Status newStatus) {
         Map<String, Object> status = new HashMap<>();
         status.put("orderStatus", newStatus);
 
@@ -187,6 +187,8 @@ public class OrderRepository {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        order.getValue().setOrderStatus(newStatus);
+                        order.setValue(order.getValue());
                         Log.d(TAG, "DocumentSnapshot successfully written!");
                     }
                 })
