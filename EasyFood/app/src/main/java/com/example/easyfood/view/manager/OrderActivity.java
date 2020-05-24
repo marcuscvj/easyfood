@@ -20,10 +20,6 @@ import com.example.easyfood.model.Product;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.OrderViewModel;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class OrderActivity extends ManagerBaseActivity {
     private String orderId;
     private OrderViewModel viewModel;
