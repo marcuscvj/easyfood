@@ -19,8 +19,6 @@ public class OrdersActivity extends ManagerBaseActivity implements OrdersAdapter
     private OrdersViewModel viewModel;
     private OrdersAdapter adapter;
 
-    private String eateryId;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

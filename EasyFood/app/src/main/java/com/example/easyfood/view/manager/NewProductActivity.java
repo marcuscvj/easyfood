@@ -5,17 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
-import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
 public class NewProductActivity extends ManagerBaseActivity {
     private ManagerMenuViewModel viewModel;
-    private String eateryId;
 
     private EditText nameEditText;
     private EditText descriptionEditText;

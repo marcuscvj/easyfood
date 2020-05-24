@@ -6,14 +6,14 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
+import com.example.easyfood.model.Eatery;
 import com.example.easyfood.model.User;
 import com.example.easyfood.view.customer.EateryActivity;
-import com.example.easyfood.view.manager.ManagerMainActivity;
+import com.example.easyfood.view.manager.OrdersActivity;
 import com.example.easyfood.viewmodel.MainViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -65,7 +65,14 @@ public class MainActivity extends BaseActivity implements FirebaseAuth.AuthState
                 @Override
                 public void onChanged(User user) {
                     if (user.getRole().equals(User.Role.MANAGER)) {
-                        goToActivity(new Intent(getApplicationContext(), ManagerMainActivity.class));
+                        viewModel.getEatery(user.getId()).observe(MainActivity.this, new Observer<Eatery>() {
+                            @Override
+                            public void onChanged(Eatery eatery) {
+                                Intent intent = new Intent(getApplicationContext(), OrdersActivity.class);
+                                intent.putExtra("eateryId", eatery.getId());
+                                goToActivity(intent);
+                            }
+                        });
                     } else {
                         goToActivity(new Intent(getApplicationContext(), EateryActivity.class));
                     }

@@ -11,8 +11,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
 import com.example.easyfood.model.User;
-import com.example.easyfood.view.customer.EateryActivity;
-import com.example.easyfood.view.manager.ManagerMainActivity;
 import com.example.easyfood.viewmodel.LoginViewModel;
 
 public class LoginActivity extends BaseActivity {
@@ -81,11 +79,7 @@ public class LoginActivity extends BaseActivity {
                     return;
                 }
 
-                if (user.getRole() == User.Role.MANAGER) {
-                    goToActivity(new Intent(getApplicationContext(), ManagerMainActivity.class));
-                } else {
-                    goToActivity(new Intent(getApplicationContext(), EateryActivity.class));
-                }
+                goToActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
     }
