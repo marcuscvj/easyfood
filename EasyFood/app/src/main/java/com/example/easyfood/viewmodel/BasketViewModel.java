@@ -55,7 +55,7 @@ public class BasketViewModel extends ViewModel {
 
     }
 
-    public void sendOrder(String sum) {
+    public void sendOrder(String sum, String note) {
         Order order = basketRepository.getOrder();
 
         SecureRandom random = new SecureRandom();
@@ -74,6 +74,8 @@ public class BasketViewModel extends ViewModel {
         order.setOrderStatus(Order.Status.CREATED);
 
         order.setSum(Double.parseDouble(sum));
+
+        order.setMessage(note);
 
 
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();

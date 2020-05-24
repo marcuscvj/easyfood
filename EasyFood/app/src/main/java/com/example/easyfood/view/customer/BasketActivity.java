@@ -111,8 +111,9 @@ public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemo
                     "Yes",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
+                            TextView note = findViewById(R.id.note);
                             TextView totalSum = findViewById(R.id.total_sum);
-                            viewModel.sendOrder(totalSum.getText().toString().trim());
+                            viewModel.sendOrder(totalSum.getText().toString().trim(), note.getText().toString().trim());
                             goToActivity(getIntent());
 
                             Toast.makeText(getApplicationContext(), "Order sent!",  Toast.LENGTH_SHORT).show();
