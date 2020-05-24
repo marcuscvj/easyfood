@@ -1,7 +1,6 @@
-package com.example.easyfood.view;
+package com.example.easyfood.view.customer;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import java.util.List;
 /**
  * Represents a ProductAdapter
  */
-public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
+public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
     private List<Product> products;
     private List<Product> productsFull;
     private Context context;
@@ -35,7 +34,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      * @param context: Context - The Context.
      * @param products: List<Product> - The list of products
      */
-    public ProductAdapter(Context context, List<Product> products, OnAddProductListener onAddProductListener) {
+    CustomerMenuAdapter(Context context, List<Product> products, OnAddProductListener onAddProductListener) {
         this.products = products;
         this.productsFull = new ArrayList<>();
         this.context = context;
@@ -46,7 +45,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_productlist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_menu_customer, parent, false);
         return new ViewHolder(view, onAddProductListener);
 
     }
@@ -55,6 +54,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder)holder).name.setText(products.get(position).getName());
         ((ViewHolder)holder).desc.setText(products.get(position).getDescription());
+        ((ViewHolder)holder).category.setText(products.get(position).getCategory());
 
 
         double price = products.get(position).getPrice();
@@ -76,7 +76,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         notifyDataSetChanged();
     }
 
-    public void setProductsFull(List<Product> products) {
+    void setProductsFull(List<Product> products) {
         this.productsFull.addAll(products);
     }
 
@@ -128,12 +128,14 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         private TextView name;
         private TextView desc;
         private TextView price;
+        private TextView category;
         OnAddProductListener onAddProductListener;
 
-        public ViewHolder(@NonNull View itemView, OnAddProductListener onAddProductListener) {
+        ViewHolder(@NonNull View itemView, OnAddProductListener onAddProductListener) {
             super(itemView);
             name = itemView.findViewById(R.id.product_name);
             desc = itemView.findViewById(R.id.product_description);
+            category = itemView.findViewById(R.id.product_category);
             price = itemView.findViewById(R.id.product_price);
             this.onAddProductListener = onAddProductListener;
             Button button = itemView.findViewById(R.id.add_product_button);

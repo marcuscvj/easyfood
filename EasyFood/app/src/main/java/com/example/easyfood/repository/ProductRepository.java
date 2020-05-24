@@ -10,6 +10,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a ProductRepository Singleton
+ */
 public class ProductRepository {
     private static ProductRepository instance;
     private static Firebase firebase;
@@ -30,6 +33,12 @@ public class ProductRepository {
         return instance;
     }
 
+    /**
+     * Returns a LiveData list of the products belonging to a specific eatery
+     *
+     * @param eateryId : String - The id of the eatery
+     * @return products : MutableLiveData<List<Product>> - The list of products
+     */
     public MutableLiveData<List<Product>> getProducts(String eateryId) {
         updateLiveData(eateryId);
         return products;
@@ -42,11 +51,12 @@ public class ProductRepository {
      * @param name : String - The name of the product
      * @param description : String - The description of the product
      * @param price : Double - The price of the product
+     * @param category : String - The category of the product
      */
-    public void createProductAndAddToDatabase(String eateryId, String name, String description, Double price) {
+    public void createProductAndAddToDatabase(String eateryId, String name, String description, Double price, String category) {
         String id = getGeneratedProductIdFromDatabase(eateryId);
 
-        Product product = new Product(name, description, price, id);
+        Product product = new Product(name, description, price, id, category);
 
         firebase.addProduct(eateryId, product);
 
@@ -63,8 +73,18 @@ public class ProductRepository {
         updateLiveData(eateryId);
     }
 
-    public void updateProduct(String eateryId, String productId, String name, String description, Double price) {
-        Product product = new Product(name, description, price, productId);
+    /**
+     * Updates the product
+     *
+     * @param eateryId : String - The id of the eatery
+     * @param productId : String - The id of the product
+     * @param name : String - The name of the product
+     * @param description : String - The description of the product
+     * @param price : Double - The price of the product
+     * @param category : String - The category of the product
+     */
+    public void updateProduct(String eateryId, String productId, String name, String description, Double price, String category) {
+        Product product = new Product(name, description, price, productId, category);
         firebase.updateProduct(eateryId, productId, product);
     }
 

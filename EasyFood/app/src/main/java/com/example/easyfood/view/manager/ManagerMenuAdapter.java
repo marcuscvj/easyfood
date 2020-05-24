@@ -31,7 +31,7 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_managermenulist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_menu_manager, parent, false);
         return new ManagerMenuAdapter.ViewHolder(view, onClickProductListener);
     }
 
@@ -39,6 +39,7 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((ManagerMenuAdapter.ViewHolder) holder).name.setText(products.get(position).getName());
         ((ManagerMenuAdapter.ViewHolder) holder).desc.setText(products.get(position).getDescription());
+        ((ManagerMenuAdapter.ViewHolder) holder).category.setText(products.get(position).getCategory());
         double price = products.get(position).getPrice();
         DecimalFormat decimalFormat = new DecimalFormat("0.#####");
         String result = decimalFormat.format(Double.valueOf(price));
@@ -65,6 +66,7 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         private TextView name;
         private TextView desc;
         private TextView price;
+        private TextView category;
 
         ViewHolder(@NonNull View itemView, final OnClickProductListener onClickProductListener) {
             super(itemView);
@@ -74,6 +76,7 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             name = itemView.findViewById(R.id.product_name);
             desc = itemView.findViewById(R.id.product_description);
             price = itemView.findViewById(R.id.product_price);
+            category = itemView.findViewById(R.id.product_category);
             removeButton = itemView.findViewById(R.id.remove_product_button);
             editButton = itemView.findViewById(R.id.edit_product_button);
 

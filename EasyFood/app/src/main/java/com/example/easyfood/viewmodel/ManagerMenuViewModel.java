@@ -9,6 +9,9 @@ import com.example.easyfood.repository.ProductRepository;
 
 import java.util.List;
 
+/**
+ * Represents a ViewModel of ManagerMenu
+ */
 public class ManagerMenuViewModel extends ViewModel {
     private ProductRepository productRepository;
     private MutableLiveData<List<Product>> products;
@@ -40,9 +43,10 @@ public class ManagerMenuViewModel extends ViewModel {
      * @param name : String - The name of the product
      * @param description : String - The description of the product
      * @param price : Double - The price of the product
+     * @param category : String - The category of the product
      */
-    public void createProduct(String eateryId, String name, String description, Double price) {
-        productRepository.createProductAndAddToDatabase(eateryId, name, description, price);
+    public void createProduct(String eateryId, String name, String description, Double price, String category) {
+        productRepository.createProductAndAddToDatabase(eateryId, name, description, price, category);
     }
 
     /**
@@ -64,9 +68,10 @@ public class ManagerMenuViewModel extends ViewModel {
      * @param name : String - The name of the product
      * @param description : String - The description of the product
      * @param price : Double - The price of the product
+     * @param category : String - The category of the product
      */
-    public void updateProduct(String eateryId, String productId, String name, String description, Double price) {
-        productRepository.updateProduct(eateryId, productId, name, description, price);
+    public void updateProduct(String eateryId, String productId, String name, String description, Double price, String category) {
+        productRepository.updateProduct(eateryId, productId, name, description, price, category);
     }
 
 }
