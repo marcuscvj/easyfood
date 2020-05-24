@@ -14,7 +14,6 @@ import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
 public class EditProductActivity extends ManagerBaseActivity {
     private ManagerMenuViewModel viewModel;
-    private String eateryId;
     private String productId;
 
     private EditText nameEditText;

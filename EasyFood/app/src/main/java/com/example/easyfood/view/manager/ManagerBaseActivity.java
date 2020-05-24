@@ -13,6 +13,8 @@ import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.MainActivity;
 
 public class ManagerBaseActivity extends BaseActivity {
+    protected String eateryId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +32,14 @@ public class ManagerBaseActivity extends BaseActivity {
             firebaseAuth.signOut();
             startActivity(new Intent(this, MainActivity.class));
         } else if (item.getItemId() == R.id.ic_dining) {
-            startActivity(new Intent(this, ManagerMenuActivity.class));
-        } //More activities goes here
+            Intent intent = new Intent(this, ManagerMenuActivity.class);
+            intent.putExtra("eateryId", eateryId);
+            startActivity(intent);
+        } else if (item.getItemId() == R.id.ic_account) {
+            Intent intent = new Intent(this, OrdersActivity.class);
+            intent.putExtra("eateryId", eateryId);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

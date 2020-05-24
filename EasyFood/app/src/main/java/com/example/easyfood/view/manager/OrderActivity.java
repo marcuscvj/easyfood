@@ -7,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -17,7 +16,6 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.easyfood.R;
 import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
-import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.OrderViewModel;
 
 import java.util.ArrayList;
