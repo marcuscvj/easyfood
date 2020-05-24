@@ -31,6 +31,7 @@ public class CustomerMenuViewModel extends ViewModel {
         this.eateryId = eateryId;
         productsRepository= ProductRepository.getInstance();
         basketRepository = BasketRepository.getInstance();
+        basketRepository.getProducts();
         productsInMenu = productsRepository.getProducts(eateryId);
 
     }
@@ -50,7 +51,7 @@ public class CustomerMenuViewModel extends ViewModel {
         basketRepository.setOrder(eateryId);
 
         if (eateryId == basketRepository.getEateryIdFromOrder()) {
-        basketRepository.addProduct(product);
+            basketRepository.addProduct(product);
         } else {
             CharSequence text = "You can only order from one restaurant at a time!";
             int duration = Toast.LENGTH_SHORT;

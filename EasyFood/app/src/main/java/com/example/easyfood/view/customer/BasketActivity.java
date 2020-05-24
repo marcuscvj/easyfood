@@ -1,5 +1,7 @@
 package com.example.easyfood.view.customer;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -89,15 +91,45 @@ public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemo
         sendOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView totalSum = findViewById(R.id.total_sum);
-            viewModel.sendOrder(totalSum.getText().toString().trim());
-                goToActivity(getIntent());
-
-                CharSequence text = "Order sent!";
-                int duration = Toast.LENGTH_SHORT;
-                Toast toast = Toast.makeText(getApplicationContext(), text, duration);
-                toast.show();
+            sendOrder();
             }
         });
+    }
+
+    public void sendOrder() {
+
+        if (viewModel.getProducts().getValue().size() == 0) {
+
+            Toast.makeText(getApplicationContext(), "Cannot send empty order!",  Toast.LENGTH_SHORT).show();
+
+        } else {
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setCancelable(true);
+            builder1.setMessage("Send order to eatery?");
+
+            builder1.setPositiveButton(
+                    "Yes",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            TextView totalSum = findViewById(R.id.total_sum);
+                            viewModel.sendOrder(totalSum.getText().toString().trim());
+                            goToActivity(getIntent());
+
+                            Toast.makeText(getApplicationContext(), "Order sent!",  Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    "No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+        }
+
     }
 }
