@@ -38,7 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.ic_home) {
+        if (item.getItemId() == R.id.ic_exit) {
             firebaseAuth.signOut();
             startActivity(new Intent(this, MainActivity.class));
         } else if (item.getItemId() == R.id.ic_cart) {

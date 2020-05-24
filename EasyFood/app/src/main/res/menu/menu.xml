@@ -14,9 +14,9 @@
         android:icon="@drawable/ic_dining"
         android:title="ic_cart"
         app:showAsAction="always"></item>
-    <item android:id="@+id/ic_home"
-        android:icon="@drawable/ic_home"
-        android:title="ic_home"
+    <item android:id="@+id/ic_exit"
+        android:icon="@drawable/ic_exit"
+        android:title="ic_exit"
         app:showAsAction="always"></item>
 
 </menu>
