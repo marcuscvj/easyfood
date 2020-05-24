@@ -19,7 +19,7 @@ public class OrdersViewModel extends ViewModel {
         }
 
         orderRepository = OrderRepository.getInstance();
-        orders = orderRepository.getAllOrders(eateryId);
+        orders = orderRepository.getAllOrdersForSpecificEatery(eateryId);
     }
 
     /**

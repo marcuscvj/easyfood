@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
 import com.example.easyfood.model.Order;
-import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.OrdersViewModel;
 
 import java.util.List;
@@ -56,11 +55,6 @@ public class OrdersActivity extends ManagerBaseActivity implements OrdersAdapter
         String orderId = viewModel.getOrder(position).getId();
         Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
         intent.putExtra("orderId", orderId);
-        /**
-        Order order = viewModel.getOrder(position);
-        Intent intent = new Intent(this, OrderActivity.class);
-        intent.putExtra("order", order);
-         **/
         startActivity(intent);
     }
 
