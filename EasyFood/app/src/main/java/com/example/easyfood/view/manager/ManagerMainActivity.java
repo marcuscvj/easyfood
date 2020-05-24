@@ -15,7 +15,7 @@ import com.example.easyfood.viewmodel.ManagerMainViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class ManagerMainActivity extends BaseActivity {
+public class ManagerMainActivity extends ManagerBaseActivity {
     private ManagerMainViewModel viewModel;
 
     private String eateryId;

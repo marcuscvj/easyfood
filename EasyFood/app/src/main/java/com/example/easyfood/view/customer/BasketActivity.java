@@ -23,7 +23,7 @@ import com.example.easyfood.viewmodel.BasketViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemoveEateryListener {
+public class BasketActivity extends CustomerBaseActivity implements BasketAdapter.OnRemoveEateryListener {
 
     private RecyclerView recyclerView;
     private BasketViewModel viewModel;

@@ -15,7 +15,7 @@ import com.example.easyfood.viewmodel.OrdersViewModel;
 
 import java.util.List;
 
-public class OrdersActivity extends BaseActivity implements OrdersAdapter.OnOrderListener {
+public class OrdersActivity extends ManagerBaseActivity implements OrdersAdapter.OnOrderListener {
     private RecyclerView recyclerView;
     private OrdersViewModel viewModel;
     private OrdersAdapter adapter;

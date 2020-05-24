@@ -18,7 +18,7 @@ import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
 import java.util.List;
 
-public class ManagerMenuActivity extends BaseActivity implements ManagerMenuAdapter.OnClickProductListener {
+public class ManagerMenuActivity extends ManagerBaseActivity implements ManagerMenuAdapter.OnClickProductListener {
     private String eateryId;
 
     private Button newProductButton;
