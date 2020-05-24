@@ -100,7 +100,7 @@ public class BasketActivity extends BaseActivity implements BasketAdapter.OnRemo
 
         if (viewModel.getProducts().getValue().size() == 0) {
 
-            Toast.makeText(getApplicationContext(), "Cannot send empty order!",  Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Cannot send empty order",  Toast.LENGTH_SHORT).show();
 
         } else {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
