@@ -10,6 +10,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -31,7 +32,11 @@ public class OrderRepository {
     // For the restaurant/manager to be able to observe all incoming orders.
     private MutableLiveData<List<Order>> orders = new MutableLiveData<>();
 
+    // One specific order
+    private MutableLiveData<Order> order = new MutableLiveData<>();
+
     private ArrayList<Order> orderList;
+    private Order currentOrder;
 
     /**
      * Returns an instance of the OrderRepository
@@ -49,7 +54,7 @@ public class OrderRepository {
     /**
      * Returns a LiveData list of all orders
      *
-     * @param eateryId : String - The eatery
+     * @param eateryId : String - The id of the eatery
      * @return orders : MutableLiveData<List<Order>> - The list of orders
      */
     public MutableLiveData<List<Order>> getAllOrders(String eateryId) {
@@ -68,7 +73,28 @@ public class OrderRepository {
     }
 
     /**
-     * Gets the orders from the database
+     * Returns a LiveData of an order
+     *
+     * @param orderId : String - The id of the order
+     * @return order : MutableLiveData<Order> - The order
+     */
+    public MutableLiveData<Order> getOrder(String orderId) {
+        currentOrder = new Order();
+
+        getOrderFromDatabase(orderId, new IOrderCallback() {
+            @Override
+            public void send(Order newOrder) {
+                currentOrder = newOrder;
+                order.setValue(currentOrder);
+            }
+        });
+
+        order.setValue(currentOrder);
+        return order;
+    }
+
+    /**
+     * Gets all orders from the database that belongs to the eatery
      *
      * @param eateryId : String - The id of the eatery
      * @param callback : IOrdersCallback - Callback
@@ -92,6 +118,25 @@ public class OrderRepository {
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }
+                    }
+                });
+    }
+
+    /**
+     * Get the order with the specific orderId
+     *
+     * @param orderId : String - The id of the order
+     * @param callback : IOrderCallback - Callback
+     */
+    private void getOrderFromDatabase(final String orderId, final IOrderCallback callback) {
+        database.collection("orders").document(orderId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        DocumentSnapshot document = task.getResult();
+                        Order order = document.toObject(Order.class);
+                        callback.send(order);
                     }
                 });
     }
@@ -155,6 +200,15 @@ public class OrderRepository {
     private String getGeneratedOrderIdFromDatabase() {
         return database.collection("orders").document().getId();
     }
+
+
+    /**
+     * Interface
+     */
+    private interface IOrderCallback {
+        void send(Order newOrder);
+    }
+
 
     /**
      * Interface
