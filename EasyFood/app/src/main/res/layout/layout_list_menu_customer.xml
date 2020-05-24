@@ -25,54 +25,58 @@
 
         <TextView
             android:id="@+id/product_name"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/eatery_image"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            />
 
         <TextView
             android:id="@+id/product_description"
             android:textSize="12sp"
+            android:textStyle="italic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="italic"
-            android:layout_toEndOf="@id/eatery_image"
-            android:layout_below="@+id/product_name"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/eatery_image"
+            android:layout_below="@+id/product_name"
             />
 
         <TextView
-            android:id="@+id/product_price"
+            android:id="@+id/product_category"
             android:textSize="12sp"
+            android:textStyle="italic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:layout_toEndOf="@id/eatery_image"
-            android:layout_below="@+id/product_description"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/eatery_image"
+            android:layout_below="@+id/product_description"
             />
-
-        <Button
-            android:id="@+id/remove_product_button"
+            
+        <TextView
+            android:id="@+id/product_price"
+            android:textSize="12sp"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/product_price"
-            android:text="Delete"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/eatery_image"
+            android:layout_below="@+id/product_category"
             />
-
+            
         <Button
-            android:id="@+id/edit_product_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/remove_product_button"
-            android:layout_below="@+id/product_price"
-            android:text="Edit"
-            />
+            android:id="@+id/add_product_button"
+    		android:layout_width="match_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_below="@+id/product_price"
+    		android:text="Add"
+    		/>
 
 
     </RelativeLayout>

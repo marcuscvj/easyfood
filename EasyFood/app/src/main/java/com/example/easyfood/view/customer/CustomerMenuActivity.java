@@ -14,12 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.view.BaseActivity;
-import com.example.easyfood.view.ProductAdapter;
 import com.example.easyfood.viewmodel.CustomerMenuViewModel;
 
 import java.util.List;
 
-public class CustomerMenuActivity extends BaseActivity implements ProductAdapter.OnAddProductListener{
+public class CustomerMenuActivity extends BaseActivity implements CustomerMenuAdapter.OnAddProductListener{
 
     private String eateryId;
 
@@ -27,7 +26,7 @@ public class CustomerMenuActivity extends BaseActivity implements ProductAdapter
     private SearchView searchView;
     private RecyclerView recyclerView;
     private CustomerMenuViewModel viewModel;
-    private ProductAdapter adapter;
+    private CustomerMenuAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +58,7 @@ public class CustomerMenuActivity extends BaseActivity implements ProductAdapter
      * Sets the Recycler View (List) of all the products.
      */
     private void setRecyclerView() {
-        adapter = new ProductAdapter(this, viewModel.getProductsInMenu().getValue(), this);
+        adapter = new CustomerMenuAdapter(this, viewModel.getProductsInMenu().getValue(), this);
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);

@@ -1,7 +1,6 @@
-package com.example.easyfood.view;
+package com.example.easyfood.view.customer;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import java.util.List;
 /**
  * Represents a ProductAdapter
  */
-public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
+public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
     private List<Product> products;
     private List<Product> productsFull;
     private Context context;
@@ -35,7 +34,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
      * @param context: Context - The Context.
      * @param products: List<Product> - The list of products
      */
-    public ProductAdapter(Context context, List<Product> products, OnAddProductListener onAddProductListener) {
+    public CustomerMenuAdapter(Context context, List<Product> products, OnAddProductListener onAddProductListener) {
         this.products = products;
         this.productsFull = new ArrayList<>();
         this.context = context;
@@ -46,7 +45,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_productlist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_menu_customer, parent, false);
         return new ViewHolder(view, onAddProductListener);
 
     }
