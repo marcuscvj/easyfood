@@ -34,7 +34,7 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
      * @param context: Context - The Context.
      * @param products: List<Product> - The list of products
      */
-    public CustomerMenuAdapter(Context context, List<Product> products, OnAddProductListener onAddProductListener) {
+    CustomerMenuAdapter(Context context, List<Product> products, OnAddProductListener onAddProductListener) {
         this.products = products;
         this.productsFull = new ArrayList<>();
         this.context = context;
@@ -54,6 +54,7 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((ViewHolder)holder).name.setText(products.get(position).getName());
         ((ViewHolder)holder).desc.setText(products.get(position).getDescription());
+        ((ViewHolder)holder).category.setText(products.get(position).getCategory());
 
 
         double price = products.get(position).getPrice();
@@ -75,7 +76,7 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         notifyDataSetChanged();
     }
 
-    public void setProductsFull(List<Product> products) {
+    void setProductsFull(List<Product> products) {
         this.productsFull.addAll(products);
     }
 
@@ -127,12 +128,14 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         private TextView name;
         private TextView desc;
         private TextView price;
+        private TextView category;
         OnAddProductListener onAddProductListener;
 
-        public ViewHolder(@NonNull View itemView, OnAddProductListener onAddProductListener) {
+        ViewHolder(@NonNull View itemView, OnAddProductListener onAddProductListener) {
             super(itemView);
             name = itemView.findViewById(R.id.product_name);
             desc = itemView.findViewById(R.id.product_description);
+            category = itemView.findViewById(R.id.product_category);
             price = itemView.findViewById(R.id.product_price);
             this.onAddProductListener = onAddProductListener;
             Button button = itemView.findViewById(R.id.add_product_button);
