@@ -1,15 +1,12 @@
 package com.example.easyfood.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 // TODO SNYGGA TILL DENNA RÖRA
-
-
 /**
  * Holds the information about an order that has been placed.
  */
-public class Order implements Serializable { // TODO Remove Serializable, Was only here for testing
+public class Order {
     private String id;
     private long orderNumber;
     private ArrayList<Product> products;
