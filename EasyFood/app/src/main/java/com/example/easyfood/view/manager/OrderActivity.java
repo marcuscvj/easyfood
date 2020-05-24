@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrderActivity extends BaseActivity {
+public class OrderActivity extends ManagerBaseActivity {
     private String orderId;
     private OrderViewModel viewModel;
     private Order.Status status;
