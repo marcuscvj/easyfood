@@ -31,7 +31,7 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_basketlist, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_list_basket, parent, false);
         return new BasketAdapter.ViewHolder(view, onRemoveEateryListener);
     }
 

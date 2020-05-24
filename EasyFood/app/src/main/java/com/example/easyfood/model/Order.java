@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class Order {
     private String id;
-    private long orderNumber;
+    private int orderNumber;
     private ArrayList<Product> products;
     private String message;
     private PaymentMethod paymentMethod;
@@ -36,7 +36,7 @@ public class Order {
         return this.id;
     }
 
-    public long getOrderNumber() {
+    public int getOrderNumber() {
         return orderNumber;
     }
 
@@ -64,7 +64,7 @@ public class Order {
         return customerId;
     }
 
-    public void setOrderNumber(long orderNumber) {
+    public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
     }
 
@@ -116,11 +116,21 @@ public class Order {
      * Order Status Enum
      */
     public enum Status {
-        CREATED,
-        SENT,
-        CONFIRMED,
-        READY,
-        DELIVERED
+        CREATED("CREATED"),
+        SENT("SENT"),
+        CONFIRMED("CONFIRMED"),
+        READY("READY"),
+        DELIVERED("DELIVERED");
         //Enums should be added here. These two are mostly for testing.
+
+        private String status;
+
+        Status(String status) {
+            this.status = status;
+        }
+
+        public String getStatus() {
+            return status;
+        }
     }
 }
