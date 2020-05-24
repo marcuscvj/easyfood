@@ -84,7 +84,7 @@ public class EditProductActivity extends BaseActivity {
      * @param price : Double - The price of the product
      */
     private void editProduct(String name, String description, Double price) {
-        viewModel.updateProduct(eateryId, productId, name, description, price);
+        viewModel.updateProduct(eateryId, productId, name, description, price, "CATEGORY");
         Intent intent = new Intent(getApplicationContext(), ManagerMenuActivity.class);
         intent.putExtra("eateryId", eateryId);
         goToActivity(intent);

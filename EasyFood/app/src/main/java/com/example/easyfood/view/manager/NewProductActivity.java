@@ -83,7 +83,7 @@ public class NewProductActivity extends BaseActivity {
      * @param price : Double - The price of the product
      */
     private void addProduct(String name, String description, Double price) {
-        viewModel.createProduct(eateryId, name, description, price);
+        viewModel.createProduct(eateryId, name, description, price, "CATEGORY");
         Intent intent = new Intent(getApplicationContext(), ManagerMenuActivity.class);
         intent.putExtra("eateryId", eateryId);
         goToActivity(intent);

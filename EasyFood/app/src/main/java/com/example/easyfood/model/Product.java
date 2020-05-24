@@ -1,7 +1,5 @@
 package com.example.easyfood.model;
 
-// TODO SNYGGA TILL MED JAVADOCS
-
 import java.io.Serializable;
 
 /**
@@ -12,6 +10,7 @@ public class Product implements Serializable { // TODO Remove Serializable, Was 
     private String description;
     private Double price;
     private String id;
+    private String category;
 
     /**
      * Creates an instance of a product
@@ -21,11 +20,12 @@ public class Product implements Serializable { // TODO Remove Serializable, Was 
      * @param price : Double - The price of the product
      * @param id : String - The id of the product
      */
-    public Product(String name, String description, double price, String id) {
+    public Product(String name, String description, double price, String id, String category) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.id = id;
+        this.category = category;
     }
 
     /**
@@ -33,23 +33,60 @@ public class Product implements Serializable { // TODO Remove Serializable, Was 
      */
     public Product() {}
 
+    /**
+     * Sets the id of the product
+     *
+     * @param id : String - The id of the product
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * Returns the id of the product
+     *
+     * @return id : String - The id of the product
+     */
     public String getId() {
         return this.id;
     }
 
+    /**
+     * Returns the name of the product
+     *
+     * @return name : String - The name of the product
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Returns the description of the product
+     *
+     * @return description : String - The description of the product
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Returns the price of the product
+     *
+     * @return price : Double - The price of the product
+     */
     public double getPrice() {
         return this.price;
     }
 
-    public void setId(String id) {
-        this.id = id;
+
+    /**
+     * Returns the category of the product
+     *
+     * @return category : String - The category of the product
+     */
+    public String getCategory() {
+        return this.category;
     }
+
+
 }
