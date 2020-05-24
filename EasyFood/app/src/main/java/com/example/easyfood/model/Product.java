@@ -1,11 +1,9 @@
 package com.example.easyfood.model;
 
-import java.io.Serializable;
-
 /**
  * Represents a Product
  */
-public class Product implements Serializable { // TODO Remove Serializable, Was only here for testing
+public class Product {
     private String name;
     private String description;
     private Double price;

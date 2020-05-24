@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.easyfood.model.Order;
+import com.example.easyfood.model.Product;
+import com.example.easyfood.model.ProductDocument;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -110,6 +112,8 @@ public class OrderRepository {
 
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 Order order = document.toObject(Order.class);
+                                ArrayList<Product> products = document.toObject(ProductDocument.class).products;
+                                order.setProducts(products);
                                 orders.add(order);
                             }
 
@@ -136,6 +140,8 @@ public class OrderRepository {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         DocumentSnapshot document = task.getResult();
                         Order order = document.toObject(Order.class);
+                        ArrayList<Product> products = Objects.requireNonNull(document.toObject(ProductDocument.class)).products;
+                        order.setProducts(products);
                         callback.send(order);
                     }
                 });
