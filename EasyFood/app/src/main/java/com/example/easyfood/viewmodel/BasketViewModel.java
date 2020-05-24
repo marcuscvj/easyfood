@@ -54,10 +54,10 @@ public class BasketViewModel extends ViewModel {
         Order order = basketRepository.getOrder();
 
         SecureRandom random = new SecureRandom();
-        long orderNumber= random.nextInt(100000);
+        int orderNumber= random.nextInt(100000);
         String formatted = String.format("%05d", orderNumber);
-        long ordernumber = Long.parseLong(formatted);
-        order.setOrderNumber(ordernumber);
+        orderNumber = Integer.parseInt(formatted);
+        order.setOrderNumber(orderNumber);
 
         ArrayList<Product> products = (ArrayList<Product>) basketRepository.getProducts().getValue();
         order.setProducts(products);
