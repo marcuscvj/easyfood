@@ -26,29 +26,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    /**
-     * TEMPORARY SIGN OUT !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! (ONLY the first statement)
-     */
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.ic_home) {
-            firebaseAuth.signOut();
-            startActivity(new Intent(this, MainActivity.class));
-        } else if (item.getItemId() == R.id.ic_cart) {
-            startActivity(new Intent(this, BasketActivity.class));
-        }
-
-            return super.onOptionsItemSelected(item);
-    }
-
-
 
 
     /**

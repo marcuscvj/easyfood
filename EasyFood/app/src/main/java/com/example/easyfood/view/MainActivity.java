@@ -36,6 +36,7 @@ public class MainActivity extends BaseActivity implements FirebaseAuth.AuthState
 
         loginButton = findViewById(R.id.login_button);
         registerButton = findViewById(R.id.register_button);
+
         showMainActivity(false);
 
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
@@ -104,6 +105,7 @@ public class MainActivity extends BaseActivity implements FirebaseAuth.AuthState
         if (show) {
             loginButton.setVisibility(View.VISIBLE);
             registerButton.setVisibility(View.VISIBLE);
+
         } else {
             loginButton.setVisibility(View.INVISIBLE);
             registerButton.setVisibility(View.INVISIBLE);

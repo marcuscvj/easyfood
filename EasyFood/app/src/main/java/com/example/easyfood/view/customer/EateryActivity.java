@@ -23,7 +23,7 @@ import java.util.List;
  * TEMPORARY:
  * Contains a list of all the available eateries.
  */
-public class EateryActivity extends BaseActivity implements EateryAdapter.OnEateryListener {
+public class EateryActivity extends CustomerBaseActivity implements EateryAdapter.OnEateryListener {
     private SearchView searchView;
     private RecyclerView recyclerView;
     private EateryActivityViewModel viewModel;

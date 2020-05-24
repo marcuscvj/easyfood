@@ -13,7 +13,7 @@ import com.example.easyfood.R;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
-public class NewProductActivity extends BaseActivity {
+public class NewProductActivity extends ManagerBaseActivity {
     private ManagerMenuViewModel viewModel;
     private String eateryId;
 
