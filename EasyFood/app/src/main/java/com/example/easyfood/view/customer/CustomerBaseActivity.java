@@ -32,7 +32,9 @@ public class CustomerBaseActivity extends BaseActivity {
             startActivity(new Intent(this, MainActivity.class));
         } else if (item.getItemId() == R.id.ic_cart) {
             startActivity(new Intent(this, BasketActivity.class));
-        }//more activities
+        } else if (item.getItemId() == R.id.ic_home) {
+            startActivity(new Intent(this, EateryActivity.class));
+        } //More goes here
 
         return super.onOptionsItemSelected(item);
     }
