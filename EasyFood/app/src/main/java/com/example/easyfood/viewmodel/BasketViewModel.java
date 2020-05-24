@@ -1,5 +1,7 @@
 package com.example.easyfood.viewmodel;
 
+import android.content.Intent;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,11 +10,14 @@ import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.repository.BasketRepository;
 import com.example.easyfood.repository.OrderRepository;
+import com.example.easyfood.view.customer.EateryActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class BasketViewModel extends ViewModel {
@@ -50,7 +55,7 @@ public class BasketViewModel extends ViewModel {
 
     }
 
-    public void sendOrder(String sum) {
+    public void sendOrder(String sum, String note) {
         Order order = basketRepository.getOrder();
 
         SecureRandom random = new SecureRandom();
@@ -59,8 +64,8 @@ public class BasketViewModel extends ViewModel {
         long ordernumber = Long.parseLong(formatted);
         order.setOrderNumber(ordernumber);
 
-        ArrayList<Product> products = (ArrayList<Product>) basketRepository.getProducts().getValue();
-        order.setProducts(products);
+        ArrayList<Product> productsToBeSent = (ArrayList<Product>) basketRepository.getProducts().getValue();
+        order.setProducts(productsToBeSent);
 
         order.setPaymentMethod(Order.PaymentMethod.CASH);
 
@@ -70,12 +75,16 @@ public class BasketViewModel extends ViewModel {
 
         order.setSum(Double.parseDouble(sum));
 
+        order.setMessage(note);
+
 
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         order.setCustomerId(userID);
 
         orderRepository.sendOrder(order);
 
+        products.getValue().clear();
+        products.setValue(products.getValue());
 
 
     }

@@ -16,7 +16,6 @@ import java.util.List;
 public class CustomerMenuViewModel extends ViewModel {
 
     private MutableLiveData<List<Product>> productsInMenu;
-    private MutableLiveData<List<Product>> productsInBasket;
     private BasketRepository basketRepository;
     private ProductRepository productsRepository;
     private String eateryId;
@@ -32,7 +31,7 @@ public class CustomerMenuViewModel extends ViewModel {
         this.eateryId = eateryId;
         productsRepository= ProductRepository.getInstance();
         basketRepository = BasketRepository.getInstance();
-        productsInBasket = basketRepository.getProducts();
+        basketRepository.getProducts();
         productsInMenu = productsRepository.getProducts(eateryId);
 
     }
@@ -52,7 +51,7 @@ public class CustomerMenuViewModel extends ViewModel {
         basketRepository.setOrder(eateryId);
 
         if (eateryId == basketRepository.getEateryIdFromOrder()) {
-        basketRepository.addProduct(product);
+            basketRepository.addProduct(product);
         } else {
             CharSequence text = "You can only order from one restaurant at a time!";
             int duration = Toast.LENGTH_SHORT;
