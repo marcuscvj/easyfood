@@ -53,9 +53,14 @@ public class OrdersActivity extends BaseActivity implements OrdersAdapter.OnOrde
 
     @Override
     public void OnOrderClick(int position) {
+        String orderId = viewModel.getOrder(position).getId();
+        Intent intent = new Intent(getApplicationContext(), OrderActivity.class);
+        intent.putExtra("orderId", orderId);
+        /**
         Order order = viewModel.getOrder(position);
         Intent intent = new Intent(this, OrderActivity.class);
         intent.putExtra("order", order);
+         **/
         startActivity(intent);
     }
 
