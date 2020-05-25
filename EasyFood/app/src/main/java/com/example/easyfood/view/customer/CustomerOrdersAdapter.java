@@ -33,7 +33,7 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_list_customerorders, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_list_orders_customer, viewGroup, false);
         return new CustomerOrdersAdapter.ViewHolder(view);
     }
 

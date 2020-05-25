@@ -34,7 +34,7 @@ public class ManagerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.View
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_list_orders, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_list_orders_manager, viewGroup, false);
         return new ViewHolder(view, onOrderListener);
     }
 
