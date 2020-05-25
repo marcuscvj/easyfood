@@ -1,7 +1,5 @@
 package com.example.easyfood.viewmodel;
 
-import android.content.Intent;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -10,14 +8,11 @@ import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.repository.BasketRepository;
 import com.example.easyfood.repository.OrderRepository;
-import com.example.easyfood.view.customer.EateryActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 public class BasketViewModel extends ViewModel {
@@ -47,12 +42,9 @@ public class BasketViewModel extends ViewModel {
         return products;
     }
 
-    public void removeProduct(Product product) {
-        products.getValue().remove(product);
-        products.setValue(products.getValue());
-        //Resets order if the basket is empty.
-        basketRepository.resetOrder();
-
+    public void removeProduct(int position) {
+        basketRepository.removeProduct(products.getValue().get(position));
+        products = basketRepository.getProducts();
     }
 
     public void sendOrder(String sum, String note) {
@@ -67,26 +59,21 @@ public class BasketViewModel extends ViewModel {
         ArrayList<Product> productsToBeSent = (ArrayList<Product>) basketRepository.getProducts().getValue();
         order.setProducts(productsToBeSent);
 
-        order.setPaymentMethod(Order.PaymentMethod.CASH);
-
-        order.setPaid(false);
-
-        order.setOrderStatus(Order.Status.CREATED);
-
         order.setSum(Double.parseDouble(sum));
 
         order.setMessage(note);
-
 
         String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         order.setCustomerId(userID);
 
         orderRepository.sendOrder(order);
 
-        products.getValue().clear();
-        products.setValue(products.getValue());
+        updateProducts();
+    }
 
-
+    private void updateProducts() {
+        basketRepository.updateProductList();
+        products = basketRepository.getProducts();
     }
 
 

@@ -215,8 +215,10 @@ public class OrderRepository {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        order.getValue().setOrderStatus(newStatus);
-                        order.setValue(order.getValue());
+                        if (order.getValue() != null) {
+                            order.getValue().setOrderStatus(newStatus);
+                            order.setValue(order.getValue());
+                        }
                         Log.d(TAG, "DocumentSnapshot successfully written!");
                     }
                 })

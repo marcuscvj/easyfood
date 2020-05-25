@@ -21,11 +21,16 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private OnRemoveEateryListener onRemoveEateryListener;
 
-    public BasketAdapter(Context context, List<Product> products, OnRemoveEateryListener onRemoveEateryListener) {
+    BasketAdapter(Context context, List<Product> products, OnRemoveEateryListener onRemoveEateryListener) {
         this.products = products;
         this.context = context;
         this.onRemoveEateryListener = onRemoveEateryListener;
 
+    }
+
+    void setProducts(List<Product> products) {
+        this.products = products;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -57,7 +62,7 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         private TextView price;
         private OnRemoveEateryListener onRemoveEateryListener;
 
-        public ViewHolder(@NonNull View itemView, OnRemoveEateryListener onRemoveEateryListener) {
+        ViewHolder(@NonNull View itemView, OnRemoveEateryListener onRemoveEateryListener) {
             super(itemView);
             name = itemView.findViewById(R.id.product_name);
             desc = itemView.findViewById(R.id.product_description);
