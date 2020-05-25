@@ -33,6 +33,36 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             />
+        <TextView
+            android:id="@+id/products_textView"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/eatery_image"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="30dp"
+            />
+        <TextView
+            android:id="@+id/time_textView"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/eatery_image"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="70dp"
+            />
+        <TextView
+            android:id="@+id/status_textView"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_toEndOf="@id/eatery_image"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="110dp"
+            />
 
     </RelativeLayout>
 

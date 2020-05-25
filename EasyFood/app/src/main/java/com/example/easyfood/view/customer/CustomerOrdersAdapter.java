@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
 import com.example.easyfood.model.Order;
+import com.example.easyfood.model.Product;
 
 import java.util.List;
 
@@ -39,6 +40,15 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((CustomerOrdersAdapter.ViewHolder)holder).orderId.setText(orders.get(position).getId());
+        ((CustomerOrdersAdapter.ViewHolder)holder).status.setText(orders.get(position).getOrderStatus().toString());
+        String products = "Products: ";
+        for (Product p : orders.get(position).getProducts()) {
+            products += "\n" + p.getName();
+        }
+        ((CustomerOrdersAdapter.ViewHolder)holder).productsList.setText(products);
+
+
+
     }
 
     @Override
@@ -61,6 +71,9 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
      */
     private class ViewHolder extends RecyclerView.ViewHolder {
         private TextView orderId;
+        private TextView status;
+        private TextView productsList;
+        private TextView time;
         /**
          * Creates an instance of a ViewHolder
          *
@@ -69,7 +82,11 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             orderId = itemView.findViewById(R.id.orderId_textView);
+            status = itemView.findViewById(R.id.status_textView);
+            productsList = itemView.findViewById(R.id.products_textView);
+            time = itemView.findViewById(R.id.time_textView);
         }
+
     }
 
 }
