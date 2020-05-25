@@ -167,7 +167,7 @@ public class UserRepository {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        callback.send(user);
+                        callback.send(user); // dont think this is neccessary?
                         Log.d(TAG, "DocumentSnapshot successfully written!");
                     }
                 })
@@ -177,6 +177,32 @@ public class UserRepository {
                         Log.w(TAG, "Error writing document", e);
                     }
                 });
+    }
+
+    public void updateUser(String UID, String phoneNumber) {
+        database.collection("users").document(UID)
+                .update("phoneNumber", phoneNumber)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
+    public MutableLiveData<String> getCurrentUserUid() {
+        MutableLiveData<String> liveData = new MutableLiveData<>();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        liveData.setValue(user.getUid());
+
+        return liveData;
     }
 
     /**

@@ -15,16 +15,16 @@
         tools:layout_editor_absoluteX="132dp"
         tools:layout_editor_absoluteY="28dp" />
 
-    <TextView
-        android:id="@+id/emailAddress"
+    <EditText
+        android:id="@+id/emailAddress_editText"
         android:layout_width="374dp"
         android:layout_height="47dp"
         android:text="@string/email_address"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="75dp" />
 
-    <TextView
-        android:id="@+id/phoneNumber"
+    <EditText
+        android:id="@+id/phoneNumber_editText"
         android:layout_width="374dp"
         android:layout_height="47dp"
         android:text="@string/phone_number"
