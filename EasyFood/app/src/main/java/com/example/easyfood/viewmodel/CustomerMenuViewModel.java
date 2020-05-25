@@ -19,16 +19,18 @@ public class CustomerMenuViewModel extends ViewModel {
     private BasketRepository basketRepository;
     private ProductRepository productsRepository;
     private String eateryId;
+    private String eateryName;
 
 
     /**
      * Initializes the ViewModel
      */
-    public void init(String eateryId){
+    public void init(String eateryId, String eateryName){
         if(productsInMenu != null) {
             return;
         }
         this.eateryId = eateryId;
+        this.eateryName = eateryName;
         productsRepository= ProductRepository.getInstance();
         basketRepository = BasketRepository.getInstance();
         basketRepository.getProducts();
@@ -48,7 +50,7 @@ public class CustomerMenuViewModel extends ViewModel {
     public void addProduct(int position, Context context) {
 
         Product product = getProductsInMenu().getValue().get(position);
-        basketRepository.setOrder(eateryId);
+        basketRepository.setOrder(eateryId, eateryName);
 
         if (eateryId == basketRepository.getEateryIdFromOrder()) {
             basketRepository.addProduct(product);

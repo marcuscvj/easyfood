@@ -13,14 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
-import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.CustomerMenuViewModel;
 
 import java.util.List;
 
 public class CustomerMenuActivity extends CustomerBaseActivity implements CustomerMenuAdapter.OnAddProductListener{
-
     private String eateryId;
+    private String eateryName;
 
     private TextView menuHeader;
     private SearchView searchView;
@@ -40,7 +39,7 @@ public class CustomerMenuActivity extends CustomerBaseActivity implements Custom
         getEateryInfo();
 
         viewModel = new ViewModelProvider(this).get(CustomerMenuViewModel.class);
-        viewModel.init(eateryId);
+        viewModel.init(eateryId, eateryName);
         viewModel.getProductsInMenu().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
@@ -89,6 +88,7 @@ public class CustomerMenuActivity extends CustomerBaseActivity implements Custom
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         eateryId = extras.getString("eateryId");
+        eateryName = extras.getString("name");
 
         String contactInformation = extras.getString("name") + "\n";
         contactInformation += "Address: " + extras.getString("street") + " " + extras.getString("streetNumber") + "\n";

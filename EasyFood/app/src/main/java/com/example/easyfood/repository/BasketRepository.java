@@ -44,9 +44,10 @@ public class BasketRepository {
         products.getValue().add(product);
     }
 
-    public void setOrder(String eateryId) {
+    public void setOrder(String eateryId, String eateryName) {
         if (order == null) {
             order = new Order(eateryId);
+            order.setEateryName(eateryName);
         }
     }
 

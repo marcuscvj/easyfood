@@ -17,6 +17,7 @@ public class Order {
     private double sum;
     private String customerId;
     private String eateryId;
+    private String eateryName;
     private String estimatedTime;
 
     public Order (String eateryId) {
@@ -116,6 +117,14 @@ public class Order {
 
     public void setEstimatedTime(String estimatedTime) {
         this.estimatedTime = estimatedTime;
+    }
+
+    public String getEateryName() {
+        return eateryName;
+    }
+
+    public void setEateryName(String eateryName) {
+        this.eateryName = eateryName;
     }
 
     //More getters and setters will be added here.
