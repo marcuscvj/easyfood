@@ -39,9 +39,9 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((CustomerOrdersAdapter.ViewHolder)holder).orderId.setText(orders.get(position).getId());
+        ((CustomerOrdersAdapter.ViewHolder)holder).orderId.setText(orders.get(position).getOrderNumber());
         ((CustomerOrdersAdapter.ViewHolder)holder).status.setText(orders.get(position).getOrderStatus().toString());
-        String products = "Products: ";
+        String products = "";
         for (Product p : orders.get(position).getProducts()) {
             products += "\n" + p.getName();
         }

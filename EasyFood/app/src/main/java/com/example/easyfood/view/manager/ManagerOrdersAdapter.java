@@ -14,7 +14,7 @@ import com.example.easyfood.model.Order;
 
 import java.util.List;
 
-public class OrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ManagerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Order> orders;
     private Context context;
     private OnOrderListener onOrderListener;
@@ -25,7 +25,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
      * @param context: Context - The Context.
      * @param orders: List<Order> - The list of orders.
      */
-    public OrdersAdapter(Context context, List<Order> orders, OnOrderListener onOrderListener) {
+    public ManagerOrdersAdapter(Context context, List<Order> orders, OnOrderListener onOrderListener) {
         this.orders = orders;
         this.context = context;
         this.onOrderListener = onOrderListener;

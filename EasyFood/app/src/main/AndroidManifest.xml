@@ -23,8 +23,8 @@
         <activity android:name=".view.manager.ManagerMenuActivity" />
         <activity android:name=".view.manager.NewProductActivity" />
         <activity android:name=".view.manager.EditProductActivity" />
-        <activity android:name=".view.manager.OrdersActivity" />
-        <activity android:name=".view.manager.OrderActivity" />
+        <activity android:name=".view.manager.ManagerOrdersActivity" />
+        <activity android:name=".view.manager.ManagerOrderActivity" />
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.RegisterActivity" />
         <activity android:name=".view.customer.BasketActivity" />

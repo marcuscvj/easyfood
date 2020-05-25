@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.easyfood.model.Order;
 import com.example.easyfood.repository.OrderRepository;
 
-public class OrderViewModel extends ViewModel {
+public class ManagerOrderViewModel extends ViewModel {
     private MutableLiveData<Order> order;
     private OrderRepository orderRepository;
 

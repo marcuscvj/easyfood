@@ -9,7 +9,7 @@ import com.example.easyfood.repository.OrderRepository;
 
 import java.util.List;
 
-public class OrdersViewModel extends ViewModel {
+public class ManagerOrdersViewModel extends ViewModel {
     private MutableLiveData<List<Order>> orders;
     private OrderRepository orderRepository;
 
