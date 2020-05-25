@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_toEndOf="@id/eatery_image"
+            android:layout_below="@+id/eateryName_textView"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             />
@@ -51,8 +52,9 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_toEndOf="@id/eatery_image"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_below="@+id/orderId_textView"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             />
         <TextView
             android:id="@+id/time_textView"
@@ -61,8 +63,9 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_toEndOf="@id/eatery_image"
-            android:layout_marginStart="100dp"
-            android:layout_marginTop="70dp"
+            android:layout_below="@+id/products_textView"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             />
         <TextView
             android:id="@+id/status_textView"
@@ -71,10 +74,17 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_toEndOf="@id/eatery_image"
-            android:layout_marginStart="140dp"
-            android:layout_marginTop="110dp"
+            android:layout_below="@+id/time_textView"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             />
 
     </RelativeLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="382dp"
+        android:layout_height="27dp"
+        android:orientation="vertical" />
 
 </androidx.cardview.widget.CardView>
