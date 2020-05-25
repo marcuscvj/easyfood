@@ -28,8 +28,9 @@ public class CustomerSettingsActivity extends SettingsActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_settings);
 
+        UID = firebaseAuth.getCurrentUser().getUid();
+
         viewModel = new ViewModelProvider(this).get(CustomerSettingsViewModel.class);
-        // UID = viewModel.getUserUID().getValue();
         viewModel.init(UID);
 
         emailEditText = findViewById(R.id.email_editText);
