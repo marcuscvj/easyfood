@@ -62,7 +62,10 @@ public class OrderRepository {
     public MutableLiveData<List<Order>> getAllOrdersForSpecificEatery(String eateryId) {
         orderList = new ArrayList<>();
 
-        getEateryOrdersFromDatabase(eateryId, new IOrdersCallback() {
+        String fieldKey = "eateryId";
+        String fieldValue = eateryId;
+
+        getOrdersFromDatabase(fieldKey, fieldValue, new IOrdersCallback() {
             @Override
             public void send(ArrayList<Order> list) {
                 orderList.addAll(list);
@@ -83,7 +86,10 @@ public class OrderRepository {
     public MutableLiveData<List<Order>> getAllOrdersForSpecificCustomer(String customerId) {
         orderList = new ArrayList<>();
 
-        getCustomerOrdersFromDatabase(customerId, new IOrdersCallback() {
+        String fieldKey = "customerId";
+        String fieldValue = customerId;
+
+        getOrdersFromDatabase(fieldKey, fieldValue, new IOrdersCallback() {
             @Override
             public void send(ArrayList<Order> list) {
                 orderList.addAll(list);
@@ -117,44 +123,14 @@ public class OrderRepository {
     }
 
     /**
-     * Gets all orders from the database that belongs to the eatery
+     * Gets all orders from the database that matches value/key
      *
-     * @param eateryId : String - The id of the eatery
+     * @param fieldKey : String - The key of the field
+     * @param fieldValue : String - The value of the field
      * @param callback : IOrdersCallback - Callback
      */
-    private void getEateryOrdersFromDatabase(final String eateryId, final IOrdersCallback callback) {
-        database.collection("orders").whereEqualTo("eateryId", eateryId)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            ArrayList<Order> orders = new ArrayList<>();
-
-                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                Order order = document.toObject(Order.class);
-                                ArrayList<Product> products = document.toObject(ProductDocument.class).products;
-                                order.setProducts(products);
-                                orders.add(order);
-                            }
-
-                            callback.send(orders);
-
-                        } else {
-                            Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
-                    }
-                });
-    }
-
-    /**
-     * Gets all orders from the database that belongs to the customer
-     *
-     * @param customerId : String - The id of the eatery
-     * @param callback : IOrdersCallback - Callback
-     */
-    private void getCustomerOrdersFromDatabase(final String customerId, final IOrdersCallback callback) {
-        database.collection("orders").whereEqualTo("customerId", customerId)
+    private void getOrdersFromDatabase(String fieldKey, final String fieldValue, final IOrdersCallback callback) {
+        database.collection("orders").whereEqualTo(fieldKey, fieldValue)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
