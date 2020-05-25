@@ -5,8 +5,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.easyfood.db.Firebase;
-import com.example.easyfood.db.IEateriesCallback;
 import com.example.easyfood.model.Eatery;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +22,6 @@ import java.util.Objects;
 public class EateryRepository {
     private String TAG = "EateryRepository";
     private static EateryRepository instance;
-    private static Firebase fb;
     private FirebaseFirestore database = FirebaseFirestore.getInstance();
     private ArrayList<Eatery> eateryList;
     private MutableLiveData<List<Eatery>> eateries = new MutableLiveData<>();
@@ -38,21 +35,19 @@ public class EateryRepository {
     public static EateryRepository getInstance() {
         if (instance == null){
             instance = new EateryRepository();
-            fb = new Firebase();
         }
         return instance;
     }
 
     /**
-     * Returns the eateries.
+     * Returns all eateries.
      *
-     * @return MutableLiveData<List<Eatery>>: eateries - The eateries.
+     * @return eateries : MutableLiveData<List<Eatery>> - The list of eateries
      */
     public MutableLiveData<List<Eatery>> getEateries() {
-        // Empty the list so we don't get duplicates
         eateryList = new ArrayList<>();
 
-        fb.getAllEateries(new IEateriesCallback() {
+        getAllEateriesFromDatabase(new IEateriesCallback() {
             @Override
             public void send(ArrayList<Eatery> list) {
                 eateryList.addAll(list);
@@ -85,6 +80,33 @@ public class EateryRepository {
     }
 
     /**
+     * Gets all eateries from the database
+     *
+     * @param callback : IEateriesCallback - Callback
+     */
+    private void getAllEateriesFromDatabase(final IEateriesCallback callback) {
+        database.collection("eateries")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            ArrayList<Eatery> eateries = new ArrayList<>();
+
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                Eatery eatery = document.toObject(Eatery.class);
+                                eateries.add(eatery);
+                            }
+
+                            callback.send(eateries);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+    }
+
+    /**
      * Gets a specific eatery from the database by its manager id
      * @param managerId : String - Id of the manager
      * @param callback : IEateryCallback - Callback
@@ -109,6 +131,13 @@ public class EateryRepository {
                         }
                     }
                 });
+    }
+
+    /**
+     * Interface
+     */
+    private interface IEateriesCallback {
+        void send(ArrayList<Eatery> list);
     }
 
     /**
