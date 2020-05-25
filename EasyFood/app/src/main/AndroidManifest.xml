@@ -17,10 +17,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.BaseActivity" />
+        <activity android:name=".view.SettingsActivity" />
         <activity android:name=".view.customer.EateryActivity" />
         <activity android:name=".view.customer.CustomerMenuActivity" />
+        <activity android:name=".view.customer.CustomerSettingsActivity" />
         <activity android:name=".view.manager.ManagerBaseActivity" />
         <activity android:name=".view.manager.ManagerMenuActivity" />
+        <activity android:name=".view.manager.ManagerSettingsActivity" />
         <activity android:name=".view.manager.NewProductActivity" />
         <activity android:name=".view.manager.EditProductActivity" />
         <activity android:name=".view.manager.OrdersActivity" />

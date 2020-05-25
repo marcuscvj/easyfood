@@ -32,6 +32,8 @@ public class CustomerBaseActivity extends BaseActivity {
             startActivity(new Intent(this, MainActivity.class));
         } else if (item.getItemId() == R.id.ic_cart) {
             startActivity(new Intent(this, BasketActivity.class));
+        } else if (item.getItemId() == R.id.ic_account) {
+            startActivity(new Intent(this, CustomerSettingsActivity.class));
         } else if (item.getItemId() == R.id.ic_home) {
             startActivity(new Intent(this, EateryActivity.class));
         } //More goes here
