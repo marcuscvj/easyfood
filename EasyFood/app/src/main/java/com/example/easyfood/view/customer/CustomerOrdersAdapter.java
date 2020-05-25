@@ -25,7 +25,7 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
      * @param context: Context - The Context.
      * @param orders: List<Order> - The list of orders.
      */
-    public CustomerOrdersAdapter(Context context, List<Order> orders) {
+    CustomerOrdersAdapter(Context context, List<Order> orders) {
         this.orders = orders;
         this.context = context;
     }
@@ -39,7 +39,8 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((CustomerOrdersAdapter.ViewHolder)holder).orderId.setText(orders.get(position).getOrderNumber());
+        ((CustomerOrdersAdapter.ViewHolder)holder).eateryName.setText(orders.get(position).getEateryName());
+        ((CustomerOrdersAdapter.ViewHolder)holder).orderId.setText(String.valueOf(orders.get(position).getOrderNumber()));
         ((CustomerOrdersAdapter.ViewHolder)holder).status.setText(orders.get(position).getOrderStatus().toString());
         String products = "";
         for (Product p : orders.get(position).getProducts()) {
@@ -68,6 +69,7 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
      * ViewHolder Class
      */
     private class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView eateryName;
         private TextView orderId;
         private TextView status;
         private TextView productsList;
@@ -77,8 +79,9 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
          *
          * @param itemView: View - The view
          */
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
+            eateryName = itemView.findViewById(R.id.eateryName_textView);
             orderId = itemView.findViewById(R.id.orderId_textView);
             status = itemView.findViewById(R.id.status_textView);
             productsList = itemView.findViewById(R.id.products_textView);
