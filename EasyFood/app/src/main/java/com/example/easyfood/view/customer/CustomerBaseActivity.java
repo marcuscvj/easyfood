@@ -13,7 +13,7 @@ import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.MainActivity;
 
 public class CustomerBaseActivity extends BaseActivity {
-
+    protected String customerId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,9 @@ public class CustomerBaseActivity extends BaseActivity {
             startActivity(new Intent(this, BasketActivity.class));
         } else if (item.getItemId() == R.id.ic_home) {
             startActivity(new Intent(this, EateryActivity.class));
-        } //More goes here
+        } if (item.getItemId() == R.id.ic_dining) {
+            startActivity(new Intent(this, CustomerOrdersActivity.class));
+        }
 
         return super.onOptionsItemSelected(item);
     }

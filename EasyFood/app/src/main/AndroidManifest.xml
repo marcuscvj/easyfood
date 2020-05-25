@@ -28,6 +28,7 @@
         <activity android:name=".view.LoginActivity" />
         <activity android:name=".view.RegisterActivity" />
         <activity android:name=".view.customer.BasketActivity" />
+        <activity android:name=".view.customer.CustomerOrdersActivity" />
     </application>
 
 </manifest>
