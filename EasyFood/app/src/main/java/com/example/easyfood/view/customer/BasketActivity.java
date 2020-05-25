@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.model.totalPriceCalculator;
-import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.BasketViewModel;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
 
     private RecyclerView recyclerView;
     private BasketViewModel viewModel;
-    private RecyclerView.Adapter adapter;
+    private BasketAdapter adapter;
     private totalPriceCalculator calculator = new totalPriceCalculator();
     private Button sendOrder;
 
@@ -45,7 +44,8 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
         viewModel.getProducts().observe(this, new Observer<List<Product>>() {
             @Override
             public void onChanged(List<Product> products) {
-                adapter.notifyDataSetChanged();
+                adapter.setProducts(products);
+                updateTotalSum();
             }
         });
         setRecyclerView();
@@ -73,9 +73,7 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
 
     @Override
     public void onRemoveEateryClick(int position) {
-        Product chosenProduct = viewModel.getProducts().getValue().get(position);
-        viewModel.removeProduct(chosenProduct);
-       updateTotalSum();
+        viewModel.removeProduct(position);
     }
 
     public void updateTotalSum () {
@@ -91,7 +89,7 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
         sendOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            sendOrder();
+                sendOrder();
             }
         });
     }
@@ -114,7 +112,8 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
                             TextView note = findViewById(R.id.note);
                             TextView totalSum = findViewById(R.id.total_sum);
                             viewModel.sendOrder(totalSum.getText().toString().trim(), note.getText().toString().trim());
-                            goToActivity(getIntent());
+
+                            note.setText("");
 
                             Toast.makeText(getApplicationContext(), "Order sent!",  Toast.LENGTH_SHORT).show();
                         }

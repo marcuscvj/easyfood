@@ -54,7 +54,14 @@ public class BasketRepository {
         return order.getEateryId();
     }
 
-    public void resetOrder() {
+    public void removeProduct(Product product) {
+        products.getValue().remove(product);
+
+        //Resets order if the basket is empty.
+        resetOrder();
+    }
+
+    private void resetOrder() {
         if (products.getValue().size() == 0) {
             this.order = null;
         }
@@ -65,5 +72,7 @@ public class BasketRepository {
     }
 
 
-
+    public void updateProductList() {
+        productsList = new ArrayList<>();
+    }
 }
