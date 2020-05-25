@@ -17,6 +17,7 @@ public class Order {
     private double sum;
     private String customerId;
     private String eateryId;
+    private String estimatedTime = "15 min";
 
     public Order (String eateryId) {
         this.eateryId = eateryId;
@@ -34,6 +35,10 @@ public class Order {
 
     public String getId() {
         return this.id;
+    }
+
+    public String getEstimatedTime() {
+        return estimatedTime;
     }
 
     public int getOrderNumber() {

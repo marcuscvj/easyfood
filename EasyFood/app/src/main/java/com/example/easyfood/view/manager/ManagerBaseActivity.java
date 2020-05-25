@@ -36,7 +36,7 @@ public class ManagerBaseActivity extends BaseActivity {
             intent.putExtra("eateryId", eateryId);
             startActivity(intent);
         } else if (item.getItemId() == R.id.ic_home) {
-            Intent intent = new Intent(this, OrdersActivity.class);
+            Intent intent = new Intent(this, ManagerOrdersActivity.class);
             intent.putExtra("eateryId", eateryId);
             startActivity(intent);
         }//More goes here

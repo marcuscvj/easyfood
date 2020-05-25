@@ -16,15 +16,15 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.easyfood.R;
 import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
-import com.example.easyfood.viewmodel.OrderViewModel;
+import com.example.easyfood.viewmodel.ManagerOrderViewModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrderActivity extends ManagerBaseActivity {
+public class ManagerOrderActivity extends ManagerBaseActivity {
     private String orderId;
-    private OrderViewModel viewModel;
+    private ManagerOrderViewModel viewModel;
     private Order.Status status;
 
     private TextView numberTextView;
@@ -49,7 +49,7 @@ public class OrderActivity extends ManagerBaseActivity {
 
         getOrderId();
 
-        viewModel = new ViewModelProvider(this).get(OrderViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ManagerOrderViewModel.class);
         viewModel.init(orderId);
         viewModel.getOrder().observe(this, new Observer<Order>() {
             @Override
