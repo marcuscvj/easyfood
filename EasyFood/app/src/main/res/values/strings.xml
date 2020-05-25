@@ -10,6 +10,7 @@
     <string name="save">Save</string>
     <string name="email_address">Email Address</string>
     <string name="manager_settings">Manager Settings</string>
-    <string name="phone_number" />
+    <string name="phone_number">Phone Number</string>
+    <string name="customer_settings">Customer Settings</string>
 
 </resources>
