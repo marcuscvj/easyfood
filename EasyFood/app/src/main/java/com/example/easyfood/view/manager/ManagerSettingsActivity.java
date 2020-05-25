@@ -4,12 +4,23 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
 import com.example.easyfood.view.SettingsActivity;
 import com.example.easyfood.view.customer.EateryActivity;
+import com.example.easyfood.viewmodel.ManagerSettingsViewModel;
+
 
 public class ManagerSettingsActivity extends SettingsActivity {
+    private String UID;
+
+    private ManagerSettingsViewModel viewModel;
+
+    private EditText emailEditText;
+    private EditText phoneNumberEditText;
     private Button logoutButton;
     private Button saveButton;
 
@@ -18,6 +29,23 @@ public class ManagerSettingsActivity extends SettingsActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_settings);
 
+        UID = firebaseAuth.getCurrentUser().getUid();
+
+        viewModel = new ViewModelProvider(this).get(ManagerSettingsViewModel.class);
+        viewModel.init(UID);
+
+        emailEditText = findViewById(R.id.email_editText);
+        phoneNumberEditText = findViewById(R.id.phoneNumber_editText);
+
+//        viewModel.getUser().observe(this, new Observer<User>() {
+//            @Override
+//            public void onChanged(User user) {
+//                System.out.println("USER: " + user);
+//                // emailEditText.setText(user.getEmail());
+//                // honeNumberEditText.setText(user.getPhoneNumber());
+//            }
+//        });
+
         saveButton = findViewById(R.id.save_button);
         logoutButton = findViewById(R.id.logout_button);
 
@@ -25,7 +53,6 @@ public class ManagerSettingsActivity extends SettingsActivity {
         logoutButtonListener();
     }
 
-    // Maybe put these in SettingsActivity
     private void logoutButtonListener() {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +62,6 @@ public class ManagerSettingsActivity extends SettingsActivity {
         });
     }
 
-    // Maybe put these in SettingsActivity
     private void saveButtonListener() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +72,7 @@ public class ManagerSettingsActivity extends SettingsActivity {
     }
 
     private void save() {
-        // Check here if customer or
+        viewModel.updateUser(UID, phoneNumberEditText.getText().toString());
         startActivity(new Intent(this, EateryActivity.class));
     }
 }

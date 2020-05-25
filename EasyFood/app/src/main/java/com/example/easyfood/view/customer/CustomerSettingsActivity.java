@@ -43,8 +43,6 @@ public class CustomerSettingsActivity extends SettingsActivity {
         emailEditText = findViewById(R.id.email_editText);
         phoneNumberEditText = findViewById(R.id.phoneNumber_editText);
 
-        // setInitialData(emailEditText, phoneNumberEditText);
-
 //        viewModel.getUser().observe(this, new Observer<User>() {
 //            @Override
 //            public void onChanged(User user) {
@@ -77,10 +75,6 @@ public class CustomerSettingsActivity extends SettingsActivity {
                 save();
             }
         });
-    }
-
-    private void setInitialData(final EditText emailEditText, final EditText phoneNumberEditText) {
-
     }
 
     private void save() {

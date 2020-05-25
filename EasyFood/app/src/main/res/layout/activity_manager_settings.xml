@@ -2,8 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="view.customer.CustomerSettingsActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -12,25 +28,27 @@
         android:text="@string/manager_settings"
         android:textSize="18sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="132dp"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
         tools:layout_editor_absoluteY="28dp" />
 
-    <TextView
-        android:id="@+id/emailAddress"
+    <EditText
+        android:id="@+id/emailAddress_editText"
         android:layout_width="374dp"
         android:layout_height="47dp"
-        android:text="@string/email_address"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="75dp" />
+        android:hint="@string/email_address"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
-    <TextView
-        android:id="@+id/phoneNumber"
+    <EditText
+        android:id="@+id/phoneNumber_editText"
         android:layout_width="374dp"
         android:layout_height="47dp"
-        android:text="@string/phone_number"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="138dp"
-        tools:text="Phone Number" />
+        android:hint="@string/phone_number"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintTop_toBottomOf="@id/emailAddress_editText" />
 
     <Button
         android:id="@+id/logout_button"
@@ -40,7 +58,10 @@
         android:text="@string/log_out"
         android:textColor="#F2F2F2"
         tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="624dp" />
+        tools:layout_editor_absoluteY="624dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintBottom_toTopOf="@id/save_button" />
 
     <Button
         android:id="@+id/save_button"
@@ -48,6 +69,9 @@
         android:layout_height="45dp"
         android:text="@string/save"
         tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="670dp" />
+        tools:layout_editor_absoluteY="670dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
