@@ -23,8 +23,17 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="75dp" />
 
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:layout_width="374dp"
+        android:layout_height="47dp"
+        android:text="@string/phone_number"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="138dp"
+        tools:text="Phone Number" />
+
     <Button
-        android:id="@+id/logout"
+        android:id="@+id/logout_button"
         android:layout_width="377dp"
         android:layout_height="35dp"
         android:background="#DD0F00"
@@ -34,7 +43,7 @@
         tools:layout_editor_absoluteY="624dp" />
 
     <Button
-        android:id="@+id/save"
+        android:id="@+id/save_button"
         android:layout_width="377dp"
         android:layout_height="45dp"
         android:text="@string/save"
