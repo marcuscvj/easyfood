@@ -25,6 +25,7 @@ public class ManagerSettingsActivity extends SettingsActivity {
         logoutButtonListener();
     }
 
+    // Maybe put these in SettingsActivity
     private void logoutButtonListener() {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +35,7 @@ public class ManagerSettingsActivity extends SettingsActivity {
         });
     }
 
+    // Maybe put these in SettingsActivity
     private void saveButtonListener() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override

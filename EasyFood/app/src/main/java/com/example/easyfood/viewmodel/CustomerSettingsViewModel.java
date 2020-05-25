@@ -39,8 +39,4 @@ public class CustomerSettingsViewModel extends ViewModel {
     public void updateUser(String UID, String phoneNumber) {
         userRepository.updateUser(UID, phoneNumber);
     }
-
-    public MutableLiveData<String> getUserUID() {
-        return userRepository.getCurrentUserUid();
-    }
 }
