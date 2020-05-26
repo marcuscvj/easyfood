@@ -25,14 +25,14 @@ public class Order {
         this.setPaid(false);
         this.setOrderStatus(Status.CREATED);
         this.setEstimatedTime("15 min");
-        this.setPaymentMethod(PaymentMethod.CASH);
+        this.setPaymentMethod(PaymentMethod.PAY_AT_PICKUP);
     }
 
     public Order () {
         this.setPaid(false);
         this.setOrderStatus(Status.CREATED);
         this.setEstimatedTime("15 min");
-        this.setPaymentMethod(PaymentMethod.CASH);
+        this.setPaymentMethod(PaymentMethod.PAY_AT_PICKUP);
     }
 
     public String getEateryId() {
@@ -134,9 +134,17 @@ public class Order {
      * Payment Method Enum
      */
     public enum PaymentMethod {
-        CASH,
-        CARD
-        //Maybe they should be written in another way?
+        PAY_AT_PICKUP("PAY AT PICKUP");
+
+        private String paymentMethod;
+
+        PaymentMethod(String paymentMethod) {
+            this.paymentMethod = paymentMethod;
+        }
+
+        public String getPaymentMethod() {
+            return paymentMethod;
+        }
     }
 
     /**
