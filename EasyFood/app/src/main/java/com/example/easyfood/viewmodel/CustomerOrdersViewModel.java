@@ -9,17 +9,18 @@ import com.example.easyfood.repository.OrderRepository;
 
 import java.util.List;
 
-public class OrdersViewModel extends ViewModel {
+public class CustomerOrdersViewModel extends ViewModel {
     private MutableLiveData<List<Order>> orders;
     private OrderRepository orderRepository;
 
-    public void init(String eateryId) {
+    public void init(String customerId) {
         if (orders != null) {
             return;
         }
 
         orderRepository = OrderRepository.getInstance();
-        orders = orderRepository.getAllOrdersForSpecificEatery(eateryId);
+
+        orders = orderRepository.getAllOrdersForSpecificCustomer(customerId);
     }
 
     /**
@@ -31,13 +32,4 @@ public class OrdersViewModel extends ViewModel {
         return orders;
     }
 
-    /**
-     * Get specific order  // TODO Should use LiveData instead
-     *
-     * @param position - int - The position in the list
-     * @return order - Order - The order
-     */
-    public Order getOrder(int position) {
-        return orders.getValue().get(position);
-    }
 }

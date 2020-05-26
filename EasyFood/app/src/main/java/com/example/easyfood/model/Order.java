@@ -17,12 +17,23 @@ public class Order {
     private double sum;
     private String customerId;
     private String eateryId;
+    private String eateryName;
+    private String estimatedTime;
 
     public Order (String eateryId) {
         this.eateryId = eateryId;
+        this.setPaid(false);
+        this.setOrderStatus(Status.CREATED);
+        this.setEstimatedTime("15 min");
+        this.setPaymentMethod(PaymentMethod.CASH);
     }
 
-    public Order () {}
+    public Order () {
+        this.setPaid(false);
+        this.setOrderStatus(Status.CREATED);
+        this.setEstimatedTime("15 min");
+        this.setPaymentMethod(PaymentMethod.CASH);
+    }
 
     public String getEateryId() {
         return eateryId;
@@ -34,6 +45,10 @@ public class Order {
 
     public String getId() {
         return this.id;
+    }
+
+    public String getEstimatedTime() {
+        return estimatedTime;
     }
 
     public int getOrderNumber() {
@@ -98,6 +113,18 @@ public class Order {
 
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
+    }
+
+    public void setEstimatedTime(String estimatedTime) {
+        this.estimatedTime = estimatedTime;
+    }
+
+    public String getEateryName() {
+        return eateryName;
+    }
+
+    public void setEateryName(String eateryName) {
+        this.eateryName = eateryName;
     }
 
     //More getters and setters will be added here.

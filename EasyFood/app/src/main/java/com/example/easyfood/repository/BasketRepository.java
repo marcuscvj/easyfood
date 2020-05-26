@@ -44,9 +44,10 @@ public class BasketRepository {
         products.getValue().add(product);
     }
 
-    public void setOrder(String eateryId) {
+    public void setOrder(String eateryId, String eateryName) {
         if (order == null) {
             order = new Order(eateryId);
+            order.setEateryName(eateryName);
         }
     }
 
@@ -54,7 +55,14 @@ public class BasketRepository {
         return order.getEateryId();
     }
 
-    public void resetOrder() {
+    public void removeProduct(Product product) {
+        products.getValue().remove(product);
+
+        //Resets order if the basket is empty.
+        resetOrder();
+    }
+
+    private void resetOrder() {
         if (products.getValue().size() == 0) {
             this.order = null;
         }
@@ -65,5 +73,7 @@ public class BasketRepository {
     }
 
 
-
+    public void updateProductList() {
+        productsList = new ArrayList<>();
+    }
 }
