@@ -1,5 +1,6 @@
 package com.example.easyfood.viewmodel;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -27,7 +28,7 @@ public class ManagerSettingsViewModel extends ViewModel {
      *
      * @return LiveData: products - The products.
      */
-    public MutableLiveData<User> getUser() {
+    public LiveData<User> getUser() {
         return user;
     }
 
