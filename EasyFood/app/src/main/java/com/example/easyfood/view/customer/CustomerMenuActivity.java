@@ -92,7 +92,7 @@ public class CustomerMenuActivity extends CustomerBaseActivity implements Custom
 
         String contactInformation = extras.getString("name") + "\n";
         contactInformation += "Address: " + extras.getString("street") + " " + extras.getString("streetNumber") + "\n";
-        contactInformation += "Phone: " + extras.getString("phoneNumber") + "\n";
+        contactInformation += "Phone: " + extras.getInt("phoneNumber") + "\n";
         contactInformation += "openingHours: " + extras.getString("openingHours");
 
 
