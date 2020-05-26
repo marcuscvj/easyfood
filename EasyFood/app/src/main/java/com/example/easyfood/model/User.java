@@ -9,6 +9,7 @@ public class User {
     private String id;
     private String email;
     private Role role;
+    private String phoneNum;
 
     /**
      * Creates an instance of a user
@@ -20,6 +21,7 @@ public class User {
         setId(id);
         setEmail(email);
         this.role = Role.CUSTOMER;
+        this.phoneNum = "";
     }
 
     /**
@@ -79,6 +81,24 @@ public class User {
      */
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    /**
+     * Returns the phone number of the User
+     *
+     * @return phoneNum: String - The phone number of the User
+     */
+    public String getPhoneNumber() {
+        return this.phoneNum;
+    }
+
+    /**
+     * Sets a new phone number to the User
+     *
+     * @param pn: String - The phone number of the User
+     */
+    public void setPhoneNum(String pn) {
+        this.phoneNum = pn;
     }
 
     /**

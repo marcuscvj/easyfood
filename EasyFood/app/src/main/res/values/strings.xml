@@ -6,5 +6,11 @@
     <string name="register_button">Register</string>
 
     <string name="restaurants_button">Restaurants</string>
+    <string name="log_out">Log out</string>
+    <string name="save">Save</string>
+    <string name="email_address">Email Address</string>
+    <string name="manager_settings">Manager Settings</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="customer_settings">Customer Settings</string>
 
 </resources>

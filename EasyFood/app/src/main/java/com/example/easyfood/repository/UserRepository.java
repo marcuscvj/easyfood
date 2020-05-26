@@ -179,6 +179,23 @@ public class UserRepository {
                 });
     }
 
+    public void updateUser(String UID, String phoneNumber) {
+        database.collection("users").document(UID)
+                .update("phoneNumber", phoneNumber)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
     /**
      * Callback interface
      */
