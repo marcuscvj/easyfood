@@ -48,6 +48,7 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         changeStatusButton = findViewById(R.id.changeStatus_button);
 
         getOrderId();
+        setEateryId();
 
         viewModel = new ViewModelProvider(this).get(ManagerOrderViewModel.class);
         viewModel.init(orderId);

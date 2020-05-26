@@ -25,7 +25,7 @@ public class NewProductActivity extends ManagerBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_new);
 
-        getEateryId();
+        setEateryId();
 
         viewModel = new ViewModelProvider(this).get(ManagerMenuViewModel.class);
         viewModel.init(eateryId);
@@ -93,13 +93,5 @@ public class NewProductActivity extends ManagerBaseActivity {
         Intent intent = new Intent(getApplicationContext(), ManagerMenuActivity.class);
         intent.putExtra("eateryId", eateryId);
         goToActivity(intent);
-    }
-
-    /**
-     * Gets the current Eatery.
-     */
-    private void getEateryId() {
-        Intent intent = getIntent();
-        eateryId = intent.getStringExtra("eateryId");
     }
 }

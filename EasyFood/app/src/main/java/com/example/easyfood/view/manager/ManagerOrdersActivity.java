@@ -26,7 +26,7 @@ public class ManagerOrdersActivity extends ManagerBaseActivity implements Manage
 
         recyclerView = findViewById(R.id.orders_recycleView);
 
-        getEateryId();
+        setEateryId();
 
         viewModel = new ViewModelProvider(this).get(ManagerOrdersViewModel.class);
         viewModel.init(eateryId);
@@ -53,11 +53,7 @@ public class ManagerOrdersActivity extends ManagerBaseActivity implements Manage
         String orderId = viewModel.getOrder(position).getId();
         Intent intent = new Intent(getApplicationContext(), ManagerOrderActivity.class);
         intent.putExtra("orderId", orderId);
+        intent.putExtra("eateryId", eateryId);
         startActivity(intent);
-    }
-
-    private void getEateryId() {
-        Intent intent = getIntent();
-        eateryId = intent.getStringExtra("eateryId");
     }
 }
