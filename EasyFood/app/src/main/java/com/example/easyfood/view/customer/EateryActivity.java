@@ -91,7 +91,7 @@ public class EateryActivity extends CustomerBaseActivity implements EateryAdapte
         extras.putInt("streetNumber", eatery.getStreetNumber());
         extras.putInt("postalCode", eatery.getPostalCode());
         extras.putString("city", eatery.getCity());
-        extras.getString("openingHours", eatery.getOpeningHours());
+        extras.putString("openingHours", eatery.getOpeningHours());
 
         Intent intent = new Intent(this, CustomerMenuActivity.class);
         intent.putExtras(extras);

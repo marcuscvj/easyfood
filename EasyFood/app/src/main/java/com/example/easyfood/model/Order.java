@@ -18,20 +18,20 @@ public class Order {
     private String customerId;
     private String eateryId;
     private String eateryName;
-    private String estimatedTime;
+    private int estimatedTimeInMinutes;
 
     public Order (String eateryId) {
         this.eateryId = eateryId;
         this.setPaid(false);
         this.setOrderStatus(Status.CREATED);
-        this.setEstimatedTime("15 min");
+        this.setEstimatedTime(15);
         this.setPaymentMethod(PaymentMethod.PAY_AT_PICKUP);
     }
 
     public Order () {
         this.setPaid(false);
         this.setOrderStatus(Status.CREATED);
-        this.setEstimatedTime("15 min");
+        this.setEstimatedTime(15);
         this.setPaymentMethod(PaymentMethod.PAY_AT_PICKUP);
     }
 
@@ -47,8 +47,8 @@ public class Order {
         return this.id;
     }
 
-    public String getEstimatedTime() {
-        return estimatedTime;
+    public int getEstimatedTime() {
+        return estimatedTimeInMinutes;
     }
 
     public int getOrderNumber() {
@@ -115,8 +115,8 @@ public class Order {
         this.customerId = customerId;
     }
 
-    public void setEstimatedTime(String estimatedTime) {
-        this.estimatedTime = estimatedTime;
+    public void setEstimatedTime(int estimatedTime) {
+        this.estimatedTimeInMinutes = estimatedTime;
     }
 
     public String getEateryName() {

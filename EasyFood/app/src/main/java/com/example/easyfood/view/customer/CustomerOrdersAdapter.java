@@ -13,6 +13,7 @@ import com.example.easyfood.R;
 import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -47,7 +48,7 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             products += "\n" + p.getName();
         }
         ((CustomerOrdersAdapter.ViewHolder)holder).productsList.setText(products);
-        ((CustomerOrdersAdapter.ViewHolder)holder).time.setText(orders.get(position).getEstimatedTime());
+        ((CustomerOrdersAdapter.ViewHolder)holder).time.setText(MessageFormat.format("{0}minutes", orders.get(position).getEstimatedTime()));
     }
 
     @Override
