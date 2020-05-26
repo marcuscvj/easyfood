@@ -6,21 +6,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
-import com.example.easyfood.model.Order;
-import com.example.easyfood.model.User;
-import com.example.easyfood.view.SettingsActivity;
+import com.example.easyfood.view.MainActivity;
 import com.example.easyfood.viewmodel.CustomerSettingsViewModel;
 
-import java.util.List;
-import java.util.Objects;
 
-
-public class CustomerSettingsActivity extends SettingsActivity {
+public class CustomerSettingsActivity extends CustomerBaseActivity {
     private String UID;
 
     private CustomerSettingsViewModel viewModel;
@@ -80,5 +73,10 @@ public class CustomerSettingsActivity extends SettingsActivity {
     private void save() {
         viewModel.updateUser(UID, phoneNumberEditText.getText().toString());
         startActivity(new Intent(this, EateryActivity.class));
+    }
+
+    protected void logout() {
+        firebaseAuth.signOut();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }
