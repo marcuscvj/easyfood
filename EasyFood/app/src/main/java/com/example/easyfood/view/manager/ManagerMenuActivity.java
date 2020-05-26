@@ -30,7 +30,7 @@ public class ManagerMenuActivity extends ManagerBaseActivity implements ManagerM
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_manager);
 
-        getEateryId();
+        setEateryId();
 
         newProductButton = findViewById(R.id.new_product_button);
 
@@ -58,11 +58,6 @@ public class ManagerMenuActivity extends ManagerBaseActivity implements ManagerM
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-    }
-
-    private void getEateryId() {
-        Intent intent = getIntent();
-        eateryId = intent.getStringExtra("eateryId");
     }
 
     /**

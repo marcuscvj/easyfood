@@ -29,6 +29,8 @@ public class ManagerSettingsActivity extends ManagerBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager_settings);
 
+        setEateryId();
+
         UID = firebaseAuth.getCurrentUser().getUid();
 
         viewModel = new ViewModelProvider(this).get(ManagerSettingsViewModel.class);
