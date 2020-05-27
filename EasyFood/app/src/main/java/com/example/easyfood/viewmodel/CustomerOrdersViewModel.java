@@ -9,17 +9,24 @@ import com.example.easyfood.repository.OrderRepository;
 
 import java.util.List;
 
+/**
+ * Represents the ViewModel of CustomerOrdersActivity
+ */
 public class CustomerOrdersViewModel extends ViewModel {
     private MutableLiveData<List<Order>> orders;
     private OrderRepository orderRepository;
 
+    /**
+     * Initializes the ViewModel
+     *
+     * @param customerId : String - The id of the customer
+     */
     public void init(String customerId) {
         if (orders != null) {
             return;
         }
 
         orderRepository = OrderRepository.getInstance();
-
         orders = orderRepository.getAllOrdersForSpecificCustomer(customerId);
     }
 

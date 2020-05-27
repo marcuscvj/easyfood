@@ -10,7 +10,7 @@ import com.example.easyfood.repository.ProductRepository;
 import java.util.List;
 
 /**
- * Represents a ViewModel of ManagerMenu
+ * Represents a ViewModel of ManagerMenuActivity
  */
 public class ManagerMenuViewModel extends ViewModel {
     private ProductRepository productRepository;
@@ -18,11 +18,14 @@ public class ManagerMenuViewModel extends ViewModel {
 
     /**
      * Initializes the ViewModel
+     *
+     * @param eateryId : String - The id of the eatery
      */
     public void init(String eateryId){
         if(products != null) {
             return;
         }
+
         productRepository = productRepository.getInstance();
         products = productRepository.getProducts(eateryId);
     }

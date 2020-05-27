@@ -7,10 +7,18 @@ import androidx.lifecycle.ViewModel;
 import com.example.easyfood.model.Order;
 import com.example.easyfood.repository.OrderRepository;
 
+/**
+ * Represents the ViewModel of ManagerOrderActivity
+ */
 public class ManagerOrderViewModel extends ViewModel {
     private MutableLiveData<Order> order;
     private OrderRepository orderRepository;
 
+    /**
+     * Initializes the ViewModel
+     *
+     * @param orderId : String - The id of the order
+     */
     public void init(String orderId) {
         if (order != null) {
             return;
