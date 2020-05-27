@@ -18,6 +18,7 @@ import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.viewmodel.ManagerOrderViewModel;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +27,9 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
     private String orderId;
     private ManagerOrderViewModel viewModel;
     private Order.Status status;
+    private boolean isPaid;
+    private String paid = "Paid";
+    private String notPaid = "Not yet paid";
 
     private TextView numberTextView;
     private TextView statusTextView;
@@ -33,7 +37,8 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
     private TextView isPaidTextView;
     private TextView productTextView;
 
-    private Spinner statusListView;
+    private Spinner statusSpinner;
+    private Spinner isPaidSpinner;
     private Button changeStatusButton;
 
     @Override
@@ -46,7 +51,8 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         isPaidTextView = findViewById(R.id.order_isPaid);
         paymentMethodTextView = findViewById(R.id.order_paymentMethod);
         productTextView = findViewById(R.id.order_products);
-        statusListView = findViewById(R.id.order_statusList);
+        statusSpinner = findViewById(R.id.order_statusSpinner);
+        isPaidSpinner = findViewById(R.id.order_isPaidSpinner);
         changeStatusButton = findViewById(R.id.changeStatus_button);
 
         getOrderId();
@@ -61,7 +67,8 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
             }
         });
 
-        setStatusListView();
+        setStatusSpinner();
+        setIsPaidSpinner();
         setChangeStatusButtonListener();
     }
 
@@ -76,8 +83,6 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         String orderStatus = "OrderStatus: ";
         String paymentStatus = "PaymentStatus: ";
         String paymentMethod = "PaymentMethod: ";
-        String isPaid = "Yes";
-        String isNotPaid = "Not yet paid";
         String products = "Products: ";
 
         numberTextView.setText(orderNumber + order.getOrderNumber());
@@ -88,9 +93,9 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         }
 
         if (order.isPaid()) {
-            isPaidTextView.setText(paymentStatus + isPaid);
+            isPaidTextView.setText(paymentStatus + paid);
         } else {
-            isPaidTextView.setText(paymentStatus + isNotPaid);
+            isPaidTextView.setText(paymentStatus + notPaid);
         }
 
         if (order.getPaymentMethod() != null) {
@@ -106,16 +111,44 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         }
     }
 
-    private void setStatusListView() {
+    /**
+     * Sets the status spinner
+     */
+    private void setStatusSpinner() {
         List<Order.Status> list = new ArrayList<>(Arrays.asList(Order.Status.values()));
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        statusListView.setAdapter(adapter);
+        statusSpinner.setAdapter(adapter);
 
-        statusListView.setOnItemSelectedListener(new OnItemSelectedListener() {
+        statusSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 status = Order.Status.valueOf(adapterView.getItemAtPosition(i).toString());
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+    }
+
+    /**
+     * Sets the isPaid spinner
+     */
+    private void setIsPaidSpinner() {
+        List<String> list = new ArrayList<>(Arrays.asList(notPaid, paid));
+        final ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        isPaidSpinner.setAdapter(adapter);
+
+        isPaidSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (adapterView.getItemAtPosition(i) == paid) {
+                    isPaid = true;
+                } else {
+                    isPaid = false;
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -129,6 +162,7 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
             @Override
             public void onClick(View view) {
                 viewModel.updateOrderStatus(orderId, status);
+                viewModel.updatePaymentStatus(orderId, isPaid);
             }
         });
     }

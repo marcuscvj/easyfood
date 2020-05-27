@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.manager.ManagerOrderActivity">
 
@@ -27,7 +28,7 @@
         android:id="@+id/order_number"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
@@ -39,7 +40,7 @@
         android:id="@+id/order_status"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
@@ -51,7 +52,7 @@
         android:id="@+id/order_isPaid"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
@@ -63,7 +64,7 @@
         android:id="@+id/order_paymentMethod"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
@@ -75,7 +76,7 @@
         android:id="@+id/order_products"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
@@ -84,7 +85,17 @@
         />
 
     <Spinner
-        android:id="@+id/order_statusList"
+        android:id="@+id/order_statusSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintBottom_toTopOf="@id/order_isPaidSpinner"
+        />
+
+    <Spinner
+        android:id="@+id/order_isPaidSpinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"

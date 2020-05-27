@@ -28,8 +28,28 @@ public class ManagerOrderViewModel extends ViewModel {
         return order;
     }
 
+    /**
+     * Updates the order status
+     *
+     * @param orderId - String - The id of the order
+     * @param status - boolean - The status of the order
+     */
     public void updateOrderStatus(String orderId, Order.Status status) {
-        orderRepository.setOrderStatus(orderId, status);
+        if (order.getValue().getOrderStatus() != status) {
+            orderRepository.setOrderStatus(orderId, status);
+        }
+    }
+
+    /**
+     * Updates the payment status
+     *
+     * @param orderId - String - The id of the order
+     * @param status - boolean - The status of the payment
+     */
+    public void updatePaymentStatus(String orderId, boolean status) {
+        if (order.getValue().isPaid() != status) {
+            orderRepository.setPaymentStatus(orderId, status);
+        }
     }
 
 }
