@@ -98,7 +98,7 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
 
         if (viewModel.getProducts().getValue().size() == 0) {
 
-            Toast.makeText(getApplicationContext(), "Cannot send empty order",  Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.empty_basket, Toast.LENGTH_SHORT).show();
 
         } else {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
@@ -115,7 +115,7 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
 
                             note.setText("");
 
-                            Toast.makeText(getApplicationContext(), "Order sent!",  Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.order_sent,  Toast.LENGTH_SHORT).show();
                         }
                     });
 

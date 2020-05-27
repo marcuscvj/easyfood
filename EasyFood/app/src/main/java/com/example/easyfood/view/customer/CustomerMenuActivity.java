@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
@@ -103,6 +104,7 @@ public class CustomerMenuActivity extends CustomerBaseActivity implements Custom
     public void OnAddProductClick(int position) {
         Context context = getApplicationContext();
         viewModel.addProduct(position, context);
+        Toast.makeText(getApplicationContext(), R.string.product_added_basket, Toast.LENGTH_SHORT).show();
     }
 
 

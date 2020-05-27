@@ -89,7 +89,7 @@ public class RegisterActivity extends BaseActivity {
                 }
 
                 goToActivity(new Intent(getApplicationContext(), EateryActivity.class));
-                Toast.makeText(getApplicationContext(), user.getEmail(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), R.string.account_register_successful, Toast.LENGTH_SHORT).show();
             }
         });
     }

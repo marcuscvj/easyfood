@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -73,6 +74,7 @@ public class CustomerSettingsActivity extends CustomerBaseActivity {
     private void save() {
         viewModel.updateUser(UID, phoneNumberEditText.getText().toString());
         startActivity(new Intent(this, EateryActivity.class));
+        Toast.makeText(getApplicationContext(), R.string.info_updated, Toast.LENGTH_SHORT).show();
     }
 
     protected void logout() {
