@@ -231,6 +231,35 @@ public class OrderRepository {
     }
 
     /**
+     * Updates the paymentStatus of the order in the database
+     *
+     * @param orderId : String - The id of the order
+     * @param newStatus : boolean - The payment status
+     */
+    public void setPaymentStatus(String orderId, final boolean newStatus) {
+        Map<String, Object> status = new HashMap<>();
+        status.put("paid", newStatus);
+
+        database.collection("orders").document(orderId).update(status)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        if (order.getValue() != null) {
+                            order.getValue().setPaid(newStatus);
+                            order.setValue(order.getValue());
+                        }
+                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error writing document", e);
+                    }
+                });
+    }
+
+    /**
      * Returns a new generated order id from the database
      *
      * @return String: id - New id from the database

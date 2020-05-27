@@ -15,8 +15,10 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents the ViewModel of BasketActivity
+ */
 public class BasketViewModel extends ViewModel {
-
     private MutableLiveData<List<Product>> products;
     private BasketRepository basketRepository;
     private OrderRepository orderRepository;
@@ -28,6 +30,7 @@ public class BasketViewModel extends ViewModel {
         if(products != null) {
             return;
         }
+
         basketRepository= BasketRepository.getInstance();
         orderRepository = OrderRepository.getInstance();
         products = basketRepository.getProducts();
@@ -42,11 +45,22 @@ public class BasketViewModel extends ViewModel {
         return products;
     }
 
+    /**
+     * Removes a product
+     *
+     * @param position : int - The position of the product
+     */
     public void removeProduct(int position) {
         basketRepository.removeProduct(products.getValue().get(position));
         products = basketRepository.getProducts();
     }
 
+    /**
+     * Sends an order
+     *
+     * @param sum : String - The total sum of the order
+     * @param note : String - The note to the eatery
+     */
     public void sendOrder(String sum, String note) {
         Order order = basketRepository.getOrder();
 
@@ -71,6 +85,9 @@ public class BasketViewModel extends ViewModel {
         updateProducts();
     }
 
+    /**
+     * Updates the product list
+     */
     private void updateProducts() {
         basketRepository.updateProductList();
         products = basketRepository.getProducts();

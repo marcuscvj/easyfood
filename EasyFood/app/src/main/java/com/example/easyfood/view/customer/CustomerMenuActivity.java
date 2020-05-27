@@ -30,7 +30,7 @@ public class CustomerMenuActivity extends CustomerBaseActivity implements Custom
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.activity_menu_customer);
         super.onCreate(savedInstanceState);
 
         menuHeader = findViewById(R.id.menu_header);

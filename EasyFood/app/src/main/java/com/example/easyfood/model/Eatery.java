@@ -83,22 +83,47 @@ public class Eatery {
         this.managerId = managerId;
     }
 
+    /**
+     * Return the phone number
+     *
+     * @return phoneNumber : int - The phone number
+     */
     public int getPhoneNumber() {
         return phoneNumber;
     }
 
+    /**
+     * Sets the phone number
+     *
+     * @param phoneNumber : int - The phone number
+     */
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Return the street
+     *
+     * @return : String - The street
+     */
     public String getStreet() {
         return street;
     }
 
+    /**
+     * Sets the street
+     *
+     * @param street : String - The street
+     */
     public void setStreet(String street) {
         this.street = street;
     }
 
+    /**
+     * Returns the street number
+     *
+     * @return streetNumber : int - The street number;
+     */
     public int getStreetNumber() {
         return streetNumber;
     }
@@ -111,22 +136,47 @@ public class Eatery {
         return postalCode;
     }
 
+    /**
+     * Sets the postal code
+     *
+     * @param postalCode : int - The postal code
+     */
     public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
     }
 
+    /**
+     * Returns the city
+     *
+     * @return : String - The city
+     */
     public String getCity() {
         return city;
     }
 
+    /**
+     * Sets the city
+     *
+     * @param city : String - The city
+     */
     public void setCity(String city) {
         this.city = city;
     }
 
+    /**
+     * Returns the opening hours
+     *
+     * @return openingHours : String - The opening hours
+     */
     public String getOpeningHours() {
         return openingHours;
     }
 
+    /**
+     * Sets the opening hours
+     *
+     * @param openingHours : String - The opening hours
+     */
     public void setOpeningHours(String openingHours) {
         this.openingHours = openingHours;
     }

@@ -10,7 +10,7 @@ import com.example.easyfood.repository.EateryRepository;
 import java.util.List;
 
 /**
- * View Model for the EateryActivity
+ * Represents the ViewModel of EateryActivity
  */
 public class EateryActivityViewModel extends ViewModel {
     private MutableLiveData<List<Eatery>> eateries;
@@ -23,6 +23,7 @@ public class EateryActivityViewModel extends ViewModel {
         if(eateries != null) {
             return;
         }
+
         eateryRepository = EateryRepository.getInstance();
         eateries = eateryRepository.getEateries();
     }

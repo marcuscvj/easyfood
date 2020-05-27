@@ -13,8 +13,10 @@ import com.example.easyfood.repository.ProductRepository;
 
 import java.util.List;
 
+/**
+ * Represents the ViewModel of CustomerMenuActivity
+ */
 public class CustomerMenuViewModel extends ViewModel {
-
     private MutableLiveData<List<Product>> productsInMenu;
     private BasketRepository basketRepository;
     private ProductRepository productsRepository;
@@ -24,11 +26,15 @@ public class CustomerMenuViewModel extends ViewModel {
 
     /**
      * Initializes the ViewModel
+     *
+     * @param eateryId : String - The id of the eatery
+     * @param eateryName : String - The name of the eatery
      */
     public void init(String eateryId, String eateryName){
         if(productsInMenu != null) {
             return;
         }
+
         this.eateryId = eateryId;
         this.eateryName = eateryName;
         productsRepository= ProductRepository.getInstance();

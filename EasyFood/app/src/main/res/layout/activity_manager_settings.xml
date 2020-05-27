@@ -25,51 +25,53 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/manager_settings"
+        android:text="@string/customer_settings"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="28dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
-        tools:layout_editor_absoluteY="28dp" />
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-    <EditText
-        android:id="@+id/emailAddress_editText"
-        android:layout_width="374dp"
-        android:layout_height="47dp"
-        android:hint="@string/email_address"
-        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+    <TextView
+        android:id="@+id/phoneNumber_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Phone number"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        />
 
     <EditText
         android:id="@+id/phoneNumber_editText"
-        android:layout_width="374dp"
-        android:layout_height="47dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="@string/phone_number"
+        android:inputType="phone"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
-        app:layout_constraintTop_toBottomOf="@id/emailAddress_editText" />
+        app:layout_constraintTop_toBottomOf="@id/phoneNumber_textView" />
 
     <Button
         android:id="@+id/logout_button"
-        android:layout_width="377dp"
-        android:layout_height="35dp"
-        android:background="#DD0F00"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/log_out"
-        android:textColor="#F2F2F2"
-        tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="624dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintBottom_toTopOf="@id/save_button" />
 
     <Button
         android:id="@+id/save_button"
-        android:layout_width="377dp"
-        android:layout_height="45dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/save"
-        tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="670dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintBottom_toBottomOf="parent" />

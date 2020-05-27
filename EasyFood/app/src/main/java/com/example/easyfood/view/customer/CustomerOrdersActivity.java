@@ -23,7 +23,7 @@ public class CustomerOrdersActivity extends CustomerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_orders);
+        setContentView(R.layout.activity_orders_manager);
 
         recyclerView = findViewById(R.id.orders_recycleView);
 
