@@ -134,7 +134,7 @@ public class Order {
      * Payment Method Enum
      */
     public enum PaymentMethod {
-        PAY_AT_PICKUP("PAY AT PICKUP");
+        PAY_AT_PICKUP("Pay at pickup");
 
         private String paymentMethod;
 

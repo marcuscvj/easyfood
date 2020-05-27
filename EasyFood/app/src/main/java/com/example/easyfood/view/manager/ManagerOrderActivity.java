@@ -29,6 +29,7 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
 
     private TextView numberTextView;
     private TextView statusTextView;
+    private TextView paymentMethodTextView;
     private TextView isPaidTextView;
     private TextView productTextView;
 
@@ -38,11 +39,12 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_order_manager);
 
         numberTextView = findViewById(R.id.order_number);
         statusTextView = findViewById(R.id.order_status);
         isPaidTextView = findViewById(R.id.order_isPaid);
+        paymentMethodTextView = findViewById(R.id.order_paymentMethod);
         productTextView = findViewById(R.id.order_products);
         statusListView = findViewById(R.id.order_statusList);
         changeStatusButton = findViewById(R.id.changeStatus_button);
@@ -73,6 +75,7 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         String orderNumber = "OrderNumber: ";
         String orderStatus = "OrderStatus: ";
         String paymentStatus = "PaymentStatus: ";
+        String paymentMethod = "PaymentMethod: ";
         String isPaid = "Yes";
         String isNotPaid = "Not yet paid";
         String products = "Products: ";
@@ -88,6 +91,10 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
             isPaidTextView.setText(paymentStatus + isPaid);
         } else {
             isPaidTextView.setText(paymentStatus + isNotPaid);
+        }
+
+        if (order.getPaymentMethod() != null) {
+            paymentMethodTextView.setText(paymentMethod + order.getPaymentMethod().getPaymentMethod());
         }
 
         if (order.getProducts() != null) {

@@ -60,7 +60,7 @@
         />
 
     <TextView
-        android:id="@+id/order_products"
+        android:id="@+id/order_paymentMethod"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_width="wrap_content"
@@ -69,6 +69,18 @@
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintTop_toBottomOf="@id/order_isPaid"
+        />
+
+    <TextView
+        android:id="@+id/order_products"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@id/left_guideline"
+        app:layout_constraintEnd_toStartOf="@id/right_guideline"
+        app:layout_constraintTop_toBottomOf="@id/order_paymentMethod"
         />
 
     <Spinner
