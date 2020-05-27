@@ -97,7 +97,7 @@ public class User {
      *
      * @param pn: String - The phone number of the User
      */
-    public void setPhoneNum(String pn) {
+    public void setPhoneNumber(String pn) {
         this.phoneNum = pn;
     }
 

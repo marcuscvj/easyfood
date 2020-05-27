@@ -7,20 +7,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
+import com.example.easyfood.model.User;
 import com.example.easyfood.view.MainActivity;
-import com.example.easyfood.view.customer.EateryActivity;
 import com.example.easyfood.viewmodel.ManagerSettingsViewModel;
 
 
 public class ManagerSettingsActivity extends ManagerBaseActivity {
-    private String UID;
+    private String userId;
 
     private ManagerSettingsViewModel viewModel;
 
-    private EditText emailEditText;
     private EditText phoneNumberEditText;
     private Button logoutButton;
     private Button saveButton;
@@ -32,21 +32,19 @@ public class ManagerSettingsActivity extends ManagerBaseActivity {
 
         setEateryId();
 
-        UID = firebaseAuth.getCurrentUser().getUid();
+        userId = firebaseAuth.getCurrentUser().getUid();
 
         viewModel = new ViewModelProvider(this).get(ManagerSettingsViewModel.class);
-        viewModel.init(UID);
+        viewModel.init(userId);
 
-        emailEditText = findViewById(R.id.email_editText);
         phoneNumberEditText = findViewById(R.id.phoneNumber_editText);
 
-        /*viewModel.getUser().observe(this, new Observer<User>() {
+        viewModel.getUser().observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
-                emailEditText.setText(user.getEmail());
                 phoneNumberEditText.setText(user.getPhoneNumber());
             }
-        });*/
+        });
 
         saveButton = findViewById(R.id.save_button);
         logoutButton = findViewById(R.id.logout_button);
@@ -55,6 +53,9 @@ public class ManagerSettingsActivity extends ManagerBaseActivity {
         logoutButtonListener();
     }
 
+    /**
+     * Sets the logout button listener
+     */
     private void logoutButtonListener() {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +65,9 @@ public class ManagerSettingsActivity extends ManagerBaseActivity {
         });
     }
 
+    /**
+     * Sets the save button listener
+     */
     private void saveButtonListener() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,9 +77,14 @@ public class ManagerSettingsActivity extends ManagerBaseActivity {
         });
     }
 
+    /**
+     * Saves the new settings
+     */
     private void save() {
-        viewModel.updateUser(UID, phoneNumberEditText.getText().toString());
-        startActivity(new Intent(this, ManagerOrdersActivity.class));
+        viewModel.updateUser(userId, phoneNumberEditText.getText().toString());
+        Intent intent = new Intent(this, ManagerOrdersActivity.class);
+        intent.putExtra("eateryId", eateryId);
+        startActivity(intent);
         Toast.makeText(getApplicationContext(), R.string.info_updated, Toast.LENGTH_SHORT).show();
 
     }

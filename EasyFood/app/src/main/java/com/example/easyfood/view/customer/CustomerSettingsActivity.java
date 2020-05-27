@@ -7,19 +7,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
+import com.example.easyfood.model.User;
 import com.example.easyfood.view.MainActivity;
 import com.example.easyfood.viewmodel.CustomerSettingsViewModel;
 
-
 public class CustomerSettingsActivity extends CustomerBaseActivity {
-    private String UID;
+    private String userId;
 
     private CustomerSettingsViewModel viewModel;
 
-    private EditText emailEditText;
     private EditText phoneNumberEditText;
     private Button logoutButton;
     private Button saveButton;
@@ -29,22 +29,19 @@ public class CustomerSettingsActivity extends CustomerBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_settings);
 
-        UID = firebaseAuth.getCurrentUser().getUid();
+        userId = firebaseAuth.getCurrentUser().getUid();
 
         viewModel = new ViewModelProvider(this).get(CustomerSettingsViewModel.class);
-        viewModel.init(UID);
+        viewModel.init(userId);
 
-        emailEditText = findViewById(R.id.email_editText);
         phoneNumberEditText = findViewById(R.id.phoneNumber_editText);
 
-//        viewModel.getUser().observe(this, new Observer<User>() {
-//            @Override
-//            public void onChanged(User user) {
-//                System.out.println("USER: " + user);
-//                // emailEditText.setText(user.getEmail());
-//                // honeNumberEditText.setText(user.getPhoneNumber());
-//            }
-//        });
+        viewModel.getUser().observe(this, new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                phoneNumberEditText.setText(user.getPhoneNumber());
+            }
+        });
 
         saveButton = findViewById(R.id.save_button);
         logoutButton = findViewById(R.id.logout_button);
@@ -53,6 +50,9 @@ public class CustomerSettingsActivity extends CustomerBaseActivity {
         logoutButtonListener();
     }
 
+    /**
+     * Sets the logout button listener
+     */
     private void logoutButtonListener() {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +62,9 @@ public class CustomerSettingsActivity extends CustomerBaseActivity {
         });
     }
 
+    /**
+     * Sets the save button listener
+     */
     private void saveButtonListener() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +74,11 @@ public class CustomerSettingsActivity extends CustomerBaseActivity {
         });
     }
 
+    /**
+     * Saves the new settings
+     */
     private void save() {
-        viewModel.updateUser(UID, phoneNumberEditText.getText().toString());
+        viewModel.updateUser(userId, phoneNumberEditText.getText().toString());
         startActivity(new Intent(this, EateryActivity.class));
         Toast.makeText(getApplicationContext(), R.string.info_updated, Toast.LENGTH_SHORT).show();
     }
