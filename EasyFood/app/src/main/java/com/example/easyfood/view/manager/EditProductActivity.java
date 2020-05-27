@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 
@@ -80,6 +81,7 @@ public class EditProductActivity extends ManagerBaseActivity {
                 }
 
                 editProduct(name, description, Double.parseDouble(price), category);
+                Toast.makeText(getApplicationContext(), R.string.product_updated, Toast.LENGTH_SHORT).show();
             }
         });
     }

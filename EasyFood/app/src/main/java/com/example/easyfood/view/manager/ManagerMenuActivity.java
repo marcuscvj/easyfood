@@ -79,6 +79,7 @@ public class ManagerMenuActivity extends ManagerBaseActivity implements ManagerM
     public void onRemoveProductClick(int position) {
         Product chosenProduct = viewModel.getAllProducts().getValue().get(position);
         viewModel.removeProduct(eateryId, chosenProduct.getId());
+        Toast.makeText(getApplicationContext(), R.string.product_removed, Toast.LENGTH_SHORT).show();
     }
 
     @Override
