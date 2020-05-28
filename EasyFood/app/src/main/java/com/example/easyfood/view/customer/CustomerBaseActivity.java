@@ -71,15 +71,15 @@ public class CustomerBaseActivity extends BaseActivity {
                 // Temporary
                 // send push notification here
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "notifications_orderstatus")
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "notifications_orderstatus")
                         .setSmallIcon(R.drawable.ic_cart)
                         .setContentTitle("Order Status Changed")
                         .setContentText(order)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
                 // Issue the notification.
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-                notificationManager.notify("notificationId", "newMessageNotification");
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+                notificationManager.notify(0, builder.build());
 
                 System.out.println(order);
             }
