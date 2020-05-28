@@ -275,17 +275,20 @@ public class OrderRepository {
                             return;
                         }
 
-                        String orderStatus = "";
+                        // TODO Only get changed orders!
 
                         if (value != null) {
                             for (QueryDocumentSnapshot doc : value) {
                                 if (doc.get("orderStatus") != null) {
                                     System.out.println("ORDERREPO: " + doc.getString("orderStatus"));
-                                    orderStatus = doc.getString("orderStatus");
+                                    String orderStatus = doc.getString("orderStatus");
+                                    String orderNumber = doc.get("orderNumber").toString();
+                                    String eatery = doc.getString("eateryName");
+                                    callback.send(eatery + " order " + orderNumber + " changed status to: " + orderStatus);
                                 }
                             }
 
-                            callback.send("Your order status changed to: " + orderStatus);
+
                         }
                     }
                 });

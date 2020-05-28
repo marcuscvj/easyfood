@@ -24,10 +24,12 @@ import com.example.easyfood.viewmodel.CustomerBaseViewModel;
 public class CustomerBaseActivity extends BaseActivity {
     private CustomerBaseViewModel viewModel;
     protected String customerId;
+    protected int orderCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        orderCounter = 0;
 
         customerId = firebaseAuth.getCurrentUser().getUid();
 
@@ -68,20 +70,18 @@ public class CustomerBaseActivity extends BaseActivity {
         viewModel.getOrderStatus().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String order) {
-                // Temporary
-                // send push notification here
+                orderCounter++;
+                if (!order.equals("") && orderCounter > 4) {
+                    NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "notifications_orderstatus")
+                            .setSmallIcon(R.drawable.ic_cart)
+                            .setContentTitle("Order Status Changed")
+                            .setContentText(order)
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "notifications_orderstatus")
-                        .setSmallIcon(R.drawable.ic_cart)
-                        .setContentTitle("Order Status Changed")
-                        .setContentText(order)
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-
-                // Issue the notification.
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-                notificationManager.notify(0, builder.build());
-
-                System.out.println(order);
+                    // Issue the notification.
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+                    notificationManager.notify(0, builder.build());
+                }
             }
         });
     }

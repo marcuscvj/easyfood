@@ -1,17 +1,16 @@
 package com.example.easyfood.viewmodel;
 
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.easyfood.model.Order;
 import com.example.easyfood.repository.OrderRepository;
 
-import java.util.List;
 
 public class CustomerBaseViewModel extends ViewModel {
-    private MutableLiveData<List<Order>> orders;
     private OrderRepository orderRepository;
+    private MutableLiveData<String> status;
     private String UID;
 
     /**
@@ -20,16 +19,17 @@ public class CustomerBaseViewModel extends ViewModel {
      * @param customerId : String - The id of the eatery
      */
     public void init(String customerId) {
-        if (orders != null) {
-            UID = customerId;
+        if (UID != null) {
             return;
         }
 
+        UID = customerId;
         orderRepository = OrderRepository.getInstance();
-        orders = orderRepository.getAllOrdersForSpecificCustomer(customerId);
+        status = orderRepository.getOrderStatus(UID);
+
     }
 
-    public MutableLiveData<String> getOrderStatus() {
-        return orderRepository.getOrderStatus(this.UID);
+    public LiveData<String> getOrderStatus() {
+        return status;
     }
 }
