@@ -29,6 +29,7 @@ public class CustomerOrdersActivity extends CustomerBaseActivity {
 
         getCustomerId();
 
+
         viewModel = new ViewModelProvider(this).get(CustomerOrdersViewModel.class);
         viewModel.init(customerId);
         viewModel.getOrders().observe(this, new Observer<List<Order>>() {
@@ -53,7 +54,4 @@ public class CustomerOrdersActivity extends CustomerBaseActivity {
     public void getCustomerId() {
         customerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
-
-
-
 }

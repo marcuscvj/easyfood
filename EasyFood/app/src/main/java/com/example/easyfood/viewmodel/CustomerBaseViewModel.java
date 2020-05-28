@@ -29,7 +29,7 @@ public class CustomerBaseViewModel extends ViewModel {
         orders = orderRepository.getAllOrdersForSpecificCustomer(customerId);
     }
 
-    public LiveData<String> getOrderStatus() {
-        return orderRepository.getOrdersStatus(this.UID);
+    public MutableLiveData<String> getOrderStatus() {
+        return orderRepository.getOrderStatus(this.UID);
     }
 }

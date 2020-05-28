@@ -43,6 +43,8 @@ public class OrderRepository {
     private ArrayList<Order> orderList;
     private Order currentOrder;
 
+    private MutableLiveData<String> orderStatus = new MutableLiveData<>();
+
     /**
      * Returns an instance of the OrderRepository
      *
@@ -262,13 +264,14 @@ public class OrderRepository {
                 });
     }
 
-    public void getOrdersStatus(String UID, final IOrderStatusCallback callback) {
+    private void getOrdersStatus(String UID, final IOrderStatusCallback callback) {
         database.collection("orders")
                 .whereEqualTo("customerId", UID)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException e) {
                         if (e != null) {
+                            System.out.println("ORDERREPO: " + value);
                             Log.w(TAG, "Listen failed.", e);
                             return;
                         }
@@ -286,6 +289,17 @@ public class OrderRepository {
                         }
                     }
                 });
+    }
+
+    public MutableLiveData<String> getOrderStatus(String UID) {
+        getOrdersStatus(UID, new IOrderStatusCallback() {
+            @Override
+            public void send(String status) {
+                orderStatus.setValue(status);
+            }
+        });
+
+        return orderStatus;
     }
 
     /**
