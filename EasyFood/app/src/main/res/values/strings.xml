@@ -12,5 +12,7 @@
     <string name="manager_settings">Manager Settings</string>
     <string name="phone_number">Phone Number</string>
     <string name="customer_settings">Customer Settings</string>
+    <string name="channel_name">Notifications Order Status</string>
+    <string name="channel_description">The notifications of order statuses</string>
 
 </resources>
