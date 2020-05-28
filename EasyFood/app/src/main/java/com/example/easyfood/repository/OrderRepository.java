@@ -271,7 +271,6 @@ public class OrderRepository {
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException e) {
                         if (e != null) {
-                            System.out.println("ORDERREPO: " + value);
                             Log.w(TAG, "Listen failed.", e);
                             return;
                         }
@@ -281,6 +280,7 @@ public class OrderRepository {
                         if (value != null) {
                             for (QueryDocumentSnapshot doc : value) {
                                 if (doc.get("orderStatus") != null) {
+                                    System.out.println("ORDERREPO: " + doc.getString("orderStatus"));
                                     orderStatus = doc.getString("orderStatus");
                                 }
                             }

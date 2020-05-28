@@ -18,12 +18,13 @@ import com.example.easyfood.viewmodel.CustomerBaseViewModel;
 
 public class CustomerBaseActivity extends BaseActivity {
     private CustomerBaseViewModel viewModel;
+    protected String customerId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String customerId = firebaseAuth.getCurrentUser().getUid();
+        customerId = firebaseAuth.getCurrentUser().getUid();
 
         viewModel = new ViewModelProvider(this).get(CustomerBaseViewModel.class);
         viewModel.init(customerId);
