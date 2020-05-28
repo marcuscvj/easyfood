@@ -71,7 +71,8 @@ public class CustomerBaseActivity extends BaseActivity {
             @Override
             public void onChanged(String order) {
                 orderCounter++;
-                if (!order.equals("") && orderCounter > 4) {
+
+                if (!order.equals("") && orderCounter > 5) {
                     NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), "notifications_orderstatus")
                             .setSmallIcon(R.drawable.ic_cart)
                             .setContentTitle("Order Status Changed")

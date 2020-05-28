@@ -13,12 +13,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -278,7 +281,8 @@ public class OrderRepository {
                         // TODO Only get changed orders!
 
                         if (value != null) {
-                            for (QueryDocumentSnapshot doc : value) {
+                            for (DocumentChange dc : value.getDocumentChanges()) {
+                                DocumentSnapshot doc = dc.getDocument();
                                 if (doc.get("orderStatus") != null) {
                                     System.out.println("ORDERREPO: " + doc.getString("orderStatus"));
                                     String orderStatus = doc.getString("orderStatus");
