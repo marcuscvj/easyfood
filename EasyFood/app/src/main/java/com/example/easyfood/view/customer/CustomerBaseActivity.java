@@ -7,17 +7,30 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.MainActivity;
+import com.example.easyfood.viewmodel.CustomerBaseViewModel;
+
 
 public class CustomerBaseActivity extends BaseActivity {
+    private CustomerBaseViewModel viewModel;
     protected String customerId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        viewModel = new ViewModelProvider(this).get(CustomerBaseViewModel.class);
+        viewModel.init(customerId);
+
+        // Listener method call here
+        onOrderChangeListener();
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -41,6 +54,16 @@ public class CustomerBaseActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void onOrderChangeListener() {
+        viewModel.getOrderStatus().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String order) {
+                // Temporary
+                System.out.println(order);
+            }
+        });
     }
 
 }

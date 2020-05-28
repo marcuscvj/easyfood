@@ -3,6 +3,7 @@ package com.example.easyfood.repository;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.easyfood.model.Order;
@@ -13,7 +14,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -259,6 +262,32 @@ public class OrderRepository {
                 });
     }
 
+    public void getOrdersStatus(String UID, final IOrderStatusCallback callback) {
+        database.collection("orders")
+                .whereEqualTo("customerId", UID)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException e) {
+                        if (e != null) {
+                            Log.w(TAG, "Listen failed.", e);
+                            return;
+                        }
+
+                        String orderStatus = "";
+
+                        if (value != null) {
+                            for (QueryDocumentSnapshot doc : value) {
+                                if (doc.get("orderStatus") != null) {
+                                    orderStatus = doc.getString("orderStatus");
+                                }
+                            }
+
+                            callback.send("Your order status changed to: " + orderStatus);
+                        }
+                    }
+                });
+    }
+
     /**
      * Returns a new generated order id from the database
      *
@@ -268,6 +297,12 @@ public class OrderRepository {
         return database.collection("orders").document().getId();
     }
 
+    /**
+     * Interface
+     */
+    private interface IOrderStatusCallback {
+        void send(String status);
+    }
 
     /**
      * Interface
