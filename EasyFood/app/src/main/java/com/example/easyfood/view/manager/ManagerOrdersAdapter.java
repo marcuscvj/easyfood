@@ -43,7 +43,8 @@ public class ManagerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((ViewHolder)holder).orderId.setText(orders.get(position).getId());
+        ((ViewHolder)holder).orderNumber.setText("Number: " + orders.get(position).getOrderNumber());
+        ((ViewHolder)holder).orderStatus.setText("Status: " + orders.get(position).getOrderStatus().getStatus());
     }
 
     @Override
@@ -65,7 +66,8 @@ public class ManagerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.View
      * ViewHolder Class
      */
     private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView orderId;
+        private TextView orderNumber;
+        private TextView orderStatus;
         OnOrderListener onOrderListener;
 
         /**
@@ -75,7 +77,8 @@ public class ManagerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.View
          */
         public ViewHolder(@NonNull View itemView, OnOrderListener onOrderListener) {
             super(itemView);
-            orderId = itemView.findViewById(R.id.orderId_textView);
+            orderNumber = itemView.findViewById(R.id.orderNumber_textView);
+            orderStatus = itemView.findViewById(R.id.orderStatus_textView);
             this.onOrderListener = onOrderListener;
             itemView.setOnClickListener(this);
         }
