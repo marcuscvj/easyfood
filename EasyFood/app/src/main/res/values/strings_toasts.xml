@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="order_sent">Order sent</string>
+    <string name="product_added_basket">Product added to basket</string>
+    <string name="product_added">Product added to menu</string>
+    <string name="product_removed">Product removed from menu</string>
+    <string name="product_updated">Product updated</string>
+    <string name="info_updated">Information updated</string>
+    <string name="login_successful">Login successful</string>
+    <string name="empty_basket">Your basket is empty</string>
+    <string name="account_register_successful">Registration successful</string>
+</resources>

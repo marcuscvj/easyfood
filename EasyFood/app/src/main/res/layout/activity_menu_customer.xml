@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.MainActivity">
+    tools:context=".view.customer.CustomerMenuActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
@@ -23,41 +23,38 @@
         app:layout_constraintGuide_end="24dp"
         />
 
-    <ImageView
-        android:id="@+id/logo_image"
-        android:src="@drawable/logo"
-        android:contentDescription="@string/logo_image"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="50dp"
+    <TextView
+        android:id="@+id/menu_header"
+        android:text="Menu"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <Button
-        android:id="@+id/login_button"
-        style="@style/Widget.AppCompat.Button"
-        android:text="@string/login_button"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/menu_searchView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
-        app:layout_constraintTop_toBottomOf="@id/logo_image"
+        app:layout_constraintTop_toBottomOf="@id/menu_header"
         />
 
-    <Button
-        android:id="@+id/register_button"
-        style="@style/Widget.AppCompat.Button"
-        android:text="@string/register_button"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/menu_recycleView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintStart_toStartOf="@id/left_guideline"
         app:layout_constraintEnd_toStartOf="@id/right_guideline"
-        app:layout_constraintTop_toBottomOf="@id/login_button"
+        app:layout_constraintTop_toBottomOf="@id/menu_searchView"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
-    
 </androidx.constraintlayout.widget.ConstraintLayout>

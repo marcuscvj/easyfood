@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "909305237713",
+    "firebase_url": "https://easyfood-86857.firebaseio.com",
+    "project_id": "easyfood-86857",
+    "storage_bucket": "easyfood-86857.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909305237713:android:54063510fc94041d7db5f0",
+        "android_client_info": {
+          "package_name": "com.example.easyfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909305237713-aimf6uti4oj0i2nkhd1d0767onbailh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrJiSbg9rwtlAXUKjGLI0Rk55uGUj4ZCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909305237713-aimf6uti4oj0i2nkhd1d0767onbailh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909305237713:android:991b3d7760fba6a17db5f0",
+        "android_client_info": {
+          "package_name": "company.example.easyfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909305237713-aimf6uti4oj0i2nkhd1d0767onbailh7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrJiSbg9rwtlAXUKjGLI0Rk55uGUj4ZCs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909305237713-aimf6uti4oj0i2nkhd1d0767onbailh7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

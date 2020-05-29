@@ -9,16 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.BaseActivity" />
+        <activity android:name=".view.customer.EateryActivity" />
+        <activity android:name=".view.customer.CustomerMenuActivity" />
+        <activity android:name=".view.customer.CustomerSettingsActivity" />
+        <activity android:name=".view.manager.ManagerBaseActivity" />
+        <activity android:name=".view.manager.ManagerMenuActivity" />
+        <activity android:name=".view.manager.ManagerSettingsActivity" />
+        <activity android:name=".view.manager.NewProductActivity" />
+        <activity android:name=".view.manager.EditProductActivity" />
+        <activity android:name=".view.manager.ManagerOrdersActivity" />
+        <activity android:name=".view.manager.ManagerOrderActivity" />
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.RegisterActivity" />
+        <activity android:name=".view.customer.BasketActivity" />
+        <activity android:name=".view.customer.CustomerOrdersActivity" />
     </application>
 
 </manifest>
