@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Basket Activity
  */
-public class BasketActivity extends CustomerBaseActivity implements BasketAdapter.OnRemoveEateryListener {
+public class BasketActivity extends CustomerBaseActivity implements BasketAdapter.OnRemoveProductListener {
     private RecyclerView recyclerView;
     private BasketViewModel viewModel;
     private BasketAdapter adapter;
