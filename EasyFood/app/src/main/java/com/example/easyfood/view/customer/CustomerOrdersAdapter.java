@@ -51,7 +51,7 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             products += "\n" + p.getName();
         }
         ((CustomerOrdersAdapter.ViewHolder)holder).productsList.setText(products);
-        ((CustomerOrdersAdapter.ViewHolder)holder).time.setText("Wating time: \n" + orders.get(position).getEstimatedTime() + " minutes");
+        ((CustomerOrdersAdapter.ViewHolder)holder).time.setText("Waiting time: \n" + orders.get(position).getEstimatedTime() + " minutes");
     }
 
     @Override
