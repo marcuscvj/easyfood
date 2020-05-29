@@ -28,7 +28,6 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
     private RecyclerView recyclerView;
     private BasketViewModel viewModel;
     private BasketAdapter adapter;
-    private TotalPriceCalculator calculator = new TotalPriceCalculator();
     private Button sendOrder;
 
     @Override
@@ -69,7 +68,7 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
     }
 
     @Override
-    public void onRemoveEateryClick(int position) {
+    public void onRemoveProductClick(int position) {
         viewModel.removeProduct(position);
     }
 
@@ -78,8 +77,7 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
      */
     public void updateTotalSum () {
         TextView totalSum = findViewById(R.id.total_sum);
-        ArrayList<Product> listWithProducts = (ArrayList<Product>) viewModel.getProducts().getValue();
-        totalSum.setText(String.format(String.valueOf(calculator.getTotalPriceOfProducts(listWithProducts))));
+        totalSum.setText(String.format(String.valueOf(viewModel.updateSum())));
     }
 
     /**
