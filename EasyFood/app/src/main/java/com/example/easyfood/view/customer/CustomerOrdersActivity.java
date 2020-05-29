@@ -14,8 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
-public class CustomerOrdersActivity extends CustomerBaseActivity {
 
+public class CustomerOrdersActivity extends CustomerBaseActivity {
     private RecyclerView recyclerView;
     private CustomerOrdersViewModel viewModel;
     private CustomerOrdersAdapter adapter;
@@ -41,7 +41,6 @@ public class CustomerOrdersActivity extends CustomerBaseActivity {
 
 
         setRecyclerView();
-
     }
 
     private void setRecyclerView() {
@@ -54,7 +53,4 @@ public class CustomerOrdersActivity extends CustomerBaseActivity {
     public void getCustomerId() {
         customerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
-
-
-
 }

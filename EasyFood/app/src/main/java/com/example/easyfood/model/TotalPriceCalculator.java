@@ -2,10 +2,10 @@ package com.example.easyfood.model;
 
 import java.util.ArrayList;
 
-public class totalPriceCalculator {
+public class TotalPriceCalculator {
     private double total;
 
-    public totalPriceCalculator () {
+    public TotalPriceCalculator() {
 
     }
 

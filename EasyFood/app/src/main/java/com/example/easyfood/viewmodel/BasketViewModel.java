@@ -27,10 +27,9 @@ public class BasketViewModel extends ViewModel {
      * Initializes the ViewModel
      */
     public void init(){
-        if(products != null) {
+        if (products != null) {
             return;
         }
-
         basketRepository= BasketRepository.getInstance();
         orderRepository = OrderRepository.getInstance();
         products = basketRepository.getProducts();
@@ -92,7 +91,4 @@ public class BasketViewModel extends ViewModel {
         basketRepository.updateProductList();
         products = basketRepository.getProducts();
     }
-
-
-
 }

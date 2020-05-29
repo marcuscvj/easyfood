@@ -2,7 +2,6 @@ package com.example.easyfood.view.customer;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,18 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
-import com.example.easyfood.model.totalPriceCalculator;
+import com.example.easyfood.model.TotalPriceCalculator;
 import com.example.easyfood.viewmodel.BasketViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BasketActivity extends CustomerBaseActivity implements BasketAdapter.OnRemoveEateryListener {
-
     private RecyclerView recyclerView;
     private BasketViewModel viewModel;
     private BasketAdapter adapter;
-    private totalPriceCalculator calculator = new totalPriceCalculator();
+    private TotalPriceCalculator calculator = new TotalPriceCalculator();
     private Button sendOrder;
 
     @Override
@@ -35,7 +33,6 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basket);
         sendOrder = findViewById(R.id.placeorder);
-
 
         recyclerView = findViewById(R.id.basket_recycleView);
 
@@ -50,15 +47,12 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
         });
         setRecyclerView();
         setSendOrderButtonListener();
-
-
     }
 
     @Override
     public void onResume(){
         super.onResume();
         updateTotalSum();
-
     }
 
     /**
@@ -78,11 +72,8 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
 
     public void updateTotalSum () {
         TextView totalSum = findViewById(R.id.total_sum);
-
         ArrayList<Product> listWithProducts = (ArrayList<Product>) viewModel.getProducts().getValue();
-
         totalSum.setText(String.format(String.valueOf(calculator.getTotalPriceOfProducts(listWithProducts))));
-
     }
 
     private void setSendOrderButtonListener() {
@@ -95,16 +86,12 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
     }
 
     public void sendOrder() {
-
         if (viewModel.getProducts().getValue().size() == 0) {
-
             Toast.makeText(getApplicationContext(), R.string.empty_basket, Toast.LENGTH_SHORT).show();
-
         } else {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
             builder1.setCancelable(true);
             builder1.setMessage("Send order to eatery?");
-
             builder1.setPositiveButton(
                     "Yes",
                     new DialogInterface.OnClickListener() {
@@ -118,7 +105,6 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
                             Toast.makeText(getApplicationContext(), R.string.order_sent,  Toast.LENGTH_SHORT).show();
                         }
                     });
-
             builder1.setNegativeButton(
                     "No",
                     new DialogInterface.OnClickListener() {
@@ -130,6 +116,5 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
             AlertDialog alert11 = builder1.create();
             alert11.show();
         }
-
     }
 }

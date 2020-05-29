@@ -14,6 +14,7 @@ import com.example.easyfood.R;
 import com.example.easyfood.model.User;
 import com.example.easyfood.viewmodel.LoginViewModel;
 
+
 public class LoginActivity extends BaseActivity {
     private LoginViewModel viewModel;
 

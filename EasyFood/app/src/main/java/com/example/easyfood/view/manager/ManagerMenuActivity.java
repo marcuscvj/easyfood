@@ -13,10 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
 import com.example.easyfood.model.Product;
-import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
 import java.util.List;
+
 
 public class ManagerMenuActivity extends ManagerBaseActivity implements ManagerMenuAdapter.OnClickProductListener {
     private Button newProductButton;
@@ -47,7 +47,6 @@ public class ManagerMenuActivity extends ManagerBaseActivity implements ManagerM
 
         setRecyclerView();
         setNewProductButtonListener();
-
     }
 
     /**

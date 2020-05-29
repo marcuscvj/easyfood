@@ -16,6 +16,7 @@ import com.example.easyfood.model.Product;
 import java.text.MessageFormat;
 import java.util.List;
 
+
 public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Order> orders;
     private Context context;
@@ -88,7 +89,5 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             productsList = itemView.findViewById(R.id.products_textView);
             time = itemView.findViewById(R.id.time_textView);
         }
-
     }
-
 }

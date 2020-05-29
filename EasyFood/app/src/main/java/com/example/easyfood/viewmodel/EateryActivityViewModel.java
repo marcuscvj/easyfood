@@ -20,10 +20,9 @@ public class EateryActivityViewModel extends ViewModel {
      * Initializes the ViewModel
      */
     public void init(){
-        if(eateries != null) {
+        if (eateries != null) {
             return;
         }
-
         eateryRepository = EateryRepository.getInstance();
         eateries = eateryRepository.getEateries();
     }

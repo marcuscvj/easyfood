@@ -125,7 +125,6 @@ public class EateryRepository {
                             }
 
                             callback.send(eatery);
-
                         } else {
                             Log.d(TAG, "Error getting documents: ", task.getException());
                         }

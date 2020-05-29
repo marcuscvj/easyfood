@@ -16,6 +16,7 @@ import com.example.easyfood.model.Product;
 import java.text.DecimalFormat;
 import java.util.List;
 
+
 public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Product> products;
     private Context context;
@@ -25,7 +26,6 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.products = products;
         this.context = context;
         this.onRemoveEateryListener = onRemoveEateryListener;
-
     }
 
     void setProducts(List<Product> products) {
@@ -80,7 +80,5 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     public interface OnRemoveEateryListener {
         void onRemoveEateryClick(int position);
-
     }
-
 }

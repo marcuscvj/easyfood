@@ -29,7 +29,7 @@ import java.util.Objects;
 public class OrderRepository {
     private String TAG = "OrderRepository";
     private static OrderRepository instance;
-    private FirebaseFirestore database = FirebaseFirestore.getInstance(); // TODO Move down queries to Firebase class
+    private FirebaseFirestore database = FirebaseFirestore.getInstance();
 
     // For the restaurant/manager to be able to observe all incoming orders.
     private MutableLiveData<List<Order>> orders = new MutableLiveData<>();
@@ -49,7 +49,6 @@ public class OrderRepository {
         if (instance == null) {
             instance = new OrderRepository();
         }
-
         return instance;
     }
 
@@ -170,6 +169,7 @@ public class OrderRepository {
                         Order order = document.toObject(Order.class);
                         ArrayList<Product> products = Objects.requireNonNull(document.toObject(ProductDocument.class)).products;
                         order.setProducts(products);
+
                         callback.send(order);
                     }
                 });
@@ -268,7 +268,6 @@ public class OrderRepository {
         return database.collection("orders").document().getId();
     }
 
-
     /**
      * Interface
      */
@@ -276,12 +275,10 @@ public class OrderRepository {
         void send(Order newOrder);
     }
 
-
     /**
      * Interface
      */
     private interface IOrdersCallback {
         void send(ArrayList<Order> list);
     }
-
 }

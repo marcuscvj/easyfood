@@ -10,8 +10,8 @@ import android.widget.Toast;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.easyfood.R;
-import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.ManagerMenuViewModel;
+
 
 public class EditProductActivity extends ManagerBaseActivity {
     private ManagerMenuViewModel viewModel;
@@ -41,7 +41,6 @@ public class EditProductActivity extends ManagerBaseActivity {
         viewModel.init(eateryId);
 
         setEditButtonListener();
-
     }
 
     /**

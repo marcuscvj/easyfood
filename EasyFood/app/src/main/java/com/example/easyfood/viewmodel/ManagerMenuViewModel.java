@@ -22,11 +22,10 @@ public class ManagerMenuViewModel extends ViewModel {
      * @param eateryId : String - The id of the eatery
      */
     public void init(String eateryId){
-        if(products != null) {
+        if (products != null) {
             return;
         }
-
-        productRepository = productRepository.getInstance();
+        productRepository = ProductRepository.getInstance();
         products = productRepository.getProducts(eateryId);
     }
 
@@ -48,8 +47,10 @@ public class ManagerMenuViewModel extends ViewModel {
      * @param price : Double - The price of the product
      * @param category : String - The category of the product
      */
-    public void createProduct(String eateryId, String name, String description, Double price, String category) {
-        productRepository.createProductAndAddToDatabase(eateryId, name, description, price, category);
+    public void createProduct(String eateryId, String name, String description,
+                              Double price, String category) {
+        productRepository.createProductAndAddToDatabase(eateryId, name, description,
+                price, category);
     }
 
     /**
@@ -73,7 +74,8 @@ public class ManagerMenuViewModel extends ViewModel {
      * @param price : Double - The price of the product
      * @param category : String - The category of the product
      */
-    public void updateProduct(String eateryId, String productId, String name, String description, Double price, String category) {
+    public void updateProduct(String eateryId, String productId, String name,
+                              String description, Double price, String category) {
         productRepository.updateProduct(eateryId, productId, name, description, price, category);
     }
 

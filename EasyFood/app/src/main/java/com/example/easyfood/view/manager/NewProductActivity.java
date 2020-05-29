@@ -38,7 +38,6 @@ public class NewProductActivity extends ManagerBaseActivity {
         addButton = findViewById(R.id.add_button);
 
         setAddButtonListener();
-
     }
 
     /**

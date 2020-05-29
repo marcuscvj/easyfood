@@ -15,6 +15,7 @@ import com.example.easyfood.model.User;
 import com.example.easyfood.view.MainActivity;
 import com.example.easyfood.viewmodel.CustomerSettingsViewModel;
 
+
 public class CustomerSettingsActivity extends CustomerBaseActivity {
     private String userId;
 

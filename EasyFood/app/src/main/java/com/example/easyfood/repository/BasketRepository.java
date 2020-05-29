@@ -39,7 +39,6 @@ public class BasketRepository {
         return products;
     }
 
-
     public void addProduct(Product product) {
         products.getValue().add(product);
     }
@@ -71,7 +70,6 @@ public class BasketRepository {
     public Order getOrder() {
         return order;
     }
-
 
     public void updateProductList() {
         productsList = new ArrayList<>();

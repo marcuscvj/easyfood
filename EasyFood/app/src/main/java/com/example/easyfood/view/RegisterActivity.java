@@ -16,6 +16,7 @@ import com.example.easyfood.model.User;
 import com.example.easyfood.view.customer.EateryActivity;
 import com.example.easyfood.viewmodel.RegisterViewModel;
 
+
 public class RegisterActivity extends BaseActivity {
     RegisterViewModel viewModel;
 

@@ -12,6 +12,7 @@ import com.example.easyfood.R;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.MainActivity;
 
+
 public class CustomerBaseActivity extends BaseActivity {
     protected String customerId;
     @Override
@@ -42,5 +43,4 @@ public class CustomerBaseActivity extends BaseActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }
