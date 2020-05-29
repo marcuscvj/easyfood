@@ -18,6 +18,7 @@ import com.example.easyfood.viewmodel.CustomerMenuViewModel;
 
 import java.util.List;
 
+
 public class CustomerMenuActivity extends CustomerBaseActivity implements CustomerMenuAdapter.OnAddProductListener{
     private String eateryId;
     private String eateryName;
@@ -51,7 +52,6 @@ public class CustomerMenuActivity extends CustomerBaseActivity implements Custom
 
         setRecyclerView();
         setSearchView();
-
     }
 
     /**
@@ -96,7 +96,6 @@ public class CustomerMenuActivity extends CustomerBaseActivity implements Custom
         contactInformation += "Phone: " + extras.getInt("phoneNumber") + "\n";
         contactInformation += "openingHours: " + extras.getString("openingHours");
 
-
         menuHeader.setText(contactInformation);
     }
 
@@ -106,6 +105,4 @@ public class CustomerMenuActivity extends CustomerBaseActivity implements Custom
         viewModel.addProduct(position, context);
         Toast.makeText(getApplicationContext(), R.string.product_added_basket, Toast.LENGTH_SHORT).show();
     }
-
-
 }

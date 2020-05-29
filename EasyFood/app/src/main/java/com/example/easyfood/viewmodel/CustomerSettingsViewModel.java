@@ -19,10 +19,10 @@ public class CustomerSettingsViewModel extends ViewModel {
      * @param userId : String - The id of the user
      */
     public void init(String userId){
-        if(user != null) {
+        if (user != null) {
             return;
         }
-        userRepository = userRepository.getInstance();
+        userRepository = UserRepository.getInstance();
         user = userRepository.getCurrentUser(userId);
     }
 

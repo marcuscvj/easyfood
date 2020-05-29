@@ -25,7 +25,6 @@ public class ManagerOrdersViewModel extends ViewModel {
         if (orders != null) {
             return;
         }
-
         orderRepository = OrderRepository.getInstance();
         orders = orderRepository.getAllOrdersForSpecificEatery(eateryId);
     }

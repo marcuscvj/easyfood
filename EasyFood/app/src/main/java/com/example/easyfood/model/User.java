@@ -1,7 +1,5 @@
 package com.example.easyfood.model;
 
-// TODO What attributes does the user need ?
-
 /**
  * Represents a user
  */

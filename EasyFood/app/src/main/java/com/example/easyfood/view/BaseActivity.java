@@ -2,15 +2,9 @@ package com.example.easyfood.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.easyfood.R;
-import com.example.easyfood.view.customer.BasketActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 /**

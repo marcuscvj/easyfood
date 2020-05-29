@@ -18,7 +18,6 @@ import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
 import com.example.easyfood.viewmodel.ManagerOrderViewModel;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -77,7 +76,6 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         orderId = intent.getStringExtra("orderId");
     }
 
-    // TODO Could be improved
     private void setOrderDetails(Order order) {
         String orderNumber = "OrderNumber: ";
         String orderStatus = "OrderStatus: ";
@@ -129,7 +127,6 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
     }
 
     /**
@@ -154,7 +151,6 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-
     }
 
     private void setChangeStatusButtonListener() {

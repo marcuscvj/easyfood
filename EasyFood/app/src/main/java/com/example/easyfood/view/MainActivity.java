@@ -118,5 +118,4 @@ public class MainActivity extends BaseActivity implements FirebaseAuth.AuthState
             registerButton.setVisibility(View.INVISIBLE);
         }
     }
-
 }

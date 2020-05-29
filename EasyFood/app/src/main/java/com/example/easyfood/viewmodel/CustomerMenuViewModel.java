@@ -23,7 +23,6 @@ public class CustomerMenuViewModel extends ViewModel {
     private String eateryId;
     private String eateryName;
 
-
     /**
      * Initializes the ViewModel
      *
@@ -31,17 +30,15 @@ public class CustomerMenuViewModel extends ViewModel {
      * @param eateryName : String - The name of the eatery
      */
     public void init(String eateryId, String eateryName){
-        if(productsInMenu != null) {
+        if (productsInMenu != null) {
             return;
         }
-
         this.eateryId = eateryId;
         this.eateryName = eateryName;
         productsRepository= ProductRepository.getInstance();
         basketRepository = BasketRepository.getInstance();
         basketRepository.getProducts();
         productsInMenu = productsRepository.getProducts(eateryId);
-
     }
 
     /**
@@ -54,11 +51,10 @@ public class CustomerMenuViewModel extends ViewModel {
     }
 
     public void addProduct(int position, Context context) {
-
         Product product = getProductsInMenu().getValue().get(position);
         basketRepository.setOrder(eateryId, eateryName);
 
-        if (eateryId == basketRepository.getEateryIdFromOrder()) {
+        if (eateryId.equals(basketRepository.getEateryIdFromOrder())) {
             basketRepository.addProduct(product);
         } else {
             CharSequence text = "You can only order from one restaurant at a time!";
@@ -66,10 +62,5 @@ public class CustomerMenuViewModel extends ViewModel {
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
-
-
-
     }
-
-
 }

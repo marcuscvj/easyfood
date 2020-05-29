@@ -60,13 +60,12 @@ public class ProductRepository {
      * @param price : Double - The price of the product
      * @param category : String - The category of the product
      */
-    public void createProductAndAddToDatabase(String eateryId, String name, String description, Double price, String category) {
+    public void createProductAndAddToDatabase(String eateryId, String name, String description,
+                                              Double price, String category) {
         String id = getGeneratedProductIdFromDatabase(eateryId);
-
         Product product = new Product(name, description, price, id, category);
 
         addProductToDatabase(eateryId, product);
-
     }
 
     /**
@@ -90,7 +89,8 @@ public class ProductRepository {
      * @param price : Double - The price of the product
      * @param category : String - The category of the product
      */
-    public void updateProduct(String eateryId, String productId, String name, String description, Double price, String category) {
+    public void updateProduct(String eateryId, String productId, String name, String description,
+                              Double price, String category) {
         Product product = new Product(name, description, price, productId, category);
         updateProductInDatabase(eateryId, product);
     }
@@ -216,7 +216,10 @@ public class ProductRepository {
      * @return String: id - New id from the database
      */
     private String getGeneratedProductIdFromDatabase(String eateryId) {
-        return database.collection("eateries").document(eateryId).collection("products").document().getId();
+        return database.collection("eateries")
+                .document(eateryId)
+                .collection("products")
+                .document().getId();
     }
 
     /**

@@ -38,7 +38,6 @@ public class ManagerOrdersActivity extends ManagerBaseActivity implements Manage
         });
 
         setRecyclerView();
-
     }
 
     private void setRecyclerView() {

@@ -2,7 +2,6 @@ package com.example.easyfood.view.customer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.easyfood.R;
 import com.example.easyfood.model.Eatery;
-import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.viewmodel.EateryActivityViewModel;
 
 import java.util.List;

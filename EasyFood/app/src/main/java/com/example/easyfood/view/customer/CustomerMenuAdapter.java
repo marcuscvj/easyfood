@@ -27,7 +27,6 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private Context context;
     private OnAddProductListener onAddProductListener;
 
-
     /**
      * Creates an instance of an ProductAdapter
      *
@@ -62,8 +61,6 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         String result = decimalFormat.format(Double.valueOf(price));
 
         ((ViewHolder)holder).price.setText(result + " :-");
-
-
     }
 
     @Override
@@ -145,13 +142,10 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         @Override
         public void onClick(View view) {
             onAddProductListener.OnAddProductClick(getAdapterPosition());
-
         }
     }
 
     public interface OnAddProductListener {
         void OnAddProductClick(int position);
     }
-
-
 }
