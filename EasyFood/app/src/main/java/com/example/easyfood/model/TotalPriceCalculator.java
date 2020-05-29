@@ -2,15 +2,18 @@ package com.example.easyfood.model;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a TotalPriceCalculator
+ */
 public class TotalPriceCalculator {
-    private double total;
 
-    public TotalPriceCalculator() {
-
-    }
-
+    /**
+     * Returns the total price of products
+     *
+     * @return total : double
+     */
     public double getTotalPriceOfProducts(ArrayList<Product> products) {
-        total = 0.0;
+        double total = 0.0;
         for (Product item : products)
         {
             total += item.getPrice();

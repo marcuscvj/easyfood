@@ -39,10 +39,21 @@ public class BasketRepository {
         return products;
     }
 
+    /**
+     * Add a product
+     *
+     * @param product : Product
+     */
     public void addProduct(Product product) {
         products.getValue().add(product);
     }
 
+    /**
+     * Set an order
+     *
+     * @param eateryId : String
+     * @param eateryName : String
+     */
     public void setOrder(String eateryId, String eateryName) {
         if (order == null) {
             order = new Order(eateryId);
@@ -50,10 +61,20 @@ public class BasketRepository {
         }
     }
 
+    /**
+     * Returns the id of eatery from an order
+     *
+     * @return total : String
+     */
     public String getEateryIdFromOrder() {
         return order.getEateryId();
     }
 
+    /**
+     * Removes a product
+     *
+     * @param product : Product
+     */
     public void removeProduct(Product product) {
         products.getValue().remove(product);
 
@@ -61,17 +82,28 @@ public class BasketRepository {
         resetOrder();
     }
 
-    private void resetOrder() {
-        if (products.getValue().size() == 0) {
-            this.order = null;
-        }
-    }
-
+    /**
+     * Gets an order
+     *
+     * @return order : Order
+     */
     public Order getOrder() {
         return order;
     }
 
+    /**
+     * Update the product list
+     */
     public void updateProductList() {
         productsList = new ArrayList<>();
+    }
+
+    /**
+     * Reset the order
+     */
+    private void resetOrder() {
+        if (products.getValue().size() == 0) {
+            this.order = null;
+        }
     }
 }

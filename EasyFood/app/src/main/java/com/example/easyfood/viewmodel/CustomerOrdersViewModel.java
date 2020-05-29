@@ -25,7 +25,6 @@ public class CustomerOrdersViewModel extends ViewModel {
         if (orders != null) {
             return;
         }
-
         orderRepository = OrderRepository.getInstance();
         orders = orderRepository.getAllOrdersForSpecificCustomer(customerId);
     }
@@ -38,5 +37,4 @@ public class CustomerOrdersViewModel extends ViewModel {
     public LiveData<List<Order>> getOrders() {
         return orders;
     }
-
 }

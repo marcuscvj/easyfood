@@ -12,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.easyfood.R;
 import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
+/**
+ * New Product Activity
+ */
 public class NewProductActivity extends ManagerBaseActivity {
     private ManagerMenuViewModel viewModel;
 

@@ -85,6 +85,4 @@ public class Product {
     public String getCategory() {
         return this.category;
     }
-
-
 }

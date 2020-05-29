@@ -14,6 +14,9 @@ import com.example.easyfood.viewmodel.ManagerOrdersViewModel;
 
 import java.util.List;
 
+/**
+ * Manager Orders Activity
+ */
 public class ManagerOrdersActivity extends ManagerBaseActivity implements ManagerOrdersAdapter.OnOrderListener {
     private RecyclerView recyclerView;
     private ManagerOrdersViewModel viewModel;
@@ -40,13 +43,6 @@ public class ManagerOrdersActivity extends ManagerBaseActivity implements Manage
         setRecyclerView();
     }
 
-    private void setRecyclerView() {
-        adapter = new ManagerOrdersAdapter(this, viewModel.getOrders().getValue(), this);
-        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
-    }
-
     @Override
     public void OnOrderClick(int position) {
         String orderId = viewModel.getOrder(position).getId();
@@ -54,5 +50,15 @@ public class ManagerOrdersActivity extends ManagerBaseActivity implements Manage
         intent.putExtra("orderId", orderId);
         intent.putExtra("eateryId", eateryId);
         startActivity(intent);
+    }
+
+    /**
+     * Set recycler view
+     */
+    private void setRecyclerView() {
+        adapter = new ManagerOrdersAdapter(this, viewModel.getOrders().getValue(), this);
+        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(adapter);
     }
 }

@@ -22,6 +22,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Manager Order Activity
+ */
 public class ManagerOrderActivity extends ManagerBaseActivity {
     private String orderId;
     private ManagerOrderViewModel viewModel;
@@ -54,7 +57,7 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         isPaidSpinner = findViewById(R.id.order_isPaidSpinner);
         changeStatusButton = findViewById(R.id.changeStatus_button);
 
-        getOrderId();
+        setOrderId();
         setEateryId();
 
         viewModel = new ViewModelProvider(this).get(ManagerOrderViewModel.class);
@@ -71,11 +74,19 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         setChangeStatusButtonListener();
     }
 
-    private void getOrderId() {
+    /**
+     * Sets the order id
+     */
+    private void setOrderId() {
         Intent intent = getIntent();
         orderId = intent.getStringExtra("orderId");
     }
 
+    /**
+     * Sets the order details
+     *
+     * @param order : Order
+     */
     private void setOrderDetails(Order order) {
         String orderNumber = "OrderNumber: ";
         String orderStatus = "OrderStatus: ";
@@ -153,6 +164,9 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
         });
     }
 
+    /**
+     * Sets the status button
+     */
     private void setChangeStatusButtonListener() {
         changeStatusButton.setOnClickListener(new View.OnClickListener() {
             @Override

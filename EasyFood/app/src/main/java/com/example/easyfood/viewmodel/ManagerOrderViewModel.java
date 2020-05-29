@@ -59,5 +59,4 @@ public class ManagerOrderViewModel extends ViewModel {
             orderRepository.setPaymentStatus(orderId, status);
         }
     }
-
 }

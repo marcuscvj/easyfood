@@ -68,11 +68,21 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return products.size();
     }
 
+    /**
+     * Sets products
+     *
+     * @param products : List<Product>
+     */
     public void setProducts(List<Product> products) {
         this.products = products;
         notifyDataSetChanged();
     }
 
+    /**
+     * Sets products full
+     *
+     * @param products : List<Product>
+     */
     void setProductsFull(List<Product> products) {
         this.productsFull.addAll(products);
     }
@@ -121,6 +131,16 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     };
 
+    /**
+     * Product Listener Interface
+     */
+    public interface OnAddProductListener {
+        void OnAddProductClick(int position);
+    }
+
+    /**
+     * Represents a View Holder
+     */
     private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView name;
         private TextView desc;
@@ -143,9 +163,5 @@ public class CustomerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public void onClick(View view) {
             onAddProductListener.OnAddProductClick(getAdapterPosition());
         }
-    }
-
-    public interface OnAddProductListener {
-        void OnAddProductClick(int position);
     }
 }

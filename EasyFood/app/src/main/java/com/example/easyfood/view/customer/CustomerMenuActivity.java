@@ -18,7 +18,9 @@ import com.example.easyfood.viewmodel.CustomerMenuViewModel;
 
 import java.util.List;
 
-
+/**
+ * Customer Menu Activity
+ */
 public class CustomerMenuActivity extends CustomerBaseActivity implements CustomerMenuAdapter.OnAddProductListener{
     private String eateryId;
     private String eateryName;

@@ -14,6 +14,9 @@ import com.example.easyfood.model.Order;
 
 import java.util.List;
 
+/**
+ * Manager Orders Adapter
+ */
 public class ManagerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Order> orders;
     private Context context;
@@ -83,6 +86,9 @@ public class ManagerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.View
         }
     }
 
+    /**
+     * Listening on order
+     */
     public interface OnOrderListener {
         void OnOrderClick(int position);
     }

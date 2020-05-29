@@ -21,6 +21,9 @@ import com.example.easyfood.viewmodel.BasketViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Basket Activity
+ */
 public class BasketActivity extends CustomerBaseActivity implements BasketAdapter.OnRemoveEateryListener {
     private RecyclerView recyclerView;
     private BasketViewModel viewModel;
@@ -70,21 +73,18 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
         viewModel.removeProduct(position);
     }
 
+    /**
+     * Updates the total sum
+     */
     public void updateTotalSum () {
         TextView totalSum = findViewById(R.id.total_sum);
         ArrayList<Product> listWithProducts = (ArrayList<Product>) viewModel.getProducts().getValue();
         totalSum.setText(String.format(String.valueOf(calculator.getTotalPriceOfProducts(listWithProducts))));
     }
 
-    private void setSendOrderButtonListener() {
-        sendOrder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendOrder();
-            }
-        });
-    }
-
+    /**
+     * Send the Order
+     */
     public void sendOrder() {
         if (viewModel.getProducts().getValue().size() == 0) {
             Toast.makeText(getApplicationContext(), R.string.empty_basket, Toast.LENGTH_SHORT).show();
@@ -116,5 +116,17 @@ public class BasketActivity extends CustomerBaseActivity implements BasketAdapte
             AlertDialog alert11 = builder1.create();
             alert11.show();
         }
+    }
+
+    /**
+     * Send Order Button Listener
+     */
+    private void setSendOrderButtonListener() {
+        sendOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendOrder();
+            }
+        });
     }
 }

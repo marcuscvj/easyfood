@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.easyfood.R;
 import com.example.easyfood.viewmodel.ManagerMenuViewModel;
 
-
+/**
+ * Edit Product Activity
+ */
 public class EditProductActivity extends ManagerBaseActivity {
     private ManagerMenuViewModel viewModel;
     private String productId;

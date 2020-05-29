@@ -16,7 +16,9 @@ import com.example.easyfood.model.Product;
 import java.text.DecimalFormat;
 import java.util.List;
 
-
+/**
+ * Manager Menu Adapter
+ */
 public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Product> products;
     private Context context;
@@ -62,6 +64,9 @@ public class ManagerMenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         notifyDataSetChanged();
     }
 
+    /**
+     * Represents a View Holder
+     */
     private class ViewHolder extends RecyclerView.ViewHolder {
         private TextView name;
         private TextView desc;
