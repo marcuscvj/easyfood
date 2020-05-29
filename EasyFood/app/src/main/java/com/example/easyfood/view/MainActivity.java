@@ -19,9 +19,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 /**
  * Main Activity
- *
- * TEMPORARY:
- * Contains a Login and a Register Button.
  */
 public class MainActivity extends BaseActivity implements FirebaseAuth.AuthStateListener {
     MainViewModel viewModel;
@@ -108,6 +105,11 @@ public class MainActivity extends BaseActivity implements FirebaseAuth.AuthState
         });
     }
 
+    /**
+     * Shows main activity
+     *
+     * @param show : boolean
+     */
     private void showMainActivity(boolean show) {
         if (show) {
             loginButton.setVisibility(View.VISIBLE);

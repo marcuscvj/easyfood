@@ -12,7 +12,9 @@ import com.example.easyfood.R;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.MainActivity;
 
-
+/**
+ * Customer Base Activity
+ */
 public class CustomerBaseActivity extends BaseActivity {
     protected String customerId;
     @Override

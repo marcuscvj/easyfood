@@ -16,7 +16,9 @@ import com.example.easyfood.model.Product;
 import java.text.MessageFormat;
 import java.util.List;
 
-
+/**
+ * Customer Orders Adapter
+ */
 public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<Order> orders;
     private Context context;

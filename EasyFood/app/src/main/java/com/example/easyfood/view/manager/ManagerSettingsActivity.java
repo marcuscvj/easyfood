@@ -15,7 +15,9 @@ import com.example.easyfood.model.User;
 import com.example.easyfood.view.MainActivity;
 import com.example.easyfood.viewmodel.ManagerSettingsViewModel;
 
-
+/**
+ * Manager Settings Activity
+ */
 public class ManagerSettingsActivity extends ManagerBaseActivity {
     private String userId;
 
@@ -89,6 +91,9 @@ public class ManagerSettingsActivity extends ManagerBaseActivity {
 
     }
 
+    /**
+     * Logout the authenticated user
+     */
     protected void logout() {
         firebaseAuth.signOut();
         startActivity(new Intent(this, MainActivity.class));

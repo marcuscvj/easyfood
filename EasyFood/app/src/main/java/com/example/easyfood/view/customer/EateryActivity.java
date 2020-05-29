@@ -17,9 +17,6 @@ import java.util.List;
 
 /**
  * Eatery Activity
- *
- * TEMPORARY:
- * Contains a list of all the available eateries.
  */
 public class EateryActivity extends CustomerBaseActivity implements EateryAdapter.OnEateryListener {
     private SearchView searchView;

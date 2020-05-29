@@ -12,7 +12,9 @@ import com.example.easyfood.R;
 import com.example.easyfood.view.BaseActivity;
 import com.example.easyfood.view.MainActivity;
 
-
+/**
+ * Manager Base Activity
+ */
 public class ManagerBaseActivity extends BaseActivity {
     protected String eateryId;
 

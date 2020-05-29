@@ -145,6 +145,9 @@ public class EateryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
+    /**
+     * Eatery Listener Interface
+     */
     public interface OnEateryListener {
         void OnEateryClick(int position);
     }

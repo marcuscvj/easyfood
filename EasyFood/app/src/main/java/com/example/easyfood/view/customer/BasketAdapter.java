@@ -22,12 +22,24 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private Context context;
     private OnRemoveEateryListener onRemoveEateryListener;
 
+    /**
+     * Basket Adapter Constructor
+     *
+     * @param context : Context
+     * @param products : List<Product>
+     * @param onRemoveEateryListener: OnRemoveEateryListener
+     */
     BasketAdapter(Context context, List<Product> products, OnRemoveEateryListener onRemoveEateryListener) {
         this.products = products;
         this.context = context;
         this.onRemoveEateryListener = onRemoveEateryListener;
     }
 
+    /**
+     * Sets products
+     *
+     * @param products : List<Product>
+     */
     void setProducts(List<Product> products) {
         this.products = products;
         notifyDataSetChanged();
@@ -56,6 +68,9 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         return products.size();
     }
 
+    /**
+     * Represents a View Holder
+     */
     private class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private TextView name;
         private TextView desc;
@@ -78,6 +93,9 @@ public class BasketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
+    /**
+     * Remove Eatery Listener Interface
+     */
     public interface OnRemoveEateryListener {
         void onRemoveEateryClick(int position);
     }

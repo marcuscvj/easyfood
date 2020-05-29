@@ -14,7 +14,9 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
-
+/**
+ * Customer Orders Activity
+ */
 public class CustomerOrdersActivity extends CustomerBaseActivity {
     private RecyclerView recyclerView;
     private CustomerOrdersViewModel viewModel;
@@ -27,8 +29,7 @@ public class CustomerOrdersActivity extends CustomerBaseActivity {
 
         recyclerView = findViewById(R.id.orders_recycleView);
 
-        getCustomerId();
-
+        setCustomerId();
 
         viewModel = new ViewModelProvider(this).get(CustomerOrdersViewModel.class);
         viewModel.init(customerId);
@@ -39,18 +40,23 @@ public class CustomerOrdersActivity extends CustomerBaseActivity {
             }
         });
 
-
         setRecyclerView();
     }
 
+    /**
+     * Sets the customer Id
+     */
+    public void setCustomerId() {
+        customerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+    }
+
+    /**
+     * Sets the recycler view
+     */
     private void setRecyclerView() {
         adapter = new CustomerOrdersAdapter(this, viewModel.getOrders().getValue());
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-    }
-
-    public void getCustomerId() {
-        customerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 }

@@ -15,7 +15,9 @@ import com.example.easyfood.model.User;
 import com.example.easyfood.view.MainActivity;
 import com.example.easyfood.viewmodel.CustomerSettingsViewModel;
 
-
+/**
+ * Customer Settings Activity
+ */
 public class CustomerSettingsActivity extends CustomerBaseActivity {
     private String userId;
 
@@ -84,6 +86,9 @@ public class CustomerSettingsActivity extends CustomerBaseActivity {
         Toast.makeText(getApplicationContext(), R.string.info_updated, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * Logout the authenticated user
+     */
     protected void logout() {
         firebaseAuth.signOut();
         startActivity(new Intent(this, MainActivity.class));

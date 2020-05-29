@@ -50,6 +50,12 @@ public class CustomerMenuViewModel extends ViewModel {
         return productsInMenu;
     }
 
+    /**
+     * Add a product
+     *
+     * @param position : int
+     * @param context : Context
+     */
     public void addProduct(int position, Context context) {
         Product product = getProductsInMenu().getValue().get(position);
         basketRepository.setOrder(eateryId, eateryName);
