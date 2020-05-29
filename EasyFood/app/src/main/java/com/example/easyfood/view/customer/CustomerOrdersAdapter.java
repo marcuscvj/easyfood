@@ -43,15 +43,15 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((CustomerOrdersAdapter.ViewHolder)holder).eateryName.setText(orders.get(position).getEateryName());
-        ((CustomerOrdersAdapter.ViewHolder)holder).orderId.setText(String.valueOf(orders.get(position).getOrderNumber()));
-        ((CustomerOrdersAdapter.ViewHolder)holder).status.setText(orders.get(position).getOrderStatus().toString());
-        String products = "";
+        ((CustomerOrdersAdapter.ViewHolder)holder).eateryName.setText("From: \n" + orders.get(position).getEateryName());
+        ((CustomerOrdersAdapter.ViewHolder)holder).orderId.setText("Order number: \n" + orders.get(position).getOrderNumber());
+        ((CustomerOrdersAdapter.ViewHolder)holder).status.setText("Status: \n" + orders.get(position).getOrderStatus().getStatus());
+        String products = "Products:";
         for (Product p : orders.get(position).getProducts()) {
             products += "\n" + p.getName();
         }
         ((CustomerOrdersAdapter.ViewHolder)holder).productsList.setText(products);
-        ((CustomerOrdersAdapter.ViewHolder)holder).time.setText(MessageFormat.format("{0}minutes", orders.get(position).getEstimatedTime()));
+        ((CustomerOrdersAdapter.ViewHolder)holder).time.setText("Wating time: \n" + orders.get(position).getEstimatedTime() + " minutes");
     }
 
     @Override
@@ -86,7 +86,7 @@ public class CustomerOrdersAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         ViewHolder(@NonNull View itemView) {
             super(itemView);
             eateryName = itemView.findViewById(R.id.eateryName_textView);
-            orderId = itemView.findViewById(R.id.orderId_textView);
+            orderId = itemView.findViewById(R.id.orderNumber_textView);
             status = itemView.findViewById(R.id.status_textView);
             productsList = itemView.findViewById(R.id.products_textView);
             time = itemView.findViewById(R.id.time_textView);
