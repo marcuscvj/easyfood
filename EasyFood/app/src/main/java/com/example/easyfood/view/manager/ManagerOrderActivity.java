@@ -36,8 +36,10 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
     private TextView numberTextView;
     private TextView statusTextView;
     private TextView paymentMethodTextView;
+    private TextView priceTextView;
     private TextView isPaidTextView;
     private TextView productTextView;
+    private TextView noteTextView;
 
     private Spinner statusSpinner;
     private Spinner isPaidSpinner;
@@ -50,12 +52,15 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
 
         numberTextView = findViewById(R.id.order_number);
         statusTextView = findViewById(R.id.order_status);
+        priceTextView = findViewById(R.id.order_price);
         isPaidTextView = findViewById(R.id.order_isPaid);
         paymentMethodTextView = findViewById(R.id.order_paymentMethod);
         productTextView = findViewById(R.id.order_products);
+        noteTextView = findViewById(R.id.order_note);
         statusSpinner = findViewById(R.id.order_statusSpinner);
         isPaidSpinner = findViewById(R.id.order_isPaidSpinner);
         changeStatusButton = findViewById(R.id.changeStatus_button);
+
 
         setOrderId();
         setEateryId();
@@ -90,9 +95,11 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
     private void setOrderDetails(Order order) {
         String orderNumber = "OrderNumber: ";
         String orderStatus = "OrderStatus: ";
+        String price = "Sum: ";
         String paymentStatus = "PaymentStatus: ";
         String paymentMethod = "PaymentMethod: ";
         String products = "Products: ";
+        String note = "Note: ";
 
         numberTextView.setText(orderNumber + order.getOrderNumber());
 
@@ -100,6 +107,8 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
             statusTextView.setText(orderStatus + order.getOrderStatus().getStatus());
             status = order.getOrderStatus();
         }
+
+        priceTextView.setText(price + order.getSum());
 
         if (order.isPaid()) {
             isPaidTextView.setText(paymentStatus + paid);
@@ -118,6 +127,8 @@ public class ManagerOrderActivity extends ManagerBaseActivity {
             }
             productTextView.setText(productString);
         }
+
+        noteTextView.setText(note + order.getMessage());
     }
 
     /**

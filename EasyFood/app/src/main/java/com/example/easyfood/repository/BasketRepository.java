@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
+import com.example.easyfood.model.TotalPriceCalculator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,8 @@ public class BasketRepository {
     private static BasketRepository instance;
     private Order order;
     private ArrayList<Product> productsList = new ArrayList<>();
-    private  MutableLiveData<List<Product>> products= new MutableLiveData<>();
+    private MutableLiveData<List<Product>> products= new MutableLiveData<>();
+    private TotalPriceCalculator calculator = new TotalPriceCalculator();
 
     /**
      * Returns an instance of the EateryRepository
@@ -96,6 +98,15 @@ public class BasketRepository {
      */
     public void updateProductList() {
         productsList = new ArrayList<>();
+    }
+
+    /**
+     * Returns the total sum of all products
+     *
+     * @return sum : double - The total sum of all products
+     */
+    public double getTotalSumOfProducts() {
+        return calculator.getTotalPriceOfProducts(products.getValue());
     }
 
     /**
