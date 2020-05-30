@@ -1,6 +1,6 @@
 package com.example.easyfood.model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a TotalPriceCalculator
@@ -12,7 +12,7 @@ public class TotalPriceCalculator {
      *
      * @return total : double
      */
-    public double getTotalPriceOfProducts(ArrayList<Product> products) {
+    public double getTotalPriceOfProducts(List<Product> products) {
         double total = 0.0;
         for (Product item : products)
         {

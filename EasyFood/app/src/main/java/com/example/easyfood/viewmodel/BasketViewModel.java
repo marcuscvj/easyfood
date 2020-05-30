@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.easyfood.model.Order;
 import com.example.easyfood.model.Product;
-import com.example.easyfood.model.TotalPriceCalculator;
 import com.example.easyfood.repository.BasketRepository;
 import com.example.easyfood.repository.OrderRepository;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +19,6 @@ import java.util.List;
  */
 public class BasketViewModel extends ViewModel {
     private MutableLiveData<List<Product>> products;
-    private TotalPriceCalculator calculator = new TotalPriceCalculator();
     private BasketRepository basketRepository;
     private OrderRepository orderRepository;
 
@@ -93,7 +91,12 @@ public class BasketViewModel extends ViewModel {
         products = basketRepository.getProducts();
     }
 
+    /**
+     * Updates the total sum
+     *
+     * @return sum : double - The sum of all products
+     */
     public double updateSum () {
-    return calculator.getTotalPriceOfProducts((ArrayList<Product>) getProducts().getValue());
+        return basketRepository.getTotalSumOfProducts();
     }
 }
