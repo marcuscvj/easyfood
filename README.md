@@ -12,5 +12,6 @@ To install the application on your Android smart phone:
 The project is developed using Android Studio
 1. Clone the repo
 2. Import the code into Android Studio
+
 alt:
-1. Create a new project from version contol repo in Android Studio
+1. Create a new project from version control repo in Android Studio
