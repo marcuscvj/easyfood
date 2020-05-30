@@ -271,11 +271,11 @@ public class Order {
      * Order Status Enum
      */
     public enum Status {
-        CREATED("CREATED"),
-        SENT("SENT"),
-        CONFIRMED("CONFIRMED"),
-        READY("READY"),
-        DELIVERED("DELIVERED");
+        CREATED("Created"),
+        SENT("Sent to eatery"),
+        CONFIRMED("Confirmed by eatery"),
+        READY("Ready for pickup "),
+        DELIVERED("Delivered to customer");
 
         private String status;
 
