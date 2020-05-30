@@ -1,1 +1,9 @@
 # 2DV609
+## D3 Final Submission : Source Code and Installation file
+
+### Installation
+To install the application on your Android smart phone:
+1. Download the easyFood_app.apk to your phone
+2. Make sure you have accepted installation from unsecure sources
+3. Click on the apk-file to install it
+4. Open the installed app 
