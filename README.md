@@ -10,8 +10,11 @@ To install the application on your Android smart phone:
 
 ### Development
 The project is developed using Android Studio
-1. Clone the repo
-2. Import the code into Android Studio
+
+1. Clone the repo, (git clone https://github.com/mjovanc/easyfood.git)
+2. Import the code into Android Studio (File -> New -> Import Project -> Choose repo directory)
 
 alt:
-1. Create a new project from version control repo in Android Studio
+1. Create a new project from version control in Android Studio (File -> New -> Import project from version control -> https://github.com/mjovanc/easyfood.git ) 
+
+To be able to run the code you need to download an emulator through Android Studio or connect your Android phone to your computer.
